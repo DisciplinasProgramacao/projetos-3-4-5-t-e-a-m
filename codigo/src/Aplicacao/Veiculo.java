@@ -1,6 +1,6 @@
 package Aplicacao;
 
-public class Veiculos {
+public class Veiculo {
 
     private static final String TIPO_VEICULO_01 = "carro", TIPO_VEICULO_02 = "van", TIPO_VEICULO_03 = "furgão",
             TIPO_VEICULO_04 = "caminhão";
@@ -16,7 +16,7 @@ public class Veiculos {
     private int percentualIpva, percentualSeguro, capacidadeTanque;
     private double valorVenda, acrescimoSeguro, kmPorLitro;
 
-    public Veiculos(String placa, String tipoVeiculo) {
+    public Veiculo(String placa, String tipoVeiculo) {
         this.placa = placa;
         this.tipoVeiculo = tipoVeiculo;
     }
