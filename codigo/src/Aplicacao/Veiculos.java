@@ -15,12 +15,12 @@ public class Veiculos {
     private int percentualIpva, percentualSeguro, capacidadeTanque;
     private double valorVenda, acrescimoSeguro, kmPorLitro;
 
-    public Veiculos(int placa, float valorVenda, String tipoVeiculo) {
+    public Veiculos(String placa, String tipoVeiculo) {
         this.placa = placa;
-        this.valorVenda = valorVenda;
         this.tipoVeiculo = tipoVeiculo;
-        }
-     }
+    }
+
+    }
 
     private float percentualIpva(String tipoVeiculo) {
         if (tipoVeiculo == TIPO_VEICULO_01) {
@@ -28,35 +28,69 @@ public class Veiculos {
         } else {
             if (tipoVeiculo == TIPO_VEICULO_02) {
                 percentualIpva = PERCENTUAL_IPVA_V02;
-            } else {            
+            } else {
                 if (tipoVeiculo == TIPO_VEICULO_03) {
                     percentualIpva = PERCENTUAL_IPVA_V03;
-                } else { 
+                } else {
                     if (tipoVeiculo == TIPO_VEICULO_04) {
                         percentualIpva = PERCENTUAL_IPVA_V04;
                     } else {
                         System.out.println("Tipo de veículo inexistente");
+                    }
+                }
+            }
         }
         return percentualIpva;
     }
 
-    public float valorIpva(float valorVenda, String TIPO_VEICULO) {
-        return (valorVenda * percentualIpva(TIPO_VEICULO));
-    }
-
-    public float valorSeguro(float valorVenda, String TIPO_VEICULO) {
-        if (TIPO_VEICULO == "carro"){
-            percentualSeguro = 5/100;
-        } else 
-            {if (TIPO_VEICULO == "van" || "furgao") {
-                percentualSeguro = 3/100;
-             } else 
-             {percentualSeguro = 2/100;
-                acrescimoSeguro = 
+    private float percentualSeguro(String tipoVeiculo) {
+        if (tipoVeiculo == TIPO_VEICULO_01) {
+            percentualSeguro = PERCENTUAL_SEGURO_V01;
+        } else {
+            if (tipoVeiculo == TIPO_VEICULO_02) {
+                percentualSeguro = PERCENTUAL_SEGURO_V02;
+            } else {
+                if (tipoVeiculo == TIPO_VEICULO_03) {
+                    percentualSeguro = PERCENTUAL_SEGURO_V03;
+                } else {
+                    if (tipoVeiculo == TIPO_VEICULO_04) {
+                        percentualSeguro = PERCENTUAL_SEGURO_V04;
+                    } else {
+                        System.out.println("Tipo de veículo inexistente");
+                    }
                 }
             }
+        }
+        return percentualSeguro;
+    }
+
+    private float acrescimoSeguro(String tipoVeiculo) {
+        if (tipoVeiculo == TIPO_VEICULO_01) {
+            acrescimoSeguro = ACRESCIMO_SEGURO_V01;
+        } else {
+            if (tipoVeiculo == TIPO_VEICULO_02) {
+                acrescimoSeguro = ACRESCIMO_SEGURO_V02;
+            } else {
+                if (tipoVeiculo == TIPO_VEICULO_03) {
+                    acrescimoSeguro = ACRESCIMO_SEGURO_V03;
+                } else {
+                    if (tipoVeiculo == TIPO_VEICULO_04) {
+                        acrescimoSeguro = ACRESCIMO_SEGURO_V04;
+                    } else {
+                        System.out.println("Tipo de veículo inexistente");
+                    }
+                }
+            }
+        }
         return percentualIpva;
-        return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);
+    }
+
+    public float valorIpva(float valorVenda, String tipoVeiculo) {
+        return (valorVenda * percentualIpva(tipoVeiculo));
+    }
+
+    public float valorSeguro(float valorVenda, String tipoVeiculo) {
+        return (valorVenda * percentualSeguro() / 100 + acrescimoSeguro());
     }
 
     public float autonomia(float kmPorLitro, int capacidadeTanque) {
