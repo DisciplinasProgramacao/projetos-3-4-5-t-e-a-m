@@ -1,0 +1,59 @@
+<mxfile host="65bd71144e">
+    <diagram id="b14o44YSXvndtRLI9eDr" name="Página-1">
+        <mxGraphModel dx="1768" dy="992" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-1" value="Veiculo" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="70" y="200" width="400" height="258" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-2" value="- placa: String&#10;- capacidadeTanque:  static final int&#10;- valorVenda:  static final float&#10;- percentualIpva:  static final int&#10;- percentualSeguro: static final int;&#10;- acrescimoSeguro: static final float:&#10;- kmPorLitro: float" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="70SCjkegAnHCq_JwYa3w-1" vertex="1">
+                    <mxGeometry y="26" width="400" height="124" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-3" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="70SCjkegAnHCq_JwYa3w-1" vertex="1">
+                    <mxGeometry y="150" width="400" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-4" value="+ valorIpva(valorVenda, percentualIpva): float&#10;+ valorSeguro(valorVenda, percentualSeguro, acrescimoSeguro): float&#10;+ autonomia (KmPorLitro, capacidadeTanque);&#10;+ outrosCustos();" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="70SCjkegAnHCq_JwYa3w-1" vertex="1">
+                    <mxGeometry y="158" width="400" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-5" value="Rota" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="670" y="430" width="160" height="98" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-6" value="+ distancia: float&#10;+ data: LocalDate " style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="70SCjkegAnHCq_JwYa3w-5" vertex="1">
+                    <mxGeometry y="26" width="160" height="64" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-7" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="70SCjkegAnHCq_JwYa3w-5" vertex="1">
+                    <mxGeometry y="90" width="160" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-10" value="Frota" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;" parent="1" vertex="1">
+                    <mxGeometry x="610" y="50" width="240" height="170" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-11" value="+ List &lt;Veiculo&gt;;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="70SCjkegAnHCq_JwYa3w-10" vertex="1">
+                    <mxGeometry y="26" width="240" height="26" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-12" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;strokeColor=inherit;" parent="70SCjkegAnHCq_JwYa3w-10" vertex="1">
+                    <mxGeometry y="52" width="240" height="8" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-13" value="+ carregarVeiculo(arquivo): void&#10;+ salvarVeiculo(List): void&#10;+ addVeiculo(): void&#10;+ addRota(Rota): void&#10;+ localizaVeiculo(placa): Veiculo&#10;+ imprimeRelatorio(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;" parent="70SCjkegAnHCq_JwYa3w-10" vertex="1">
+                    <mxGeometry y="60" width="240" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-15" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=0;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=-0.015;exitY=0.292;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.95;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="70SCjkegAnHCq_JwYa3w-13" target="70SCjkegAnHCq_JwYa3w-2" edge="1">
+                    <mxGeometry x="-1" y="3" relative="1" as="geometry">
+                        <mxPoint x="550" y="320" as="sourcePoint"/>
+                        <mxPoint x="710" y="320" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-16" value="'" style="endArrow=block;endFill=1;html=1;align=left;verticalAlign=top;rounded=0;entryX=0.569;entryY=1.08;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="70SCjkegAnHCq_JwYa3w-5" target="70SCjkegAnHCq_JwYa3w-13" edge="1">
+                    <mxGeometry x="-0.8029" y="-10" relative="1" as="geometry">
+                        <mxPoint x="747" y="420" as="sourcePoint"/>
+                        <mxPoint x="710" y="320" as="targetPoint"/>
+                        <mxPoint as="offset"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="70SCjkegAnHCq_JwYa3w-17" value="1" style="edgeLabel;resizable=0;html=1;align=left;verticalAlign=bottom;" parent="70SCjkegAnHCq_JwYa3w-16" connectable="0" vertex="1">
+                    <mxGeometry x="-1" relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
