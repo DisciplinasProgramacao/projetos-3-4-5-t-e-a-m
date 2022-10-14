@@ -1,9 +1,15 @@
 
+
+import org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
 public class VeiculosTest {
 
     @BeforeEach
     void setUp() throws Exception {
-    veiculo v = new Veículo();
+    Veiculo v = new Veiculo(ABC0505, 50000.00, int percentualIpva, int percentualSeguro, float acrescimoSeguro, float kmPorLitro);
     }
 
     /**
