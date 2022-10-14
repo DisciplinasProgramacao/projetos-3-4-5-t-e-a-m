@@ -11,6 +11,7 @@ public class Veiculos {
             CAPACIDADE_TANQUE_V04 = 250;
     private static final double ACRESCIMO_SEGURO_V01 = 300.00, ACRESCIMO_SEGURO_V02 = 0.00, ACRESCIMO_SEGURO_V03 = 0.00,
             ACRESCIMO_SEGURO_V04 = 2000.00;
+  
     private String tipoVeiculo, placa;
     private int percentualIpva, percentualSeguro, capacidadeTanque;
     private double valorVenda, acrescimoSeguro, kmPorLitro;
@@ -18,8 +19,6 @@ public class Veiculos {
     public Veiculos(String placa, String tipoVeiculo) {
         this.placa = placa;
         this.tipoVeiculo = tipoVeiculo;
-    }
-
     }
 
     private float percentualIpva(String tipoVeiculo) {
@@ -83,6 +82,27 @@ public class Veiculos {
             }
         }
         return percentualIpva;
+    }
+
+    private int capacidadeTanque(String tipoVeiculo) {
+        if (tipoVeiculo == TIPO_VEICULO_01) {
+            capacidadeTanque = CAPACIDADE_TANQUE_V01;
+        } else {
+            if (tipoVeiculo == TIPO_VEICULO_02) {
+                capacidadeTanque = CAPACIDADE_TANQUE_V02;
+            } else {
+                if (tipoVeiculo == TIPO_VEICULO_03) {
+                    capacidadeTanque = CAPACIDADE_TANQUE_V03;
+                } else {
+                    if (tipoVeiculo == TIPO_VEICULO_04) {
+                        capacidadeTanque = CAPACIDADE_TANQUE_V04;
+                    } else {
+                        System.out.println("Tipo de veículo inexistente");
+                    }
+                }
+            }
+        }
+        return capacidadeTanque;
     }
 
     public float valorIpva(float valorVenda, String tipoVeiculo) {
