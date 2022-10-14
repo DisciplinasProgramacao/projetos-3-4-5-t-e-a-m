@@ -1,4 +1,5 @@
 package Aplicacao;
-public class Frota {
+
+public class Frota extends Veiculos{
     
 }
