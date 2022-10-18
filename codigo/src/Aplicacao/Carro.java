@@ -7,7 +7,7 @@ public class Carro extends Veiculo{
     private static final String Super = null;
 
     public Carro(String placa, int CAPACIDADE_TANQUE, int PERCENTUAL_IPVA, int PERCENTUAL_SEGURO, double valorVenda, double ACRESCIMO_SEGURO, double KM_POR_LITRO) {
-        (Super)
+        (Super);
 
     }
     
