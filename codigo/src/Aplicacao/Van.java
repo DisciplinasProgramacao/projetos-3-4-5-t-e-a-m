@@ -4,12 +4,8 @@ public class Van extends Veiculo {
 	private static final double VALOR_DO_ALINHAMENTO = 120.00, VALOR_VISTORIA = 500.00, KM_POR_LITRO = 10;
     int kmAndado = 0;
 
-	Van(String placa, int capacidadeTanque, int percentualIpva, int percentualSeguro, double valorVenda,
-			double acrescimoSeguro, double kmPorLitro, int CAPACIDADE_TANQUE, int PERCENTUAL_IPVA,
-			int PERCENTUAL_SEGURO, int KM_ALINHAMENTO, int KM_VISTORIA, double VALOR_DO_ALINHAMENTO,
-			double VALOR_VISTORIA, double KM_POR_LITRO) {
-		super(placa, capacidadeTanque, capacidadeTanque, capacidadeTanque, acrescimoSeguro, acrescimoSeguro,
-				acrescimoSeguro);
+	public Van(String placa, double valorVenda, double acrescimoSeguro, double kmPorLitro) {
+		super(placa, CAPACIDADE_TANQUE, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, valorVenda, acrescimoSeguro, kmPorLitro);
 	}
 
 	@Override

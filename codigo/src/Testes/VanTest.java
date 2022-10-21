@@ -1,4 +1,4 @@
-import Aplicacao.Veiculo;
+import Aplicacao.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,13 +10,13 @@ public class VanTest {
 
     @BeforeEach
     void setUp() throws Exception {
-    v = new Van();
+    v = new Van("1234", 5000,0 , 10000);
     }
 
 
     @Test
     void testValorIpva(){
-    assertEquals(2500.00, v.valorIpva());
+    assertEquals(150.00, v.valorIpva());
 
     }
 
