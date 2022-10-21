@@ -1,4 +1,4 @@
-//package Aplicacao;
+package Aplicacao;
 
 import java.util.List;
 
@@ -9,61 +9,61 @@ public class Veiculo {
     private int capacidadeTanque, percentualIpva, percentualSeguro;
     private double valorVenda, acrescimoSeguro, kmPorLitro;
 
-    public String getPlaca() {
-		return placa;
-	}
+     public String getPlaca() {
+	 	return placa;
+	 }
 
-	public void setPlaca(String placa) {
-		this.placa = placa;
-	}
+	 public void setPlaca(String placa) {
+	 	this.placa = placa;
+	 }
 
-	public int getCapacidadeTanque() {
-		return capacidadeTanque;
-	}
+	 public int getCapacidadeTanque() {
+	 	return capacidadeTanque;
+	 }
 
-	public void setCapacidadeTanque(int capacidadeTanque) {
-		this.capacidadeTanque = capacidadeTanque;
-	}
+	 public void setCapacidadeTanque(int capacidadeTanque) {
+	 	this.capacidadeTanque = capacidadeTanque;
+	 }
 
-	public int getPercentualIpva() {
-		return percentualIpva;
-	}
+	 public int getPercentualIpva() {
+	 	return percentualIpva;
+	 }
 
-	public void setPercentualIpva(int percentualIpva) {
-		this.percentualIpva = percentualIpva;
-	}
+	 public void setPercentualIpva(int percentualIpva) {
+	 	this.percentualIpva = percentualIpva;
+	 }
 
-	public int getPercentualSeguro() {
-		return percentualSeguro;
-	}
+	 public int getPercentualSeguro() {
+	 	return percentualSeguro;
+	 }
 
-	public void setPercentualSeguro(int percentualSeguro) {
-		this.percentualSeguro = percentualSeguro;
-	}
+	 public void setPercentualSeguro(int percentualSeguro) {
+	 	this.percentualSeguro = percentualSeguro;
+	 }
 
-	public double getValorVenda() {
-		return valorVenda;
-	}
+	 public double getValorVenda() {
+	 	return valorVenda;
+	 }
 
-	public void setValorVenda(double valorVenda) {
-		this.valorVenda = valorVenda;
-	}
+	 public void setValorVenda(double valorVenda) {
+	 	this.valorVenda = valorVenda;
+	 }
 
-	public double getAcrescimoSeguro() {
-		return acrescimoSeguro;
-	}
+	 public double getAcrescimoSeguro() {
+	 	return acrescimoSeguro;
+	 }
 
-	public void setAcrescimoSeguro(double acrescimoSeguro) {
-		this.acrescimoSeguro = acrescimoSeguro;
-	}
+	 public void setAcrescimoSeguro(double acrescimoSeguro) {
+	 	this.acrescimoSeguro = acrescimoSeguro;
+	 }
 
-	public double getKmPorLitro() {
-		return kmPorLitro;
-	}
+	 public double getKmPorLitro() {
+	 	return kmPorLitro;
+	 }
 
-	public void setKmPorLitro(double kmPorLitro) {
-		this.kmPorLitro = kmPorLitro;
-	}
+	 public void setKmPorLitro(double kmPorLitro) {
+	 	this.kmPorLitro = kmPorLitro;
+	 }
 
 	public Veiculo(String placa, int capacidadeTanque, int percentualIpva, int percentualSeguro, double valorVenda, double acrescimoSeguro, double kmPorLitro) {
         this.placa = placa;
@@ -92,5 +92,9 @@ public class Veiculo {
         return 0.00;
 
     }
+
+	public void addRota(){
+		
+	}
 
 }
