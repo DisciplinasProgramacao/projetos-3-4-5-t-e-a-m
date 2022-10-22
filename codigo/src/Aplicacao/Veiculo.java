@@ -2,7 +2,7 @@ package Aplicacao;
 
 import java.util.List;
 
-public class Veiculo {
+public abstract class Veiculo {
 
 	private List<Rota> rota;
 	private String placa;
@@ -12,9 +12,11 @@ public class Veiculo {
 	private int percentualSeguro;
 	private double acrescimoSeguro;
 	private double kmPorLitro;
-	private int kmAlinhamentoManutencao;
-	private double valorAlinhamentoManutencao;
-	private int kmAnterior;
+	//private int kmAlinhamentoManutencao;
+	//private double valorPorAlinhamentoManutencao;
+	//private int kmVistoria;
+	//private double valorPorVistoria;
+	//private int kmAnterior;
 	private int kmAtual;
 
 	// public String getPlaca() {
@@ -74,19 +76,19 @@ public class Veiculo {
 	// }
 
 	public Veiculo(String placa, int capacidadeTanque, double valorVenda, 
-	 int percentualIpva,int percentualSeguro, double acrescimoSeguro, 
-	 double kmPorLitro, int kmAlinhamentoManutencao, 
-	 double valorAlinhamentoManutencao, int kmAtual) {
+	 int percentualIpva,int percentualSeguro, double kmPorLitro, int kmAtual) {
         this.placa = placa;
         this.capacidadeTanque = capacidadeTanque;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
         this.percentualSeguro = percentualSeguro;
-        this.acrescimoSeguro = acrescimoSeguro;
+        // this.acrescimoSeguro = acrescimoSeguro;
         this.kmPorLitro = kmPorLitro;
-		this.kmAlinhamentoManutencao = kmAlinhamentoManutencao;
-		this.valorAlinhamentoManutencao = valorAlinhamentoManutencao;
-		this.kmAtual;
+		//this.kmAlinhamentoManutencao = kmAlinhamentoManutencao;
+		//this.valorPorAlinhamentoManutencao = valorPorAlinhamentoManutencao;
+		//this.kmVistoria;
+		//this.valorPorVistoria;
+		this.kmAtual = kmAtual;
     }
 
 	public double valorIpva() {
@@ -101,12 +103,22 @@ public class Veiculo {
 		return (kmPorLitro * capacidadeTanque);
 	}
 
-	public double outrosCustos() {
-		if ((kmAtual - kmAnterior) % kmAlinhamentoManutencao > 1)
-			return ((kmAtual - kmAnterior) % kmAlinhamentoManutencao) * valorAlinhamentoManutencao;
-		else
-			return 0.00;
-	}
+	public abstract double outrosCustos();
+	// {
+	// 	double resultadoAlinhamentoManutenção = 0, resultadoVistoria = 0;
+	// 	if ((kmAtual - kmAnterior) % kmAlinhamentoManutencao > 1) {
+	// 		resultadoAlinhamentoManutenção = ((kmAtual - kmAnterior) % kmAlinhamentoManutencao)
+	// 				* valorPorAlinhamentoManutencao;
+	// 	} else {
+	// 		resultadoAlinhamentoManutenção = 0.00;
+	// 	}
+	// 	if ((kmAtual - kmAnterior) % kmVistoria > 1) {
+	// 		resultadoVistoria = ((kmAtual - kmAnterior) % kmVistoria) * valorPorVistoria;
+	// 	} else {
+	// 		resultadoVistoria = 0.00;
+	// 	}
+	// 	return 0.00;
+	//}
 
 	public void addRota() {
 

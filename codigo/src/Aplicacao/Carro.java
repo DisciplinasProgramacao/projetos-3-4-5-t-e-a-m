@@ -6,19 +6,21 @@ public class Carro extends Veiculo{
     private static final int CAPACIDADE_TANQUE = 50;
     private static final int PERCENTUAL_IPVA = 4;;
     private static final int PERCENTUAL_SEGURO = 5;
-    private static final double ACRESCIMO_SEGURO = 300.00;
     private static final double KM_POR_LITRO = 10.00;
-    private static final int KM_ALINHAMENTO = 10000;
-    private static final double VALOR_ALINHAMENTO = 80.00;
 
-    private int placa;
     private double valorVenda;
-    private int kmAnterior;
-    private int kmAtual;
+    private double acrescimoSeguro = 300.00;
+    private int kmAlinhamento = 10000;
+    private double valorPorAlinhamento = 80.00;
+	private int kmAtual;
 
-    public Carro(String placa, double valorVenda, int kmAtual) {
-        super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, 
-         ACRESCIMO_SEGURO, KM_POR_LITRO, KM_ALINHAMENTO, VALOR_ALINHAMENTO, kmAtual);
+    public Carro(String placa, double valorVenda, double acrescimoSeguro, int kmAlinhamento, 
+    double valorPorAlinhamento, int kmAtual) {
+        super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO,
+         KM_POR_LITRO, kmAtual);
+        this.acrescimoSeguro = acrescimoSeguro;
+        this.kmAlinhamento = kmAlinhamento;
+        this.valorPorAlinhamento = valorPorAlinhamento;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class Carro extends Veiculo{
     }
 	@Override
     public double valorSeguro() {
-        return (valorVenda * PERCENTUAL_SEGURO / 100 );
+        return (valorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
     }
 	@Override
     public double autonomia() {
@@ -35,8 +37,9 @@ public class Carro extends Veiculo{
     }
 	@Override
     public double outrosCustos(){    
-        if((kmAtual - kmAnterior) % KM_ALINHAMENTO > 1) {
-        return ((kmAtual - kmAnterior) % KM_ALINHAMENTO) * VALOR_ALINHAMENTO;
+        int kmAnterior=0;
+        if((kmAtual - kmAnterior) % kmAlinhamento > 1) {
+        return ((kmAtual - kmAnterior) % kmAlinhamento) * valorPorAlinhamento;
         }
         else{
         return 0.00;
