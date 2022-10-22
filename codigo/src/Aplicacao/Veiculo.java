@@ -12,13 +12,7 @@ public abstract class Veiculo {
 	private double valorVenda;
 	private int percentualIpva;
 	private int percentualSeguro;
-	// private double acrescimoSeguro;
 	private double kmPorLitro;
-	// private int kmAlinhamentoManutencao;
-	// private double valorPorAlinhamentoManutencao;
-	// private int kmVistoria;
-	// private double valorPorVistoria;
-	// private int kmAnterior;
 	private int kmAtual;
 
 	// public String getPlaca() {
@@ -84,12 +78,7 @@ public abstract class Veiculo {
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
-		// this.acrescimoSeguro = acrescimoSeguro;
 		this.kmPorLitro = kmPorLitro;
-		// this.kmAlinhamentoManutencao = kmAlinhamentoManutencao;
-		// this.valorPorAlinhamentoManutencao = valorPorAlinhamentoManutencao;
-		// this.kmVistoria;
-		// this.valorPorVistoria;
 		this.kmAtual = kmAtual;
 	}
 
@@ -98,31 +87,12 @@ public abstract class Veiculo {
 	}
 
 	public abstract double valorSeguro();
-	// {
-	// return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);
-	// }
 
 	public double autonomia() {
 		return (kmPorLitro * capacidadeTanque);
 	}
 
 	public abstract double outrosCustos();
-	// {
-	// double resultadoAlinhamentoManutenção = 0, resultadoVistoria = 0;
-	// if ((kmAtual - kmAnterior) % kmAlinhamentoManutencao > 1) {
-	// resultadoAlinhamentoManutenção = ((kmAtual - kmAnterior) %
-	// kmAlinhamentoManutencao)
-	// * valorPorAlinhamentoManutencao;
-	// } else {
-	// resultadoAlinhamentoManutenção = 0.00;
-	// }
-	// if ((kmAtual - kmAnterior) % kmVistoria > 1) {
-	// resultadoVistoria = ((kmAtual - kmAnterior) % kmVistoria) * valorPorVistoria;
-	// } else {
-	// resultadoVistoria = 0.00;
-	// }
-	// return 0.00;
-	// }
 
 	public void addRota(double distanciaTotal, LocalDate data) {
 		Rota rota = new Rota(distanciaTotal, data);

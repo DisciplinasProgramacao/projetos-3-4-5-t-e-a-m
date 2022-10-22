@@ -7,9 +7,9 @@ public class Carro extends Veiculo {
     private static final int PERCENTUAL_IPVA = 4;;
     private static final int PERCENTUAL_SEGURO = 5;
     private static final double ACRESCIMO_SEGURO = 300.00;
+    private static final double KM_POR_LITRO = 10.00;
     private static final int KM_ALINHAMENTO = 10000;
     private static final double VALOR_POR_ALINHAMENTO = 80.00;
-    private static final double KM_POR_LITRO = 10.00;
 
     private double valorVenda;
     private double acrescimoSeguro;
@@ -24,7 +24,6 @@ public class Carro extends Veiculo {
         this.kmAlinhamento = KM_ALINHAMENTO;
         this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
     }
-
 
     @Override
     public double valorIpva() {
