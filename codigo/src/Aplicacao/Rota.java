@@ -4,26 +4,26 @@ import java.time.LocalDate;
 
 public class Rota {
     
-    private LocalDate date;
-    private int distanciaTotal;
+	private double distancia;
+	private LocalDate data;
 
-    private Rota(){
-        this.date = date;
-        this.distanciaTotal = distanciaTotal;
+    public Rota(double distancia, LocalDate data){
+		this.distancia = distancia;
+		this.data = data;
     }
-    public LocalDate getDate() {
-		return date;
-	}
+    // public LocalDate getDate() {
+	// 	return date;
+	// }
 
-	public void setDate(LocalDate date) {
-		this.date = date;
-	}
+	// public void setDate(LocalDate date) {
+	// 	this.date = date;
+	// }
 
-	public int getDistanciaTotal() {
-		return distanciaTotal;
-	}
+	// public int getDistanciaTotal() {
+	// 	return distanciaTotal;
+	// }
 
-	public void setDistanciaTotal(int distanciaTotal) {
-		this.distanciaTotal = distanciaTotal;
-	}
+	// public void setDistanciaTotal(int distanciaTotal) {
+	// 	this.distanciaTotal = distanciaTotal;
+	// }
 }
