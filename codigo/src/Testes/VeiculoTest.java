@@ -1,4 +1,6 @@
-import Aplicacao.Veiculo;
+package Testes;
+import Aplicacao.*;
+
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -11,8 +13,9 @@ public class VeiculoTest {
 
     @BeforeEach
     void setUp() throws Exception {
-    v = new Veiculo("ABC0505", 80, 5, 4, 50000.00, 100.00, 10);
-    }
+    v = new Veiculo();
+    };
+
 
 
     @Test
