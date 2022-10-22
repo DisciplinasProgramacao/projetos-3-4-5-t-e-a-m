@@ -7,14 +7,14 @@ public class Carro extends Veiculo {
     private static final int PERCENTUAL_IPVA = 4;;
     private static final int PERCENTUAL_SEGURO = 5;
     private static final double ACRESCIMO_SEGURO = 300.00;
+    private static final double KM_POR_LITRO = 10.00;
     private static final int KM_ALINHAMENTO = 10000;
     private static final double VALOR_POR_ALINHAMENTO = 80.00;
-    private static final double KM_POR_LITRO = 10.00;
 
     private double valorVenda;
     private double acrescimoSeguro;
-    private int kmAlinhamento = 10000;
-    private double valorPorAlinhamento = 80.00;
+    private int kmAlinhamento;
+    private double valorPorAlinhamento;
     private int kmAtual;
 
     public Carro(String placa, double valorVenda, int kmAtual) {
@@ -23,9 +23,6 @@ public class Carro extends Veiculo {
         this.acrescimoSeguro = ACRESCIMO_SEGURO;
         this.kmAlinhamento = KM_ALINHAMENTO;
         this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
-    }
-
-    public Carro(String string, double d, double e, int i, int j, int k) {
     }
 
     @Override
