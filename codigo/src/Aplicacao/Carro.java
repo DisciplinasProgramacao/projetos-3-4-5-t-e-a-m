@@ -13,8 +13,8 @@ public class Carro extends Veiculo {
 
     private double valorVenda;
     private double acrescimoSeguro;
-    private int kmAlinhamento = 10000;
-    private double valorPorAlinhamento = 80.00;
+    private int kmAlinhamento;
+    private double valorPorAlinhamento;
     private int kmAtual;
 
     public Carro(String placa, double valorVenda, int kmAtual) {
@@ -25,8 +25,6 @@ public class Carro extends Veiculo {
         this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
     }
 
-    public Carro(String string, double d, double e, int i, int j, int k) {
-    }
 
     @Override
     public double valorIpva() {
