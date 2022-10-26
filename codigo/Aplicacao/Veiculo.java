@@ -15,13 +15,13 @@ public abstract class Veiculo {
 	private double kmPorLitro;
 	private int kmAtual;
 
-	// public String getPlaca() {
-	// return placa;
-	// }
-
-	// public void setPlaca(String placa) {
-	// this.placa = placa;
-	// }
+//	 public String getPlaca() {
+//	 return placa;
+//	 }
+//
+//	 public void setPlaca(String placa) {
+//	 this.placa = placa;
+//	 }
 
 	// public int getCapacidadeTanque() {
 	// return capacidadeTanque;
@@ -47,13 +47,13 @@ public abstract class Veiculo {
 	// this.percentualSeguro = percentualSeguro;
 	// }
 
-	// public double getValorVenda() {
-	// return valorVenda;
-	// }
-
-	// public void setValorVenda(double valorVenda) {
-	// this.valorVenda = valorVenda;
-	// }
+//       public double getValorVenda() {
+//	 return valorVenda;
+//	 }
+//
+//	 public void setValorVenda(double valorVenda) {
+//	 this.valorVenda = valorVenda;
+//	 }
 
 	// public double getAcrescimoSeguro() {
 	// return acrescimoSeguro;
@@ -70,27 +70,36 @@ public abstract class Veiculo {
 	// public void setKmPorLitro(double kmPorLitro) {
 	// this.kmPorLitro = kmPorLitro;
 	// }
+//	 public int getKmAtual() {
+//			return kmAtual;
+//		}
+//
+//		public void setKmAtual(int kmAtual) {
+//			this.kmAtual = kmAtual;
+//		}
 
 	public Veiculo(String placa, int capacidadeTanque, double valorVenda,
 			int percentualIpva, int percentualSeguro, double kmPorLitro, int kmAtual) {
-		this.placa = placa;
+		//setPlaca(placa);
+		this.placa=placa;
 		this.capacidadeTanque = capacidadeTanque;
-		this.valorVenda = valorVenda;
+		//setValorVenda(valorVenda);
+		this.valorVenda=valorVenda;  
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
 		this.kmPorLitro = kmPorLitro;
-		this.kmAtual = kmAtual;
+		//setKmAtual(kmAtual);
+		this.kmAtual=kmAtual;
 	}
 
-	public double valorIpva() {
-		return (valorVenda * percentualIpva / 100);
-	}
+	public abstract double valorIpva();
+	//return (valorVenda * percentualIpva / 100);
 
 	public abstract double valorSeguro();
 
-	public double autonomia() {
-		return (kmPorLitro * capacidadeTanque);
-	}
+	public abstract double autonomia();
+//		return (kmPorLitro * capacidadeTanque);
+	
 
 	public abstract double outrosCustos();
 
@@ -98,5 +107,7 @@ public abstract class Veiculo {
 		Rota rota = new Rota(distanciaTotal, data);
 		listaDeRotas.add(rota);
 	}
+
+	
 
 }
