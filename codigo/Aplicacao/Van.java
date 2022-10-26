@@ -119,12 +119,13 @@ public class Van extends Veiculo {
 		double valorVistoria = 0.0;
 
 		if (((novoKmAtual - kmAnterior) % this.getKmAlinhamento()) == 0) {
-			valorAlinhamento = (((novoKmAtual - kmAnterior) % this.getKmAlinhamento()) * this.getValorPorAlinhamento());
+			valorAlinhamento = (((novoKmAtual - kmAnterior) / this.getKmAlinhamento()) * this.getValorPorAlinhamento());
+			
 		} else {
 			valorAlinhamento = 0.0;
 		}
 		if (((novoKmAtual - kmAnterior) % this.getKmVistoria()) == 0) {
-			valorVistoria = (((novoKmAtual - kmAnterior) % this.getKmVistoria()) * this.getValorPorVistoria());
+			valorVistoria = (((novoKmAtual - kmAnterior) / this.getKmVistoria()) * this.getValorPorVistoria());
 		} else {
 			valorVistoria = 0.0;
 		}
