@@ -42,7 +42,9 @@ public class VanTest {
     
     @Test
     void testOutrosCustos(){
-    assertEquals(10,v.outrosCustos(),"outros custos ");
+    assertEquals(620,v.outrosCustos(),"outros custos ");
+    v = new Van("1234", 5000.0, 20000);
+    assertEquals(1240,v.outrosCustos(),"outros custos ");
     }
 
 }
