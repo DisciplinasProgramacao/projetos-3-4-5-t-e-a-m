@@ -1,66 +1,137 @@
 
 
-import javax.lang.model.util.ElementScanner14;
+//import javax.lang.model.util.ElementScanner14;
 
 public class Van extends Veiculo {
 
-    // ATRIBUTOS
-    private static final int CAPACIDADE_TANQUE = 60;
-    private static final int PERCENTUAL_IPVA = 3;
-    private static final int PERCENTUAL_SEGURO = 3;
-    private static final double KM_POR_LITRO = 10;
-    private static final int KM_ALINHAMENTO = 10000;
-    private static final double VALOR_POR_ALINHAMENTO = 120.00;
-    private static final int KM_VISTORIA = 10000;
-    private static final double VALOR_POR_VISTORIA = 500.00;
+	// ATRIBUTOS
+	private static final int CAPACIDADE_TANQUE = 60;
+	private static final int PERCENTUAL_IPVA = 3;
+	private static final int PERCENTUAL_SEGURO = 3;
+	private static final double KM_POR_LITRO = 10;
+	private static final int KM_ALINHAMENTO = 10000;
+	private static final double VALOR_POR_ALINHAMENTO = 120.00;
+	private static final int KM_VISTORIA = 10000;
+	private static final double VALOR_POR_VISTORIA = 500.00;
 
-    private double valorVenda;
-    private int kmAlinhamento;
-    private double valorPorAlinhamento;
-    private int kmVistoria;
-    private double valorPorVistoria;
-    private int kmAtual;
+	private int kmAlinhamento;
+	private double valorPorAlinhamento;
+	private int kmVistoria;
+	private double valorPorVistoria;
+	private int kmAtual;
 
-    public Van(String placa, double valorVenda, int kmAtual) {
-        super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO,
-                KM_POR_LITRO, kmAtual);
-        this.kmAlinhamento = KM_ALINHAMENTO;
-        this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
-        this.kmVistoria = KM_VISTORIA;
-        this.valorPorVistoria = VALOR_POR_VISTORIA;
-    }
+	
+	private double novoValorVenda;
+	private int novoKmAtual;
+	
 
-    @Override
-    public double valorIpva() {
-        return (valorVenda * PERCENTUAL_IPVA / 100);
-    }
+	public int getNovoKmAtual() {
+		return novoKmAtual;
+	}
 
-    @Override
-    public double valorSeguro() {
-        return (valorVenda * PERCENTUAL_SEGURO / 100);
-    }
+	public void setNovoKmAtual(int novoKmAtual) {
+		this.novoKmAtual = novoKmAtual;
+	}
 
-    @Override
-    public double autonomia() {
-        return (KM_POR_LITRO * CAPACIDADE_TANQUE);
-    }
+	public double getNovoValorVenda() {
+		return novoValorVenda;
+	}
 
-    @Override
-    public double outrosCustos() {
-        int kmAnterior = 0;
-        double valorAlinhamento;
-        double valorVistoria;
+	public void setNovoValorVenda(double novoValorVenda) {
+		this.novoValorVenda = novoValorVenda;
+	}
+	
+	
+	
+	
+	
+	
+	public int getKmAlinhamento() {
+		return kmAlinhamento;
+	}
 
-        if ((kmAtual - kmAnterior) % kmAlinhamento > 1) {
-            valorAlinhamento = ((kmAtual - kmAnterior) % kmAlinhamento) * valorPorAlinhamento;
-        } else{
-            valorAlinhamento = 0.00;
-        }
-        if ((kmAtual - kmAnterior) % kmVistoria > 1) {
-            valorVistoria = ((kmAtual - kmAnterior) % kmVistoria) * valorPorVistoria;
-        } else {
-           valorVistoria = 0.00;
-        }
-            return (valorAlinhamento + valorVistoria);
-        }
+	public void setKmAlinhamento(int kmAlinhamento) {
+		this.kmAlinhamento = kmAlinhamento;
+	}
+
+	public double getValorPorAlinhamento() {
+		return valorPorAlinhamento;
+	}
+
+	public void setValorPorAlinhamento(double valorPorAlinhamento) {
+		this.valorPorAlinhamento = valorPorAlinhamento;
+	}
+
+	public int getKmVistoria() {
+		return kmVistoria;
+	}
+
+	public void setKmVistoria(int kmVistoria) {
+		this.kmVistoria = kmVistoria;
+	}
+
+	public double getValorPorVistoria() {
+		return valorPorVistoria;
+	}
+
+	public void setValorPorVistoria(double valorPorVistoria) {
+		this.valorPorVistoria = valorPorVistoria;
+	}
+	
+	
+
+	public Van(String placa, double valorVenda, int kmAtual) {
+		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual);
+		this.kmAlinhamento = KM_ALINHAMENTO;
+		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
+		this.kmVistoria = KM_VISTORIA;
+		this.valorPorVistoria = VALOR_POR_VISTORIA;
+		novoValorVenda = valorVenda;
+		novoKmAtual = kmAtual;
+//		setKmAlinhamento(kmAlinhamento);
+//		setValorPorAlinhamento(valorPorAlinhamento);
+//		setKmVistoria(kmVistoria);
+//		setValorPorVistoria(valorPorVistoria);
+		// setNovoValorVenda(novoValorVenda); 
+	}
+
+	@Override
+	public double valorIpva() {
+		return (novoValorVenda * PERCENTUAL_IPVA / 100);
+	}
+
+	@Override
+	public double valorSeguro() {
+		return (novoValorVenda * PERCENTUAL_SEGURO / 100);
+	}
+
+	@Override
+	public double autonomia() {
+		return (KM_POR_LITRO * CAPACIDADE_TANQUE);
+	}
+
+	// Alinhamento: R$120 a cada 10000km
+	// Vistoria: R$500 a cada 10000 km
+	@Override
+	public double outrosCustos() {
+		int kmAnterior = 0;
+		double valorAlinhamento = 0.0;
+		double valorVistoria = 0.0;
+
+		if (((novoKmAtual - kmAnterior) % this.getKmAlinhamento()) == 0) {
+			valorAlinhamento = (((novoKmAtual - kmAnterior) % this.getKmAlinhamento()) * this.getValorPorAlinhamento());
+		} else {
+			valorAlinhamento = 0.0;
+		}
+		if (((novoKmAtual - kmAnterior) % this.getKmVistoria()) == 0) {
+			valorVistoria = (((novoKmAtual - kmAnterior) % this.getKmVistoria()) * this.getValorPorVistoria());
+		} else {
+			valorVistoria = 0.0;
+		}
+		return (valorAlinhamento + valorVistoria);
+	}
+
+	
+
 }
+
