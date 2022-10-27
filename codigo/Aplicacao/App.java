@@ -1,4 +1,4 @@
-package Main;
+//package Main;
 
 import java.util.Scanner;
 
@@ -23,6 +23,8 @@ public class App {
 		Integer i = 0, repeticoes;
 		Boolean isAtivo = true;
 
+		Frota frota = new Frota();
+
 		//minhaLista = new ListaEncadeada();
 
 		try (Scanner ler = new Scanner(System.in)) {
@@ -34,27 +36,36 @@ public class App {
 				switch (Integer.parseInt(num)) {
 //Carregar um conjunto de veículos de um arquivo
 				case 1:
-				while (!linhaTeclado.equals("FIM")) {
-					numeroDeSeriesTeclado++;
-		
-					for (int i = 0; i < numeroDeSeriesEntrada - 2; i++) {
-						if (minhaSerie[i].getNome().equals(linhaTeclado)) {
-							novaSerie = new Serie();
-							novaSerie = minhaSerie[i];
-							//novaLetra = novaSerie.getNome().charAt(0);
-							//novoCaractere.setValor(novaLetra);
-							try {
-								minhaArvoreSerie.inserir(novaSerie);
-								
-		
-							} catch (Exception erro) {
-								System.out.println(erro.getMessage());
-							}
-						}
-					} // fim for
-					linhaTeclado = entradaTeclado.nextLine();
-				} // fim while
+				String caminhoArquivo = "leitura.txt";
+				try {
+					ArquivoTextoLeitura leitura = new ArquivoTextoLeitura(caminhoArquivo);
+				} catch (Exception erro) {
+					System.out.println(erro.getMessage());
+				}
 				break;
+					
+					// while (!linhaTeclado.equals("FIM")) {
+					// 	numeroDeSeriesTeclado++;
+			
+					// 	for (i = 0; i < numeroDeSeriesEntrada - 2; i++) {
+					// 		if (minhaSerie[i].getNome().equals(linhaTeclado)) {
+					// 			novaSerie = new Serie();
+					// 			novaSerie = minhaSerie[i];
+					// 			//novaLetra = novaSerie.getNome().charAt(0);
+					// 			//novoCaractere.setValor(novaLetra);
+					// 			try {
+					// 				minhaArvoreSerie.inserir(novaSerie);
+									
+			
+					// 			} catch (Exception erro) {
+					// 				System.out.println(erro.getMessage());
+					// 			}
+					// 		}
+					// 	} // fim for
+					// 	linhaTeclado = entradaTeclado.nextLine();
+					// } // fim while
+					
+					//break;
 
 				case 2:
 					try {
@@ -65,7 +76,40 @@ public class App {
 
 				case 3:
 					try {
-						
+						System.out.println("que tipo de veículo será incluído: ");
+						System.out.println("1. Carro");
+						System.out.println("2. Caminhão");
+						System.out.println("3. Van");
+						System.out.println("4. Furgão");
+
+						num = ler.nextLine();
+
+						switch (Integer.parseInt(num)) {
+							case 1:
+							Carro carro = new Carro("ABC", 100, 100);
+							frota.addVeiculo(carro);
+							break;
+
+							case 2:
+							Caminhao caminhao = new Caminhao("ABC", 100, 100);
+							frota.addVeiculo(caminhao);
+							break;
+
+							case 3:
+							Van van = new Van("ABC", 100, 100);
+							frota.addVeiculo(van);
+							break;
+
+							case 4:
+							Furgao furgao = new Furgao("ABC", 100, 100);
+							frota.addVeiculo(furgao);
+							break;
+
+							default:
+							System.out.println("modelo inválido");
+							break;
+						}
+
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
 					}
@@ -79,7 +123,7 @@ public class App {
 							System.out.println(erro.getMessage());
 						}
 						
-					}
+					
 
 					break;
 					
@@ -117,5 +161,6 @@ public class App {
 
 			}
 		}
+	}
 }
 

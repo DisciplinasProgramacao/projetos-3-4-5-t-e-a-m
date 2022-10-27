@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 public class VeiculoTest {
 
-	Veiculo v = new Veiculo();
+	Veiculo v = new Carro("ABC", 100, 100);
 
 //    @BeforeEach
 //    void setUp() throws Exception {

@@ -1,14 +1,16 @@
-package Main;
-import java.util.List;
+//package Main;
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.LinkedList;
+//import java.util.List;
 
-public class Frota {
-	//List<Veiculo> veiculo;
-	private Veiculo[]veiculos;
-	private Rota[]rotas;
+public class Frota{
+	LinkedList<Veiculo> veiculos;
+	//private Veiculo[]veiculos;
 	
 	public Frota(){
-		veiculos = new Veiculo[5];
-		rotas = new Rota[5];
+		veiculos = new LinkedList<Veiculo>();
 	}
 
 	public void carregarVeiculo(String nomeArquivo) {
@@ -28,41 +30,44 @@ public class Frota {
 	}
 
 	public void salvarVeiculo(String nomeArquivo) {
-		Veiculo[] veic = new Veiculo[veic.length];
-        veic.allElements(veic);
+		//Veiculo[] veic = new Veiculo[10];
+        //veic.allElements(veic);
         ArquivoTextoEscrita arq = new ArquivoTextoEscrita(nomeArquivo);
-
-        for(int i=0; i<veic.length; i++){
-            for(int j=0; j<veic.length; j++){
-                // if(ver[i].arestaApontandoPara(j) != null){
-                    System.out.println(i + ";" + j);
-                    arq.escrever(i + ";" + j);
-                //}
-            }
-        }
+        
+		// for(int i=0; i<veic.length; i++){
+        //     for(int j=0; j<veic.length; j++){
+        //         // if(ver[i].arestaApontandoPara(j) != null){
+        //             System.out.println(i + ";" + j);
+        //             arq.escrever(i + ";" + j);
+        //         //}
+        //     }
+        // }
         arq.fecharArquivo();
     }
 	
 //MUDANÇA
 	public boolean addVeiculo(Veiculo veiculo) {
-		int cont = 0;
-		 if(cont < this.veiculos.length) {
-	            this.veiculos[cont++] = veiculo;
-	            return true;
-	        }
+		// int cont = 0;
+		//  if(cont < this.veiculos.length) {
+	    //         this.veiculos[cont++] = veiculo;
+	    //         return true;
+	    //     }
 	        
-	        return false;
+	    //     return false;
+		this.veiculos.addLast(veiculo);
+		return true;
 	}
 
-	public boolean addRota(Rota rota) {
-		int cont = 0;
-		 if(cont < this.rotas.length) {
-	            this.rotas[cont++] = rota;
-	            return true;
-	        }
+	//ROTAS ADICIONADAS NA CLASSE VEICULO
+	// public boolean addRota(Rota rota) {
+	// 	int cont = 0;
+	// 	 if(cont < this.rotas.length) {
+	//             this.rotas[cont++] = rota;
+	//             return true;
+	//         }
 	        
-	        return false;
-	}
+	//         return false;
+	// }
 	
 //Colocar recebendo por parâmetro String placaProcurar, vindo de aplicacao ?
 	public Veiculo localizaVeiculo(String placa) {
@@ -76,8 +81,9 @@ public class Frota {
 	}
 
 	public void imprimir() {
-		
-//
+		for(int i=0; i<veiculos.size(); i++){
+			System.out.println(i + ". " + veiculos.get(i).getPlaca());
+		}
 	}
 
 }

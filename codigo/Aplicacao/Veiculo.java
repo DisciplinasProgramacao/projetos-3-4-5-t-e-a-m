@@ -15,9 +15,9 @@ public abstract class Veiculo {
 	private double kmPorLitro;
 	private int kmAtual;
 
-//	 public String getPlaca() {
-//	 return placa;
-//	 }
+	 public String getPlaca() {
+	 return placa;
+	 }
 //
 //	 public void setPlaca(String placa) {
 //	 this.placa = placa;

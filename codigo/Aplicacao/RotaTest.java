@@ -1,4 +1,4 @@
-package Main;
+//package Main;
 
 import org.junit.jupiter.api.Assertions.*;
 
@@ -12,6 +12,9 @@ public class RotaTest {
 
     }
 
-    @test
+    @Test
+    void test(){
+        
+    }
 
 }
