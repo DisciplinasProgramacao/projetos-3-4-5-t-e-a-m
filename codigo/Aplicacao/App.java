@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class App {
+public class Aplicacao {
   
     public static void menu() {
 		System.out.println("\n\tMenu:");
@@ -69,6 +69,7 @@ public class App {
 
 				case 2:
 					try {
+//						frota.salvarVeiculo("nome do arquivo");
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
 					}
@@ -86,23 +87,27 @@ public class App {
 
 						switch (Integer.parseInt(num)) {
 							case 1:
-							Carro carro = new Carro("ABC", 100, 100);
+							Carro carro = new Carro("ABC", 5000.0, 10000);
 							frota.addVeiculo(carro);
+							frota.imprimir();
 							break;
 
 							case 2:
-							Caminhao caminhao = new Caminhao("ABC", 100, 100);
+							Caminhao caminhao = new Caminhao("DEF", 5000.0, 20000);
 							frota.addVeiculo(caminhao);
+							frota.imprimir();
 							break;
 
 							case 3:
-							Van van = new Van("ABC", 100, 100);
+							Van van = new Van("GHI", 5000.0, 10000);
 							frota.addVeiculo(van);
+							frota.imprimir();
 							break;
 
 							case 4:
-							Furgao furgao = new Furgao("ABC", 100, 100);
+							Furgao furgao = new Furgao("JKL", 5000.0, 20000);
 							frota.addVeiculo(furgao);
+							frota.imprimir();
 							break;
 
 							default:
@@ -115,9 +120,11 @@ public class App {
 					}
 					break;
 				case 4:
-					
 						
 						try {
+							// ?????
+//							frota.localizaVeiculo("ABC");
+//							frota.addRota(null);
 							
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
@@ -130,11 +137,11 @@ public class App {
 				case 5:
 					
 					try {
-						System.out.println("Digite a placa do veículo:");
+  
+  					System.out.println("Digite a placa do veículo:");
 
 						placa = ler.nextLine();
-						Frota.localizaVeiculo(placa);
-
+						frota.localizaVeiculo(placa);
 						
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
@@ -144,7 +151,7 @@ public class App {
 				case 6:
 					
 					try {
-						
+						//frota.imprimir();
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
 					}
@@ -168,4 +175,5 @@ public class App {
 		}
 	}
 }
+
 

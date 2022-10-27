@@ -1,18 +1,51 @@
 //package Main;
 
+import java.util.LinkedList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class FrotaTest {
 
-    @BeforeEach
-    void setUp() throws Exception {
-        Carro c = new Carro("ABC123", 5000.00, 0);
-    }
+	LinkedList<Veiculo> veiculos;
 
-    @Test
-    public void test() throws Exception {
-    }
+	@BeforeEach
+	void setUp() throws Exception {
+		veiculos = new LinkedList<Veiculo>();
+	}
 
-    
+	@Test
+	void carregarVeiculo(String nomeArquivo) {
+
+	}
+
+	@Test
+	void salvarVeiculo(String nomeArquivo) {
+
+	}
+
+	@Test
+	boolean addVeiculo(Veiculo veiculo) {
+
+		return false;
+
+	}
+
+	@Test
+	boolean addRota(Rota rota) {
+		return false;
+
+	}
+
+	@Test
+	Veiculo localizaVeiculo(String placaProcurar) throws Exception {
+		return null;
+
+	}
+
+	@Test
+	void imprimir() {
+
+	}
+
 }

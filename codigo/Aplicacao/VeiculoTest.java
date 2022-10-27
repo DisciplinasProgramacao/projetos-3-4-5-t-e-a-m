@@ -1,29 +1,27 @@
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class VeiculoTest {
 
-	Veiculo v = new Carro("ABC", 100, 100);
+	
 
-//    @BeforeEach
-//    void setUp() throws Exception {
-//    v = new Veiculo();
-//    };
-
-
-
-    @Test
-    void testValorIpva(){
-    assertEquals(2500.00, v.valorIpva());
-
+    @BeforeEach
+    void setUp() throws Exception {
+    	List<Rota> listaDeRotas = new ArrayList<Rota>();
     }
 
+    
     @Test
-    void testValorSeguro(){
-    assertEquals(2000.00, v.valorSeguro());
+    void addRota(double distanciaTotal, LocalDate data) {
+    	Rota rota = new Rota(100, data);
+//    	listaDeRotas.add(rota);
     }
 
 

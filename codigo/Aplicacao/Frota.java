@@ -69,7 +69,7 @@ public class Frota {
 		
 	}
 	
-	public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
+public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		
 		for(Veiculo veiculo : veiculos) {
 			if(placaProcurar.equals(veiculo.getPlaca())) {
@@ -78,7 +78,6 @@ public class Frota {
 		}
 		throw new Exception("Placa não encontrada");
 	}
-
 
 	public void imprimir() {
 		for(int i=0; i<veiculos.size(); i++){
