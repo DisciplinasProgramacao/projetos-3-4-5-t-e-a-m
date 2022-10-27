@@ -2,7 +2,14 @@ package Main;
 import java.util.List;
 
 public class Frota {
-	List<Veiculo> veiculo;
+	//List<Veiculo> veiculo;
+	private Veiculo[]veiculos;
+	private Rota[]rotas;
+	
+	public Frota(){
+		veiculos = new Veiculo[5];
+		rotas = new Rota[5];
+	}
 
 	public void carregarVeiculo(String nomeArquivo) {
 
@@ -21,12 +28,12 @@ public class Frota {
 	}
 
 	public void salvarVeiculo(String nomeArquivo) {
-		Veiculo[] veic = new Veiculo[veiculo.size()];
-        veiculo.allElements(veic);
+		Veiculo[] veic = new Veiculo[veic.length];
+        veic.allElements(veic);
         ArquivoTextoEscrita arq = new ArquivoTextoEscrita(nomeArquivo);
 
-        for(int i=0; i<veiculo.size(); i++){
-            for(int j=0; j<veiculo.size(); j++){
+        for(int i=0; i<veic.length; i++){
+            for(int j=0; j<veic.length; j++){
                 // if(ver[i].arestaApontandoPara(j) != null){
                     System.out.println(i + ";" + j);
                     arq.escrever(i + ";" + j);
@@ -36,23 +43,41 @@ public class Frota {
         arq.fecharArquivo();
     }
 	
-
-	public void addVeiculo() {
-
+//MUDANÇA
+	public boolean addVeiculo(Veiculo veiculo) {
+		int cont = 0;
+		 if(cont < this.veiculos.length) {
+	            this.veiculos[cont++] = veiculo;
+	            return true;
+	        }
+	        
+	        return false;
 	}
 
-	public void addRota(int rota) {
-
+	public boolean addRota(Rota rota) {
+		int cont = 0;
+		 if(cont < this.rotas.length) {
+	            this.rotas[cont++] = rota;
+	            return true;
+	        }
+	        
+	        return false;
 	}
-
-	public Veiculo localizaVeiculo(int placa) {
+	
+//Colocar recebendo por parâmetro String placaProcurar, vindo de aplicacao ?
+	public Veiculo localizaVeiculo(String placa) {
+		
+		//Abre arquivo
+		//le todas as placas do arquivo
+		//se a placa do arquivo for igual a que deseja, retona dados do veiculo
+		
 		return null;
 
 	}
 
-	public void imprime() {
-
+	public void imprimir() {
+		
+//
 	}
 
 }
-
