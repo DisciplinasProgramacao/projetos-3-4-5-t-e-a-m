@@ -81,10 +81,9 @@ public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 
 	public void imprimir() {
 		for(int i=0; i<veiculos.size(); i++){
-			System.out.println(i + ". " + veiculos.get(i).getPlaca());
+			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
+		+ veiculos.get(i).valorSeguro()+ " - Outros Custos: " + veiculos.get(i).outrosCustos() );
 		}
-
-	}
 
 }
 

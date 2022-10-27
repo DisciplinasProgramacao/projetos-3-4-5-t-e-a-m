@@ -19,7 +19,7 @@ public class Aplicacao {
     public static void main(String[] args) throws Exception {
         //ListaEncadeada minhaLista;
 		//Compromisso novo, removido;
-		String data, tarefa, num, strRepeticoes;
+		String data, tarefa, num, strRepeticoes, placa;
 		Integer i = 0, repeticoes;
 		Boolean isAtivo = true;
 
@@ -137,8 +137,11 @@ public class Aplicacao {
 				case 5:
 					
 					try {
-//						NAO FUNCIONANDO
-//						frota.localizaVeiculo("ABC");
+  
+  					System.out.println("Digite a placa do veículo:");
+
+						placa = ler.nextLine();
+						frota.localizaVeiculo(placa);
 						
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
