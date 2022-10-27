@@ -1,25 +1,41 @@
 import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 public class CarroTest {
 
     Carro c;
 
     @BeforeEach
-    public void setUp() throws Exception {
-    c = new Carro("ABC123", 5000.00, 0);
+    public void setUp() {
+    c = new Carro("ABC123", 5000.0, 10000);
     }
 
     @Test
-    public void testValorIpva(){
-    assertEquals(2500.00, c.valorIpva());
+	void testValorIpva() {
+		assertEquals(200.0, c.valorIpva(), "valor IPVA ");
 
-    }
+	}
 
-    @Test
-    public void testValorSeguro(){
-    assertEquals(2000.00, c.valorSeguro());
-    }
+	@Test
+	void testValorSeguro() {
+		assertEquals(550.0, c.valorSeguro(), "valor Seguro ");
+	}
+
+	@Test
+	void testAutonomia() {
+		assertEquals(500, c.autonomia(), "autonomia do carro ");
+
+	}
+
+	@Test
+	void testOutrosCustos() {
+		assertEquals(80, c.outrosCustos(), "outros custos: Alinhamento ");
+		c = new Carro("ABC123", 5000.0, 20000);
+		assertEquals(160, c.outrosCustos(), "outros custos: Alinhamento ");
+	}
     
 }

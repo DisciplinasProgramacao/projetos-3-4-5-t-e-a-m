@@ -1,6 +1,6 @@
-package Main;
+//package Main;
 
-import javax.lang.model.util.ElementScanner14;
+//import javax.lang.model.util.ElementScanner14;
 
 public class Furgao extends Veiculo {
 
@@ -20,6 +20,59 @@ public class Furgao extends Veiculo {
     private int kmVistoria;
     private double valorPorVistoria;
     private int kmAtual;
+    
+    private double novoValorVenda;
+	private int novoKmAtual;
+	
+
+	public int getNovoKmAtual() {
+		return novoKmAtual;
+	}
+
+	public void setNovoKmAtual(int novoKmAtual) {
+		this.novoKmAtual = novoKmAtual;
+	}
+
+	public double getNovoValorVenda() {
+		return novoValorVenda;
+	}
+
+	public void setNovoValorVenda(double novoValorVenda) {
+		this.novoValorVenda = novoValorVenda;
+	}
+	
+	
+	public int getKmAlinhamento() {
+		return kmAlinhamento;
+	}
+
+	public void setKmAlinhamento(int kmAlinhamento) {
+		this.kmAlinhamento = kmAlinhamento;
+	}
+
+	public double getValorPorAlinhamento() {
+		return valorPorAlinhamento;
+	}
+
+	public void setValorPorAlinhamento(double valorPorAlinhamento) {
+		this.valorPorAlinhamento = valorPorAlinhamento;
+	}
+
+	public int getKmVistoria() {
+		return kmVistoria;
+	}
+
+	public void setKmVistoria(int kmVistoria) {
+		this.kmVistoria = kmVistoria;
+	}
+
+	public double getValorPorVistoria() {
+		return valorPorVistoria;
+	}
+
+	public void setValorPorVistoria(double valorPorVistoria) {
+		this.valorPorVistoria = valorPorVistoria;
+	}
 
     public Furgao (String placa, double valorVenda, int kmAtual) {
         super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO,
@@ -28,16 +81,18 @@ public class Furgao extends Veiculo {
         this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
         this.kmVistoria = KM_VISTORIA;
         this.valorPorVistoria = VALOR_POR_VISTORIA;
+        novoValorVenda = valorVenda;
+		novoKmAtual = kmAtual;
     }
 
     @Override
     public double valorIpva() {
-        return (valorVenda * PERCENTUAL_IPVA / 100);
+        return (novoValorVenda * PERCENTUAL_IPVA / 100);
     }
 
     @Override
     public double valorSeguro() {
-        return (valorVenda * PERCENTUAL_SEGURO / 100);
+        return (novoValorVenda * PERCENTUAL_SEGURO / 100);
     }
 
     @Override
@@ -51,16 +106,17 @@ public class Furgao extends Veiculo {
         double valorAlinhamento;
         double valorVistoria;
 
-        if ((kmAtual - kmAnterior) % kmAlinhamento > 1) {
-            valorAlinhamento = ((kmAtual - kmAnterior) % kmAlinhamento) * valorPorAlinhamento;
-        } else{
-            valorAlinhamento = 0.00;
-        }
-        if ((kmAtual - kmAnterior) % kmVistoria > 1) {
-            valorVistoria = ((kmAtual - kmAnterior) % kmVistoria) * valorPorVistoria;
-        } else {
-           valorVistoria = 0.00;
-        }
-            return (valorAlinhamento + valorVistoria);
+        if (((novoKmAtual - kmAnterior) % this.getKmAlinhamento()) == 0) {
+			valorAlinhamento = (((novoKmAtual - kmAnterior) / this.getKmAlinhamento()) * this.getValorPorAlinhamento());
+			
+		} else {
+			valorAlinhamento = 0.0;
+		}
+		if (((novoKmAtual - kmAnterior) % this.getKmVistoria()) == 0) {
+			valorVistoria = (((novoKmAtual - kmAnterior) / this.getKmVistoria()) * this.getValorPorVistoria());
+		} else {
+			valorVistoria = 0.0;
+		}
+		return (valorAlinhamento + valorVistoria);
         }
 }

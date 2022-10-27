@@ -1,14 +1,16 @@
-package Main;
+//package Main;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Frota {
 	//List<Veiculo> veiculo;
-	private Veiculo[]veiculos;
-	private Rota[]rotas;
-	
+//	private Veiculo[]veiculos;
+//	private Rota[]rotas;
+	LinkedList<Veiculo> veiculos;
 	public Frota(){
-		veiculos = new Veiculo[5];
-		rotas = new Rota[5];
+//		veiculos = new Veiculo[5];
+//		rotas = new Rota[5];
+		veiculos = new LinkedList<Veiculo>();
 	}
 
 	public void carregarVeiculo(String nomeArquivo) {
@@ -28,56 +30,60 @@ public class Frota {
 	}
 
 	public void salvarVeiculo(String nomeArquivo) {
-		Veiculo[] veic = new Veiculo[veic.length];
-        veic.allElements(veic);
+//		Veiculo[] veic = new Veiculo[veic.length];
+//        veic.allElements(veic);
         ArquivoTextoEscrita arq = new ArquivoTextoEscrita(nomeArquivo);
 
-        for(int i=0; i<veic.length; i++){
-            for(int j=0; j<veic.length; j++){
-                // if(ver[i].arestaApontandoPara(j) != null){
-                    System.out.println(i + ";" + j);
-                    arq.escrever(i + ";" + j);
-                //}
-            }
-        }
+//        for(int i=0; i<veic.length; i++){
+//            for(int j=0; j<veic.length; j++){
+//                // if(ver[i].arestaApontandoPara(j) != null){
+//                    System.out.println(i + ";" + j);
+//                    arq.escrever(i + ";" + j);
+//                //}
+//            }
+//        }
         arq.fecharArquivo();
     }
 	
 //MUDANÇA
 	public boolean addVeiculo(Veiculo veiculo) {
-		int cont = 0;
-		 if(cont < this.veiculos.length) {
-	            this.veiculos[cont++] = veiculo;
-	            return true;
-	        }
-	        
-	        return false;
+//		int cont = 0;
+//		 if(cont < this.veiculos.length) {
+//	            this.veiculos[cont++] = veiculo;
+//	            return true;
+//	        }
+//	        
+//	        return false;
+		this.veiculos.addLast(veiculo);
+		return true;
 	}
 
 	public boolean addRota(Rota rota) {
-		int cont = 0;
-		 if(cont < this.rotas.length) {
-	            this.rotas[cont++] = rota;
-	            return true;
-	        }
-	        
+//		int cont = 0;
+//		 if(cont < this.rotas.length) {
+//	            this.rotas[cont++] = rota;
+//	            return true;
+//	        }
+//	        
 	        return false;
+		
 	}
 	
-//Colocar recebendo por parâmetro String placaProcurar, vindo de aplicacao ?
-	public Veiculo localizaVeiculo(String placa) {
+public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		
-		//Abre arquivo
-		//le todas as placas do arquivo
-		//se a placa do arquivo for igual a que deseja, retona dados do veiculo
-		
-		return null;
-
+		for(Veiculo veiculo : veiculos) {
+			if(placaProcurar.equals(veiculo.getPlaca())) {
+				return veiculo;
+			}
+		}
+		throw new Exception("Placa não encontrada");
 	}
 
 	public void imprimir() {
-		
-//
-	}
+		for(int i=0; i<veiculos.size(); i++){
+			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
+		+ veiculos.get(i).valorSeguro()+ " - Outros Custos: " + veiculos.get(i).outrosCustos() );
+		}
 
 }
+
