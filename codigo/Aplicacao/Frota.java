@@ -69,16 +69,16 @@ public class Frota {
 		
 	}
 	
-//Colocar recebendo por parâmetro String placaProcurar, vindo de aplicacao ?
-	public Veiculo localizaVeiculo(String placa) {
+	public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		
-		//Abre arquivo
-		//le todas as placas do arquivo
-		//se a placa do arquivo for igual a que deseja, retona dados do veiculo
-		
-		return null;
-
+		for(Veiculo veiculo : veiculos) {
+			if(placaProcurar.equals(veiculo.getPlaca())) {
+				return veiculo;
+			}
+		}
+		throw new Exception("Placa não encontrada");
 	}
+
 
 	public void imprimir() {
 		for(int i=0; i<veiculos.size(); i++){
