@@ -1,5 +1,3 @@
-//package Main;
-
 public class Carro extends Veiculo {
 
 	// ATRIBUTOS
@@ -17,50 +15,24 @@ public class Carro extends Veiculo {
 	private double valorPorAlinhamento;
 	private int kmAtual;
 
-	private int novoKmAtual;
-	private double novoValorVenda;
-	
-	public int getNovoKmAtual() {
-		return novoKmAtual;
-	}
-
-	public void setNovoKmAtual(int novoKmAtual) {
-		this.novoKmAtual = novoKmAtual;
-	}
-
-	public int getKmAlinhamento() {
-		return kmAlinhamento;
-	}
-
-	public void setKmAlinhamento(int kmAlinhamento) {
-		this.kmAlinhamento = kmAlinhamento;
-	}
-
-	public double getValorPorAlinhamento() {
-		return valorPorAlinhamento;
-	}
-
-	public void setValorPorAlinhamento(double valorPorAlinhamento) {
-		this.valorPorAlinhamento = valorPorAlinhamento;
-	}
 	public Carro(String placa, double valorVenda, int kmAtual) {
 		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual);
 		this.acrescimoSeguro = ACRESCIMO_SEGURO;
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
-		novoKmAtual=kmAtual;
-		novoValorVenda = valorVenda;
+		this.valorVenda = valorVenda;
+		this.kmAtual=kmAtual;
 	}
 
 
 	@Override
 	public double valorIpva() {
-		return (novoValorVenda * PERCENTUAL_IPVA / 100);
+		return (valorVenda * PERCENTUAL_IPVA / 100);
 	}
 
 	@Override
 	public double valorSeguro() {
-		return (novoValorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
+		return (valorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
 	}
 
 	@Override
@@ -71,8 +43,8 @@ public class Carro extends Veiculo {
 	@Override
 	public double outrosCustos() {
 		int kmAnterior = 0;
-		if ((novoKmAtual - kmAnterior) % this.getKmAlinhamento() == 0) {
-			return ((novoKmAtual - kmAnterior) / this.getKmAlinhamento()) * this.getValorPorAlinhamento();
+		if ((kmAtual - kmAnterior) % kmAlinhamento == 0) {
+			return ((kmAtual - kmAnterior) / kmAlinhamento * valorPorAlinhamento);
 		} else {
 			return 0.00;
 		}

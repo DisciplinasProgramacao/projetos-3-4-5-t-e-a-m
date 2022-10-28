@@ -1,7 +1,5 @@
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -17,7 +15,6 @@ public class CarroTest {
     @Test
 	void testValorIpva() {
 		assertEquals(200.0, c.valorIpva(), "valor IPVA ");
-
 	}
 
 	@Test
@@ -28,7 +25,6 @@ public class CarroTest {
 	@Test
 	void testAutonomia() {
 		assertEquals(500, c.autonomia(), "autonomia do carro ");
-
 	}
 
 	@Test

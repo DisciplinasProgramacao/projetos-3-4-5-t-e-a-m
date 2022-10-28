@@ -1,4 +1,3 @@
-//package Main;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
@@ -28,7 +27,8 @@ public class Frota{
 		System.out.println(erro.getMessage());
 		erro.printStackTrace();
 	} finally {
-		this.imprimir();
+		this.imprimirRelatorio();
+
 	}
 }
 
@@ -63,7 +63,7 @@ public class Frota{
 		throw new Exception("Placa não encontrada");
 	}
 
-	public void imprimir() {
+	public void imprimirRelatorio() {
 		for(int i=0; i<veiculos.size(); i++){
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
 		+ veiculos.get(i).valorSeguro()+ " - Outros Custos: " + veiculos.get(i).outrosCustos() );
@@ -71,4 +71,3 @@ public class Frota{
 	}
 
 }
-

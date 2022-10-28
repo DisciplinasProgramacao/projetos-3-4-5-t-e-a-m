@@ -1,7 +1,3 @@
-//package Main;
-
-//import javax.lang.model.util.ElementScanner14;
-
 public class Caminhao extends Veiculo {
 
 	// ATRIBUTOS
@@ -23,65 +19,6 @@ public class Caminhao extends Veiculo {
 	private double valorPorVistoria;
 	private int kmAtual;
 
-	private double novoValorVenda;
-	private int novoKmAtual;
-
-	public int getKmManutencao() {
-		return kmManutencao;
-	}
-
-	public double getValorPorManutencao() {
-		return valorPorManutencao;
-	}
-
-	public void setValorPorManutencao(double valorPorManutencao) {
-		this.valorPorManutencao = valorPorManutencao;
-	}
-
-	public void setKmManutencao(int kmManutencao) {
-		this.kmManutencao = kmManutencao;
-	}
-
-	public int getNovoKmAtual() {
-		return novoKmAtual;
-	}
-
-	public void setNovoKmAtual(int novoKmAtual) {
-		this.novoKmAtual = novoKmAtual;
-	}
-
-	public double getNovoValorVenda() {
-		return novoValorVenda;
-	}
-
-	public void setNovoValorVenda(double novoValorVenda) {
-		this.novoValorVenda = novoValorVenda;
-	}
-
-	public int getKmVistoria() {
-		return kmVistoria;
-	}
-
-	public void setKmVistoria(int kmVistoria) {
-		this.kmVistoria = kmVistoria;
-	}
-
-	public double getValorPorVistoria() {
-		return valorPorVistoria;
-	}
-
-	public void setValorPorVistoria(double valorPorVistoria) {
-		this.valorPorVistoria = valorPorVistoria;
-	}
-
-	public double getAcrescimoSeguro() {
-		return acrescimoSeguro;
-	}
-
-	public void setAcrescimoSeguro(double acrescimoSeguro) {
-		this.acrescimoSeguro = acrescimoSeguro;
-	}
-
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
 		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual);
 		this.acrescimoSeguro = ACRESCIMO_SEGURO;
@@ -89,19 +26,18 @@ public class Caminhao extends Veiculo {
 		this.valorPorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorPorVistoria = VALOR_POR_VISTORIA;
-
-		novoValorVenda = valorVenda;
-		novoKmAtual = kmAtual;
+		this.valorVenda = valorVenda;
+		this.kmAtual = kmAtual;
 	}
 
 	@Override
 	public double valorIpva() {
-		return (novoValorVenda * PERCENTUAL_IPVA / 100);
+		return (valorVenda * PERCENTUAL_IPVA / 100);
 	}
 
 	@Override
 	public double valorSeguro() {
-		return (novoValorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
+		return (valorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
 	}
 
 	@Override
@@ -115,13 +51,13 @@ public class Caminhao extends Veiculo {
 		double valorManutencao;
 		double valorVistoria;
 
-		if ((novoKmAtual - kmAnterior) % this.getKmManutencao() == 0) {
-			valorManutencao = ((novoKmAtual - kmAnterior) / this.getKmManutencao()) * this.getValorPorManutencao();
+		if ((kmAtual - kmAnterior) % kmManutencao == 0) {
+			valorManutencao = ((kmAtual - kmAnterior) / kmManutencao) * valorPorManutencao;
 		} else {
 			valorManutencao = 0.0;
 		}
-		if (((novoKmAtual - kmAnterior) % this.getKmVistoria()) == 0) {
-			valorVistoria = (((novoKmAtual - kmAnterior) / this.getKmVistoria()) * this.getValorPorVistoria());
+		if (((kmAtual - kmAnterior) % kmVistoria) == 0) {
+			valorVistoria = (((kmAtual - kmAnterior) / kmVistoria) * valorPorVistoria);
 		} else {
 			valorVistoria = 0.0;
 		}

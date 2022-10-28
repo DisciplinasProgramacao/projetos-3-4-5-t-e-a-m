@@ -1,5 +1,3 @@
-//package Main;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -28,3 +26,4 @@ public class Rota implements Serializable{
 		this.distanciaTotal = distanciaTotal;
 	}
 }
+
