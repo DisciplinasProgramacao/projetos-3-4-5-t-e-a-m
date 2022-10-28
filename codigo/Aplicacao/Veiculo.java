@@ -1,8 +1,10 @@
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
 public abstract class Veiculo implements Serializable {
+
 
 	private LinkedList<Rota> listaDeRotas = new LinkedList<Rota>();
 	private String placa;

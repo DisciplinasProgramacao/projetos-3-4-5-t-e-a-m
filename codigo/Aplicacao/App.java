@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class App {
 
 	public static void menu() {
+
 		System.out.println("\n\tMenu:");
 		System.out.println("1. Carregar um conjunto de veículos de um arquivo");
 		System.out.println("2. Salvar um conjunto de veículos de um arquivo");
@@ -20,6 +21,7 @@ public class App {
 		// ADICIONAR CAMINHO PARA O ARQUIVO LOCAL .DAT
 		/// projeto3-t-e-a-m/projetos-3-4-5-t-e-a-m/codigo/Aplicacao/dados.dat
 		String caminhoArquivo = "C:/Offline/dados.dat";
+
 		Frota frota = new Frota();
 
 		try (Scanner ler = new Scanner(System.in)) {
@@ -79,6 +81,7 @@ public class App {
 
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
+
 						}
 						break;
 					case 4:
@@ -130,6 +133,7 @@ public class App {
 					default:
 						System.out.println("Comando inválido");
 						break;
+
 
 				}
 

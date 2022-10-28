@@ -26,3 +26,4 @@ public class Rota implements Serializable{
 		this.distanciaTotal = distanciaTotal;
 	}
 }
+

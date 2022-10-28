@@ -28,6 +28,7 @@ public class Frota{
 		erro.printStackTrace();
 	} finally {
 		this.imprimirRelatorio();
+
 	}
 }
 
