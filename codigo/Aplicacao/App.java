@@ -16,7 +16,9 @@ public class App {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String data, tarefa, num, strRepeticoes, placa;
+		String data, tarefa, entrada, strRepeticoes, placa;
+		int kmAtual;
+		double valorVenda;
 		Boolean isAtivo = true;
 		// ADICIONAR CAMINHO PARA O ARQUIVO LOCAL .DAT
 		/// projeto3-t-e-a-m/projetos-3-4-5-t-e-a-m/codigo/Aplicacao/dados.dat
@@ -28,9 +30,9 @@ public class App {
 			while (isAtivo) {
 				menu();
 
-				num = ler.nextLine();
+				entrada = ler.nextLine();
 
-				switch (Integer.parseInt(num)) {
+				switch (Integer.parseInt(entrada)) {
 					case 1:
 						frota.carregarVeiculo(caminhoArquivo);
 						break;
@@ -41,43 +43,49 @@ public class App {
 
 					case 3:
 						try {
+							Veiculo novo = null;
+
+							System.out.println("Qual a placa do veículo?: ");
+							placa = ler.nextLine();
+							System.out.println("Qual o valor de venda do veículo?: ");
+							entrada = ler.nextLine();
+							valorVenda = Double.parseDouble(entrada);
+							System.out.println("Qual a quilometragem do veículo?: ");
+							entrada = ler.nextLine();
+							kmAtual = Integer.parseInt(entrada);
+							
 							System.out.println("que tipo de veículo será incluído: ");
 							System.out.println("1. Carro");
 							System.out.println("2. Caminhão");
 							System.out.println("3. Van");
 							System.out.println("4. Furgão");
 
-							num = ler.nextLine();
+							entrada = ler.nextLine();
 
-							switch (Integer.parseInt(num)) {
+							switch (Integer.parseInt(entrada)) {
 								case 1:
-									Carro carro = new Carro("ABC", 5000.0, 10000);
-									frota.addVeiculo(carro);
-									frota.imprimirRelatorio();
+									novo = new Carro(placa, valorVenda, kmAtual);
 									break;
 
 								case 2:
-									Caminhao caminhao = new Caminhao("DEF", 5000.0, 20000);
-									frota.addVeiculo(caminhao);
-									frota.imprimirRelatorio();
+									novo = new Caminhao(placa, valorVenda, kmAtual);
 									break;
 
 								case 3:
-									Van van = new Van("GHI", 5000.0, 10000);
-									frota.addVeiculo(van);
-									frota.imprimirRelatorio();
+									novo = new Van(placa, valorVenda, kmAtual);
 									break;
 
 								case 4:
-									Furgao furgao = new Furgao("JKL", 5000.0, 20000);
-									frota.addVeiculo(furgao);
-									frota.imprimirRelatorio();
+									novo = new Furgao(placa, valorVenda, kmAtual);
 									break;
 
 								default:
 									System.out.println("modelo inválido");
 									break;
 							}
+							frota.addVeiculo(novo);
+							frota.imprimirRelatorio();
+									
 
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
