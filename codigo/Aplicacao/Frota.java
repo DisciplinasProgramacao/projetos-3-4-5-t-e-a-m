@@ -1,75 +1,58 @@
-//package Main;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.LinkedList;
-import java.util.List;
 
-public class Frota {
-	//List<Veiculo> veiculo;
-//	private Veiculo[]veiculos;
-//	private Rota[]rotas;
+public class Frota{
 	LinkedList<Veiculo> veiculos;
 	public Frota(){
-//		veiculos = new Veiculo[5];
-//		rotas = new Rota[5];
 		veiculos = new LinkedList<Veiculo>();
 	}
 
 	public void carregarVeiculo(String nomeArquivo) {
 
-		ArquivoTextoLeitura arq = new ArquivoTextoLeitura(nomeArquivo);
-		String linha = arq.ler();
-		while (linha != null) {
-
-			String[] arquivo = linha.split(";");
-			// int id1 = Integer.parseInt(arquivo[0]);
-			// int id2 = Integer.parseInt(arquivo[1]);
-
-			linha = arq.ler();
-		}
-
-		arq.fecharArquivo();
+	ObjectInputStream ois = null;
+	FileInputStream fis = null;
+	try {
+		//ArquivoTextoLeitura leitura = new ArquivoTextoLeitura(caminhoArquivo);
+		fis = new FileInputStream(nomeArquivo);
+		ois = new ObjectInputStream(fis);
+		Object obj = ois.readObject();
+		veiculos = (LinkedList<Veiculo>) obj;
+		fis.close();
+		ois.close();
+					
+	} catch (Exception erro) {
+		System.out.println(erro.getMessage());
+		erro.printStackTrace();
+	} finally {
+		this.imprimirRelatorio();
 	}
+}
 
 	public void salvarVeiculo(String nomeArquivo) {
-//		Veiculo[] veic = new Veiculo[veic.length];
-//        veic.allElements(veic);
-        ArquivoTextoEscrita arq = new ArquivoTextoEscrita(nomeArquivo);
-
-//        for(int i=0; i<veic.length; i++){
-//            for(int j=0; j<veic.length; j++){
-//                // if(ver[i].arestaApontandoPara(j) != null){
-//                    System.out.println(i + ";" + j);
-//                    arq.escrever(i + ";" + j);
-//                //}
-//            }
-//        }
-        arq.fecharArquivo();
+		FileOutputStream fout = null;
+		ObjectOutputStream oos = null;
+		try {
+			fout = new FileOutputStream(nomeArquivo);
+			oos = new ObjectOutputStream(fout);
+			oos.writeObject(veiculos);
+			fout.close();
+			oos.close();
+		} catch (Exception erro) {
+			System.out.println(erro.getMessage());
+			erro.printStackTrace();
     }
+}
 	
-//MUDANÇA
 	public boolean addVeiculo(Veiculo veiculo) {
-//		int cont = 0;
-//		 if(cont < this.veiculos.length) {
-//	            this.veiculos[cont++] = veiculo;
-//	            return true;
-//	        }
-//	        
-//	        return false;
 		this.veiculos.addLast(veiculo);
 		return true;
 	}
 
-	public boolean addRota(Rota rota) {
-//		int cont = 0;
-//		 if(cont < this.rotas.length) {
-//	            this.rotas[cont++] = rota;
-//	            return true;
-//	        }
-//	        
-	        return false;
-		
-	}
 	
-public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
+	public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		
 		for(Veiculo veiculo : veiculos) {
 			if(placaProcurar.equals(veiculo.getPlaca())) {
@@ -79,11 +62,11 @@ public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		throw new Exception("Placa não encontrada");
 	}
 
-	public void imprimir() {
+	public void imprimirRelatorio() {
 		for(int i=0; i<veiculos.size(); i++){
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
 		+ veiculos.get(i).valorSeguro()+ " - Outros Custos: " + veiculos.get(i).outrosCustos() );
 		}
+	}
 
 }
-

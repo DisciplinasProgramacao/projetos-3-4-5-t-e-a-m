@@ -1,5 +1,3 @@
-//package Main;
-
 public class Carro extends Veiculo {
 
 	// ATRIBUTOS
@@ -22,8 +20,8 @@ public class Carro extends Veiculo {
 		this.acrescimoSeguro = ACRESCIMO_SEGURO;
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
-		this.kmAtual=kmAtual;
 		this.valorVenda = valorVenda;
+		this.kmAtual=kmAtual;
 	}
 
 

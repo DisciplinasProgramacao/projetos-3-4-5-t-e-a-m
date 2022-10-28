@@ -1,6 +1,6 @@
-//package Main;
-
 import java.util.LinkedList;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -26,25 +26,21 @@ public class FrotaTest {
 
 	@Test
 	boolean addVeiculo(Veiculo veiculo) {
-
 		return false;
-
 	}
 
 	@Test
 	boolean addRota(Rota rota) {
 		return false;
-
 	}
 
 	@Test
 	Veiculo localizaVeiculo(String placaProcurar) throws Exception {
 		return null;
-
 	}
 
 	@Test
-	void imprimir() {
+	void imprimirRelatorio() {
 
 	}
 

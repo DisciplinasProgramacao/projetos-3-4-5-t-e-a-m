@@ -1,29 +1,28 @@
-//package Main;
-
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Rota {
+public class Rota implements Serializable{
     
-	private double distancia;
-	private LocalDate data;
+	private double distanciaTotal;
+	private LocalDate date;
 
     public Rota(double distancia, LocalDate data){
-		this.distancia = distancia;
-		this.data = data;
+		this.distanciaTotal = distancia;
+		this.date = data;
     }
-    // public LocalDate getDate() {
-	// 	return date;
-	// }
+    public LocalDate getDate() {
+		return date;
+	}
 
-	// public void setDate(LocalDate date) {
-	// 	this.date = date;
-	// }
+	public void setDate(LocalDate date) {
+		this.date = date;
+	}
 
-	// public int getDistanciaTotal() {
-	// 	return distanciaTotal;
-	// }
+	public double getDistanciaTotal() {
+		return distanciaTotal;
+	}
 
-	// public void setDistanciaTotal(int distanciaTotal) {
-	// 	this.distanciaTotal = distanciaTotal;
-	// }
+	public void setDistanciaTotal(int distanciaTotal) {
+		this.distanciaTotal = distanciaTotal;
+	}
 }
