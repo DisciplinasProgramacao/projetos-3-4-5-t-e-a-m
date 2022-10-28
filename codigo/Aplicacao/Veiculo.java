@@ -1,12 +1,12 @@
 
 
+import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedList;
 
-public abstract class Veiculo {
+public abstract class Veiculo implements Serializable{
 
-	private List<Rota> listaDeRotas = new ArrayList<Rota>();
+	private LinkedList<Rota> listaDeRotas = new LinkedList<Rota>();
 	private String placa;
 	private int capacidadeTanque;
 	private double valorVenda;
@@ -41,9 +41,13 @@ public abstract class Veiculo {
 
 	public void addRota(double distanciaTotal, LocalDate data) {
 		Rota rota = new Rota(distanciaTotal, data);
-		listaDeRotas.add(rota);
+		listaDeRotas.addLast(rota);
 	}
-
 	
+	public void imprimeRotas() {
+		for(int i=0; i<listaDeRotas.size(); i++){
+			System.out.println("Data: " + listaDeRotas.get(i).getDate() + "Distancia total: "+ listaDeRotas.get(i).getDistanciaTotal());
+		}
+	}
 
 }
