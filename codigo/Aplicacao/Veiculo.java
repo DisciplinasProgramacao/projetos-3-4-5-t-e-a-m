@@ -39,9 +39,11 @@ public abstract class Veiculo implements Serializable {
 	public abstract double outrosCustos();
 
 	public void addRota(double distanciaTotal, LocalDate data) {
+		if((distanciaTotal < autonomia())){
 		Rota rota = new Rota(distanciaTotal, data);
 		//somar km no kmatual do veiculo
 		listaDeRotas.addLast(rota);
+		}
 	}
 
 	public void imprimeRotas() {
