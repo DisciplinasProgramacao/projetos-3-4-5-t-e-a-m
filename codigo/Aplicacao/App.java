@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class App {
+public class Aplicacao {
 
 	public static void menu() {
 
@@ -12,6 +12,7 @@ public class App {
 		System.out.println("5. Localizar um veículo da frota");
 		System.out.println("6. imprimirRelatorio um relatório do veículo com seus gastos até o momento");
 		System.out.println("7. Finalizar a menu");
+		System.out.println("8. Testar classe enumerada");
 		System.out.println("Digite a opcao desejada:");
 	}
 
@@ -137,7 +138,15 @@ public class App {
 						isAtivo = false;
 						System.out.println("Finalizado!");
 						break;
-
+					case 8:
+						
+						for (Combustivel c : Combustivel.values()) {
+						      System.out.println(c.getDescricao());
+						  }
+						
+//					Carro carro = new Carro("",0,0);
+//					carro.manutencaoNaoProgramada();
+						break;
 					default:
 						System.out.println("Comando inválido");
 						break;
