@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class Aplicacao {
@@ -157,4 +158,6 @@ public class Aplicacao {
 			}
 		}
 	}
+
+
 }
