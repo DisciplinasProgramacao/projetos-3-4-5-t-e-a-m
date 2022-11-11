@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Carro extends Veiculo {
 
 	// ATRIBUTOS
@@ -21,9 +23,8 @@ public class Carro extends Veiculo {
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.valorVenda = valorVenda;
-		this.kmAtual=kmAtual;
+		this.kmAtual = kmAtual;
 	}
-
 
 	@Override
 	public double valorIpva() {
@@ -50,5 +51,21 @@ public class Carro extends Veiculo {
 		}
 	}
 
-	
+//	@Override
+//	public double manutencaoNaoProgramada() {
+//		String entrada;
+//		double custoNovoGasto=0.0;
+//		
+//		Scanner ler = new Scanner(System.in);
+//		
+//		System.out.println("Qual o nome do gasto ? ");
+//		entrada= ler.nextLine();
+//		
+//		System.out.println("Qual o valor de venda do veículo?: ");
+//		entrada = ler.nextLine();
+//		custoNovoGasto = Double.parseDouble(entrada);
+//		
+//		return custoNovoGasto;
+//	}
+
 }
