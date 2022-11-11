@@ -1,7 +1,6 @@
 public class Furgao extends Veiculo {
 
 	// ATRIBUTOS
-	private static final int CAPACIDADE_TANQUE = 80;
 	private static final int PERCENTUAL_IPVA = 3;
 	private static final int PERCENTUAL_SEGURO = 3;
 	private static final double KM_POR_LITRO = 10;
@@ -16,16 +15,17 @@ public class Furgao extends Veiculo {
 	private int kmVistoria;
 	private double valorPorVistoria;
 	private int kmAtual;
+	private int nivelCombustivelAtual;
 
 	public Furgao(String placa, double valorVenda, int kmAtual) {
-		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO,
-				KM_POR_LITRO, kmAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, nivelCombustivelAtual);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorPorVistoria = VALOR_POR_VISTORIA;
 		this.valorVenda = valorVenda;
 		this.kmAtual = kmAtual;
+		this.nivelCombustivelAtual = nivelCombustivelAtual;
 	}
 
 	@Override
