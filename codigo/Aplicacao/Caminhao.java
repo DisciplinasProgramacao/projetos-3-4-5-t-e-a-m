@@ -12,22 +12,19 @@ public class Caminhao extends Veiculo {
 	private static final double VALOR_POR_VISTORIA = 1000.0;
 
 	private double valorVenda;
-	private double acrescimoSeguro;
-	private int kmManutencao;
-	private double valorPorManutencao;
-	private int kmVistoria;
-	private double valorPorVistoria;
 	private int kmAtual;
+	private static int nivelCombustivelAtual;
+	private int kmManutencao;
+	private double valorManutencao;
+	private int kmVistoria;
+	private double valorVistoria;
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
-		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual);
-		this.acrescimoSeguro = ACRESCIMO_SEGURO;
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, nivelCombustivelAtual);
 		this.kmManutencao = KM_MANUTENCAO;
-		this.valorPorManutencao = VALOR_POR_MANUTENCAO;
+		this.valorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;
-		this.valorPorVistoria = VALOR_POR_VISTORIA;
-		this.valorVenda = valorVenda;
-		this.kmAtual = kmAtual;
+		this.valorVistoria = VALOR_POR_VISTORIA;
 	}
 
 	@Override
@@ -37,7 +34,7 @@ public class Caminhao extends Veiculo {
 
 	@Override
 	public double valorSeguro() {
-		return (valorVenda * PERCENTUAL_SEGURO / 100 + acrescimoSeguro);
+		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
 	}
 
 	@Override
@@ -48,16 +45,14 @@ public class Caminhao extends Veiculo {
 	@Override
 	public double outrosCustos() {
 		int kmAnterior = 0;
-		double valorManutencao;
-		double valorVistoria;
 
 		if ((kmAtual - kmAnterior) % kmManutencao == 0) {
-			valorManutencao = ((kmAtual - kmAnterior) / kmManutencao) * valorPorManutencao;
+			valorManutencao = ((kmAtual - kmAnterior) / KM_MANUTENCAO) * VALOR_POR_MANUTENCAO;
 		} else {
 			valorManutencao = 0.0;
 		}
 		if (((kmAtual - kmAnterior) % kmVistoria) == 0) {
-			valorVistoria = (((kmAtual - kmAnterior) / kmVistoria) * valorPorVistoria);
+			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
 		} else {
 			valorVistoria = 0.0;
 		}
