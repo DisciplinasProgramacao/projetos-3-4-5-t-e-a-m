@@ -1,7 +1,6 @@
 public class Furgao extends Veiculo {
 
 	// ATRIBUTOS
-	private static final int CAPACIDADE_TANQUE = 80;
 	private static final int PERCENTUAL_IPVA = 3;
 	private static final int PERCENTUAL_SEGURO = 3;
 	private static final double KM_POR_LITRO = 10;
@@ -11,21 +10,19 @@ public class Furgao extends Veiculo {
 	private static final double VALOR_POR_VISTORIA = 500.00;
 
 	private double valorVenda;
-	private int kmAlinhamento;
-	private double valorPorAlinhamento;
-	private int kmVistoria;
-	private double valorPorVistoria;
 	private int kmAtual;
+	private static int nivelCombustivelAtual;
+	private int kmAlinhamento;
+	private double valorAlinhamento;
+	private int kmVistoria;
+	private double valorVistoria;
 
 	public Furgao(String placa, double valorVenda, int kmAtual) {
-		super(placa, CAPACIDADE_TANQUE, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO,
-				KM_POR_LITRO, kmAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, nivelCombustivelAtual);
 		this.kmAlinhamento = KM_ALINHAMENTO;
-		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
+		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
-		this.valorPorVistoria = VALOR_POR_VISTORIA;
-		this.valorVenda = valorVenda;
-		this.kmAtual = kmAtual;
+		this.valorVistoria = VALOR_POR_VISTORIA;
 	}
 
 	@Override
@@ -44,22 +41,20 @@ public class Furgao extends Veiculo {
 	}
 
 	@Override
-    public double outrosCustos() {
-        int kmAnterior = 0;
-        double valorAlinhamento;
-        double valorVistoria;
+	public double outrosCustos() {
+		int kmAnterior = 0;
 
-        if (((kmAtual - kmAnterior) % kmAlinhamento) == 0) {
-			valorAlinhamento = (((kmAtual - kmAnterior) / kmAlinhamento) * valorPorAlinhamento);
-			
+		if (((kmAtual - kmAnterior) % KM_ALINHAMENTO) == 0) {
+			valorAlinhamento = (((kmAtual - kmAnterior) / KM_ALINHAMENTO) * VALOR_POR_ALINHAMENTO);
+
 		} else {
 			valorAlinhamento = 0.0;
 		}
-		if (((kmAtual - kmAnterior) % kmVistoria) == 0) {
-			valorVistoria = (((kmAtual - kmAnterior) / kmVistoria) * valorPorVistoria);
+		if (((kmAtual - kmAnterior) % KM_VISTORIA) == 0) {
+			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
 		} else {
 			valorVistoria = 0.0;
 		}
 		return (valorAlinhamento + valorVistoria);
-        }
+	}
 }

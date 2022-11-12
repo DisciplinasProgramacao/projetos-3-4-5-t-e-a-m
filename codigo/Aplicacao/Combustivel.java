@@ -1,18 +1,30 @@
 
 public enum Combustivel {
-	TANQUE_CARRO("50"), TANQUE_VAN("60"), TANQUE_FURGAO("80"), TANQUE_CAMINHAO("250"), CONSUMO_GASOLINA("12"),
-	CONSUMO_ETANOL("8"), CONSUMO_DIESEL("3.5"), PRECO_GASOLINA("4.80"), PRECO_ETANOL("3.65"), PRECO_DIESEL("6.65"),;
+
+	GASOLINA("GASOLINA",4.8d,12d),
+    ALCOOL("ALCOOL",3.65d,8d),
+    DIESEL("DIESEL",6.65d,3.5d);
+
 
 	private String descricao;
+	private double consumo;
+	private double preco;
 
-	Combustivel(String descricao) {
+
+	private Combustivel(String descricao, double consumo, double preco) {
 		this.descricao = descricao;
+		this.consumo = consumo;
+		this.preco = preco;
 	}
 
 	public String getDescricao() {
 		return descricao;
 	}
 
-	
+	public volume abastecido(){
+		
+	}
+
+
 
 }

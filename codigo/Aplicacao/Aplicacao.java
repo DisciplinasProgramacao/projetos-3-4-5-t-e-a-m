@@ -66,7 +66,7 @@ public class Aplicacao {
 
 							switch (Integer.parseInt(entrada)) {
 								case 1:
-									novo = new Carro(placa, valorVenda, kmAtual);
+									novo = new Carro(placa, valorVenda, kmAtual,);
 									break;
 
 								case 2:
