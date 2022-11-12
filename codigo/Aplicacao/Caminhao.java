@@ -1,7 +1,6 @@
 public class Caminhao extends Veiculo {
 
 	// ATRIBUTOS
-	private static final int CAPACIDADE_TANQUE = 250;
 	private static final int PERCENTUAL_IPVA = 1;
 	private static final int PERCENTUAL_SEGURO = 2;
 	private static final double ACRESCIMO_SEGURO = 2000.0;
@@ -13,14 +12,14 @@ public class Caminhao extends Veiculo {
 
 	private double valorVenda;
 	private int kmAtual;
-	private static int nivelCombustivelAtual;
+	private static int quantCombustivelAtual;
 	private int kmManutencao;
 	private double valorManutencao;
 	private int kmVistoria;
 	private double valorVistoria;
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, nivelCombustivelAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;
@@ -37,10 +36,10 @@ public class Caminhao extends Veiculo {
 		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
 	}
 
-	@Override
-	public double autonomia() {
-		return (KM_POR_LITRO * CAPACIDADE_TANQUE);
-	}
+	// @Override
+	// public double autonomia() {
+	// 	return (KM_POR_LITRO * CAPACIDADE_TANQUE);
+	// }
 
 	@Override
 	public double outrosCustos() {

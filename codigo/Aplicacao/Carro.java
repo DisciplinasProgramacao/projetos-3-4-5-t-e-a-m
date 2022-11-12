@@ -12,12 +12,12 @@ public class Carro extends Veiculo {
 
 	private double valorVenda;
 	private static int kmAtual;
-	private static int nivelCombustivelAtual;
+	private static int quantCombustivelAtual;
 	private int kmAlinhamento;
 	private double valorAlinhamento;
 
 	public Carro(String placa, double valorVenda) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, nivelCombustivelAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 	}
@@ -32,10 +32,10 @@ public class Carro extends Veiculo {
 		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
 	}
 
-	@Override
-	public double autonomia() {
-		return (KM_POR_LITRO * CAPACIDADE_TANQUE);
-	}
+	// @Override
+	// public double autonomia() {
+	// 	return (KM_POR_LITRO * CAPACIDADE_TANQUE);
+	// }
 
 	@Override
 	public double outrosCustos() {
