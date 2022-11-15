@@ -66,7 +66,7 @@ public class Aplicacao {
 
 							switch (Integer.parseInt(entrada)) {
 								case 1:
-									novo = new Carro(placa, valorVenda, kmAtual,);
+									novo = new Carro(placa, valorVenda, kmAtual);
 									break;
 
 								case 2:
@@ -99,6 +99,10 @@ public class Aplicacao {
 						frota.imprimirRelatorio();
 						placa = ler.nextLine();
 
+						System.out.println("Digite a distância da rota");
+
+						System.out.println("Escolha o combustível que será usado");
+						
 						try {
 							Veiculo veic = frota.localizaVeiculo(placa);
 							veic.addRota(1000, null);

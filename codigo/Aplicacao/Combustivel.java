@@ -14,12 +14,23 @@ public enum Combustivel {
 		this.preco = preco;
 	}
 
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public double getConsumo() {
+		return consumo;
+	}
+
+	public double getPreco() {
+		return consumo;
+	}
+
 	public double valorAbastecimento(int distancia) {
 		
 		// como vai saber qual combustível é? Obs. o veículo vai sempre usar o mesmo combustível
 
-
-			return (preco * distancia);
+		return (preco * distancia);
 
 	}
 }
