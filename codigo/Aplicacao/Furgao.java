@@ -16,9 +16,12 @@ public class Furgao extends Veiculo {
 	private double valorAlinhamento;
 	private int kmVistoria;
 	private double valorVistoria;
+	private static int capacidadeTanque = 7000;
+	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.ALCOOL};
 
 	public Furgao(String placa, double valorVenda, int kmAtual) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
+		//super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, capacidadeTanque, quantCombustivelAtual, combustiveis);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;

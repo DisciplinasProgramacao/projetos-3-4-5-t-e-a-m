@@ -17,9 +17,12 @@ public class Caminhao extends Veiculo {
 	private double valorManutencao;
 	private int kmVistoria;
 	private double valorVistoria;
+	private static int capacidadeTanque = 15000;
+	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL};
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
+		//super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, capacidadeTanque, quantCombustivelAtual, combustiveis);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;

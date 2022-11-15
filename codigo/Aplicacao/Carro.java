@@ -12,12 +12,15 @@ public class Carro extends Veiculo {
 
 	private double valorVenda;
 	private static int kmAtual;
-	private static int quantCombustivelAtual;
+	private static int quantCombustivelAtual = 0;
+	private static int capacidadeTanque = 5000;
 	private int kmAlinhamento;
 	private double valorAlinhamento;
+	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.ALCOOL};
 
-	public Carro(String placa, double valorVenda) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
+	public Carro(String placa, double valorVenda, int kmAtual) {
+		//super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, quantCombustivelAtual);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, capacidadeTanque, quantCombustivelAtual, combustiveis);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 	}
