@@ -27,10 +27,8 @@ public enum Combustivel {
 	}
 
 	public double valorAbastecimento(int distancia) {
-		
-		// como vai saber qual combustível é? Obs. o veículo vai sempre usar o mesmo combustível
-
-		return (preco * distancia);
+		return (getPreco() * distancia/getConsumo());
 
 	}
+
 }

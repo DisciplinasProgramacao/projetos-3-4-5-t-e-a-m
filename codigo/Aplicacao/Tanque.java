@@ -23,7 +23,7 @@ public class Tanque {
   //   public double autonomiaMaxima() {
 	// 	return (kmPorLitro * capacidade);
 	// }
-
+/*
     public double autonomiaMaxima(Combustivel combustivel){
       return (combustivel.getConsumo() * capacidade);
     }
@@ -31,9 +31,18 @@ public class Tanque {
     public double autonomia(Combustivel combustivel){
       return (combustivel.getConsumo() * quantAtual);
     }
+	*/
 
     public float getQuantAtual() {
         return quantAtual;
+    }
+	 
+    public int getCapacidade(){
+    return this.capacidade;
+  }
+
+	public Combustivel getCombustivel(){
+      return this.combustivel;
     }
 
     public void abastecer(){
