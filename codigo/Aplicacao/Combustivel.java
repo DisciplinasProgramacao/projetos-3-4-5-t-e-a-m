@@ -1,8 +1,8 @@
 public enum Combustivel {
 
-	GASOLINA("GASOLINA", 4.80, 12.00),
-	ALCOOL("ALCOOL",3.65,8.00),
-	DIESEL("DIESEL",6.65,3.50);
+	GASOLINA("GASOLINA", 12.00, 4.80),
+	ALCOOL("ALCOOL", 8.00, 3.65),
+	DIESEL("DIESEL", 3.5, 6.65);
 
 	private String descricao;
 	private double consumo;
@@ -23,11 +23,11 @@ public enum Combustivel {
 	}
 
 	public double getPreco() {
-		return consumo;
+		return preco;
 	}
 
 	public double valorAbastecimento(int distancia) {
-		return (getPreco() * distancia/getConsumo());
+		return (getPreco() * distancia / getConsumo());
 
 	}
 
