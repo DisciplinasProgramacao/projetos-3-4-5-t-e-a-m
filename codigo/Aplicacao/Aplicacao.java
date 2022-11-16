@@ -126,7 +126,7 @@ public class Aplicacao {
 							Veiculo veic = frota.localizaVeiculo(placa);
 							System.out.println("Placa: " + veic.getPlaca() + " - Valor IPVA: " + veic.valorIpva()
 									+ " - Valor Seguro:  "
-									+ veic.valorSeguro() + " - Outros Custos: " + veic.outrosCustos());
+									+ veic.valorSeguro() + " - Outros Custos: " + veic.custoTotal());
 
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
