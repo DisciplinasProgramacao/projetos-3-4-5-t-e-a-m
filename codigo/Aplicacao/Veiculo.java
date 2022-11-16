@@ -121,6 +121,11 @@ public abstract class Veiculo implements Serializable, Custo {
 					+ rotas.get(i).getDistanciaTotal());
 		}
 	}
+
+	public int getRotas(){
+		int numRotas = rotas.size();
+		return numRotas;
+	}
 	
 //	public void filtrarRotasPorData(LocalDate date) {
 //		for (int i = 0; i < rotas.size(); i++) {
