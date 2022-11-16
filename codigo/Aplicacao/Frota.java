@@ -71,6 +71,38 @@ public class Frota{
 		}
 	}
 
+
+	public void imprimeTresMaiores() {
+		
+		LinkedList<Veiculo> tresMaiores;
+		Veiculo maior = veiculos.get(0);
+		Veiculo medio = veiculos.get(0);
+		Veiculo menor = veiculos.get(0);
+		
+		for(Veiculo veiculo : veiculos) {
+			if(veiculo.getRotas()>maior.getRotas()) {
+				
+				menor = medio;
+				medio = maior;
+				maior = veiculo;
+				
+			}else if(veiculo.getRotas()>medio.getRotas()) {
+				
+				menor = medio;
+				medio = veiculo;				
+				
+			}else if(veiculo.getRotas()>menor.getRotas()) {
+				menor = veiculo;
+				
+			}
+		}
+		
+		System.out.println(" 1: " + maior.getPlaca());
+		System.out.println(" 2: " + medio.getPlaca());
+		System.out.println(" 3: " + menor.getPlaca());
+		
+	}
+
 	
 	
 	
