@@ -1,4 +1,6 @@
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Aplicacao {
@@ -14,6 +16,7 @@ public class Aplicacao {
 		System.out.println("6. imprimirRelatorio um relatório do veículo com seus gastos até o momento");
 		System.out.println("7. Finalizar a menu");
 		System.out.println("8. Testar classe enumerada");
+		System.out.println("9. Respostas estratégicas");
 		System.out.println("Digite a opcao desejada:");
 	}
 
@@ -56,7 +59,7 @@ public class Aplicacao {
 							entrada = ler.nextLine();
 							kmAtual = Integer.parseInt(entrada);
 							
-							System.out.println("que tipo de veículo será incluído: ");
+							System.out.println("Qual tipo de veículo será incluído: ");
 							System.out.println("1. Carro");
 							System.out.println("2. Caminhão");
 							System.out.println("3. Van");
@@ -105,7 +108,8 @@ public class Aplicacao {
 						
 						try {
 							Veiculo veic = frota.localizaVeiculo(placa);
-							veic.addRota(1000, null);
+							//terceiro null eh de combustivel
+							veic.addRota(1000, null, null);
 							veic.imprimeRotas();
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
@@ -152,6 +156,55 @@ public class Aplicacao {
 //					Carro carro = new Carro("",0,0);
 //					carro.manutencaoNaoProgramada();
 						break;
+						
+					case 9:
+						System.out.println("Escolha qual resposta estratégica: ");
+						System.out.println("1. A quilometragem média de todas as rotas da empresa");
+						System.out.println("2. Os 3 veículos que mais fizeram rotas");
+						System.out.println("3. Lista de veículos ordenada decrescentemente por custos gerados");
+						System.out.println("4. Filtro para busca de rotas por data.");
+						
+						entrada = ler.nextLine();
+						
+					Object jLabelDia;
+					switch (Integer.parseInt(entrada)) {
+						case 1:
+							
+							break;
+
+						case 2:
+							
+							break;
+
+						case 3:
+							
+							break;
+
+						case 4:
+					 
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						Veiculo veic = new Veiculo(null,null, null, null, null);
+						//veic.imprimeRotas();
+						System.out.println("Digite uma data para filtrar as rotas");
+						entrada = ler.nextLine();
+					    
+						LocalDate date = LocalDate.parse(entrada,formatter);
+						
+						 System.out.println(date);
+						
+						veic.filtrarRotasPorData(date);
+						
+					   
+							
+							break;
+
+						default:
+							System.out.println("modelo inválido");
+							break;
+					}
+						
+						break;
+					
 					default:
 						System.out.println("Comando inválido");
 						break;

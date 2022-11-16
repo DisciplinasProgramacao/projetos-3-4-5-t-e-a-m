@@ -1,8 +1,11 @@
-public class Custo {
+public interface Custo {
 
 
-    public double custo(){
-        return 0.0d;
-    }
+    public abstract double custoTotal();
     
+    public abstract double custoCombustivel();
+    
+    public abstract double custoVariavel();
+    
+    public abstract double custoFixo();
 }

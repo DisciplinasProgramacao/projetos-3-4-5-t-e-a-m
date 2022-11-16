@@ -2,6 +2,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Frota{
@@ -70,6 +71,22 @@ public class Frota{
 		}
 	}
 
+	
+	
+	
+	
+	
+	
+	
+//public Veiculo filtrarFrotaPorData(LocalDate date) throws Exception {
+//		
+//		for(Veiculo veiculo : veiculos) {
+//			if(date.equals(veiculo.getClass())) {
+//				return veiculo;
+//			}
+//		}
+//		throw new Exception("Data não encontrada");
+//	}
 
 	// public ArrayList<Rota> localizarRotasPorData(LocalDate data){
     //     ArrayList<Rota> aux1 = new ArrayList<Rota>();
