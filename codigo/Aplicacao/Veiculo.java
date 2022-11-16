@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-public abstract class Veiculo implements Serializable {
+public abstract class Veiculo implements Serializable, Custo {
 
 
 	private LinkedList<Rota> rotas = new LinkedList<Rota>();
