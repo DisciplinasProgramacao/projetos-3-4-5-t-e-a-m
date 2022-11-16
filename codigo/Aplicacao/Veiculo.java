@@ -13,9 +13,7 @@ public abstract class Veiculo implements Serializable {
 	private double valorVenda;
 	private int percentualIpva;
 	private int percentualSeguro;
-	//private double kmPorLitro;
 	private int kmAtual;
-	//private int quantCombustivelAtual;
 	private Tanque tanque;
 
 	public Veiculo(String placa, double valorVenda,	int percentualIpva, int percentualSeguro, int kmAtual, int capacidadeTanque, float quantCombustivelAtual, Combustivel[] combustiveis) {
@@ -23,16 +21,23 @@ public abstract class Veiculo implements Serializable {
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
-		//this.kmPorLitro = kmPorLitro;
 		this.kmAtual = kmAtual;
-		//this.quantCombustivelAtual = quantCombustivelAtual;
-		//tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
-		tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
+		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
 	}
 
 	public String getPlaca(){
 		return this.placa;
 	}
+	
+	
+	public double autonomiaMaxima(){
+		return (tanque.getcombustivel().getConsumo() * tanque.getCapacidade());
+	  }
+
+
+	  public double autonomiaAtual(){
+		return (tanque.getcombustivel().getConsumo() * tanque.getQuantAtual());
+	  }
 
 	public abstract double valorIpva();
 
@@ -68,10 +73,32 @@ public abstract class Veiculo implements Serializable {
 			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)){
 				tanque.abastecer();
 			}
-		// somaDasDistancias+=distanciaTotal;
-		// rotasPercorridas++;
 		}
 	}
+	
+	/*
+		public void addRota(double distanciaTotal, LocalDate data, Combustivel combustivel) {
+		if((distanciaTotal <= autonomiaMaxima())){
+			Rota rota = new Rota(distanciaTotal, data);
+			//somar km no kmatual do veiculo
+			rotas.addLast(rota);
+			kmAtual+=distanciaTotal;
+			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)){
+				tanque.abastecer();
+				addCusto(distanciaTotal);
+			}
+		}
+	}
+
+	public void addCusto(double distanciaTotal) {
+		// NÃO CONSEGUI CRIAR A LISTA
+			Custo custo = new Custo(combustivel.valorAbastecimento());	
+			custos.addLast(custo);
+
+			
+		}
+	}
+	*/
 
 	// public void abastecer(){
 	// 	quantCombustivelAtual += (capacidadeTanque-quantCombustivelAtual);
