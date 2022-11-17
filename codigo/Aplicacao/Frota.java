@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.LinkedList;
 
 public class Frota{
+	LinkedList<Rota> rotas;
 	LinkedList<Veiculo> veiculos;
 	public Frota(){
 		veiculos = new LinkedList<Veiculo>();
@@ -46,6 +47,7 @@ public class Frota{
 			System.out.println(erro.getMessage());
 			erro.printStackTrace();
     }
+
 }
 	
 	public boolean addVeiculo(Veiculo veiculo) {
@@ -121,42 +123,31 @@ public class Frota{
 	
 	
 	
+	public void imprimirRotas() {
+		Veiculo aux;
+		for(int i=0; i<veiculos.size(); i++){
+			aux = veiculos.get(i);
+			for(int j=0; j<aux.getRotas().size(); j++){
+				System.out.println("Placa: "+aux.getPlaca()+"\nDistancia Total: "+ aux.getRotas().get(j).getDistanciaTotal()
+						+"\nData: " + aux.getRotas().get(j).getDate());
+			}
+		}
+	}
 	
 	
+public void filtrarFrotaPorData(LocalDate date) { // throws Exception
+	Veiculo aux;
+	for(int i=0; i<veiculos.size(); i++){
+		aux = veiculos.get(i);
+		for(int j=0; j<aux.getRotas().size(); j++){
+			if(date.equals(aux.getRotas().get(j).getDate())) {
+				System.out.println("Placa: "+aux.getPlaca()+"\nDistancia Total: "+ aux.getRotas().get(j).getDistanciaTotal()
+						+"\nData: "+aux.getRotas().get(j).getDate());
+			}
+		}
+	}
 	
-//public Veiculo filtrarFrotaPorData(LocalDate date) throws Exception {
-//		
-//		for(Veiculo veiculo : veiculos) {
-//			if(date.equals(veiculo.getClass())) {
-//				return veiculo;
-//			}
-//		}
-//		throw new Exception("Data não encontrada");
-//	}
+}
 
-	// public ArrayList<Rota> localizarRotasPorData(LocalDate data){
-    //     ArrayList<Rota> aux1 = new ArrayList<Rota>();
-    //     for(Veiculo veiculo:veiculos){
-    //         veiculo.getRota().stream()
-    //         .filter(rote -> rote.getData().equals(data))
-    //         .forEach(rote -> aux1.add(rote));
-    //     }
-    //     return aux1;
-    // }
-    // public List<Veiculo> ordenarCustosDecrescentes() {
-    //     List<Veiculo> list = new ArrayList<Veiculo>(veiculos);
-
-    //     list.sort((veiculo1, veiculo2) -> veiculo2.compareTo(veiculo1));
-        
-    //     return list;
-    // }
-    
-    // public List<Veiculo> veiculosComMaisRotas() {
-    // 	List<Veiculo> list = new ArrayList<Veiculo>(veiculos);
-    	
-    // 	list.sort((veiculo1, veiculo2) -> veiculo2.compararRotas(veiculo1));
-    	
-    // 	return list.subList(0, 3);
-    // }
 
 }
