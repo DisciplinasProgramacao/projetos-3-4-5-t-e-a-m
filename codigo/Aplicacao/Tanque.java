@@ -4,11 +4,11 @@ public class Tanque {
 
     private int capacidade;
     private float quantAtual;
-    private EnumSet<Combustivel> combustiveis;
+    private ArrayList<Combustivel> combustiveis;
 
 	public Tanque() {
       //this.combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL};
-      combustiveis = EnumSet.of(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL);
+      combustiveis = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
       capacidade = 1000;
       quantAtual = 1000;
     }
@@ -16,14 +16,23 @@ public class Tanque {
     public Tanque(int capacidade, float quantAtual, Combustivel[] combs) {
       this.capacidade = capacidade;
       this.quantAtual = quantAtual;
-      for(int i=0; i<combs.length; i++)
-        combustiveis.add(combs[i]);
+      //problema aqui
+      // for(int i=0; i<combs.length; i++){
+      //   System.out.println("teste");
+      //   combustiveis.add(combs[i]);
+      //   System.out.println("aaa");
+      // }
+      combustiveis = new ArrayList<>(Arrays.asList(combs));
+      //combustiveis = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
+
+      //combustiveis = Arrays.asList(combs);
+      //new ArrayList<List>(combs);
     }
 
   //   public double autonomiaMaxima() {
 	// 	return (kmPorLitro * capacidade);
 	// }
-/*
+
     public double autonomiaMaxima(Combustivel combustivel){
       return (combustivel.getConsumo() * capacidade);
     }
@@ -31,7 +40,6 @@ public class Tanque {
     public double autonomia(Combustivel combustivel){
       return (combustivel.getConsumo() * quantAtual);
     }
-	*/
 
     public float getQuantAtual() {
         return quantAtual;
@@ -41,11 +49,21 @@ public class Tanque {
     return this.capacidade;
   }
 
-	public Combustivel getCombustivel(){
-      return this.combustivel;
+	// public Combustivel getCombustivel(){
+  //     return this.combustivel;
+  //   }
+
+    public ArrayList getCombustiveis() {
+      return combustiveis;
     }
 
     public void abastecer(){
-      quantAtual += (capacidade-quantAtual);
+      quantAtual += (this.capacidade - this.quantAtual);
+    }
+
+    public double consumir(Combustivel combust, double distancia){
+      double consumo = distancia / combust.getConsumo();
+      quantAtual -= consumo;
+      return consumo;
     }
 }

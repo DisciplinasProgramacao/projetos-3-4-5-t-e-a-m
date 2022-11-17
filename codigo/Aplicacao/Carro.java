@@ -6,7 +6,7 @@ public class Carro extends Veiculo {
 	private static final int PERCENTUAL_IPVA = 4;;
 	private static final int PERCENTUAL_SEGURO = 5;
 	private static final double ACRESCIMO_SEGURO = 300.0;
-	private static final double KM_POR_LITRO = 10.0;
+	//private static final double KM_POR_LITRO = 10.0;
 	private static final int KM_ALINHAMENTO = 10000;
 	private static final double VALOR_POR_ALINHAMENTO = 80.00;
 

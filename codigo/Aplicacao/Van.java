@@ -3,7 +3,7 @@ public class Van extends Veiculo {
 	// ATRIBUTOS
 	private static final int PERCENTUAL_IPVA = 3;
 	private static final int PERCENTUAL_SEGURO = 3;
-	private static final double KM_POR_LITRO = 10;
+	//private static final double KM_POR_LITRO = 10;
 	private static final int KM_ALINHAMENTO = 10000;
 	private static final double VALOR_POR_ALINHAMENTO = 120.00;
 	private static final int KM_VISTORIA = 10000;
