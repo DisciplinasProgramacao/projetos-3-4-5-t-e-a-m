@@ -21,7 +21,7 @@ public class Aplicacao {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String data, tarefa, entrada, strRepeticoes, placa;
+		String entrada, placa;
 		int kmAtual;
 		double valorVenda;
 		Boolean isAtivo = true;
@@ -30,6 +30,7 @@ public class Aplicacao {
 		String caminhoArquivo = "C:/Offline/dados.dat";
 
 		Frota frota = new Frota();
+		Veiculo veic;
 
 		try (Scanner ler = new Scanner(System.in)) {
 			while (isAtivo) {
@@ -88,6 +89,7 @@ public class Aplicacao {
 									System.out.println("modelo inválido");
 									break;
 							}
+							System.out.println("Plc: " + novo.getPlaca());
 							frota.addVeiculo(novo);
 							frota.imprimirRelatorio();
 									
@@ -101,19 +103,41 @@ public class Aplicacao {
 						System.out.println("Digite a placa do veículo: ");
 						frota.imprimirRelatorio();
 						placa = ler.nextLine();
-
-						System.out.println("Digite a distância da rota");
-
-						System.out.println("Escolha o combustível que será usado");
-						
+						//Veiculo veic;
 						try {
-							Veiculo veic = frota.localizaVeiculo(placa);
-							//terceiro null eh de combustivel
-							veic.addRota(1000, null, null);
+							veic = frota.localizaVeiculo(placa);
+							System.out.println("Digite a distância da rota");
+							String distancia = ler.nextLine();
+							Double distdoub = Double.parseDouble(distancia);
+							
+							//verificar se está dentro da autonomia(ou não, isso já é tratado em outro lugar)
+							//veic.addRota(1000, null);
+							//veic.imprimeRotas();
+	
+							System.out.println("Escolha o combustível que será usado");
+							for(int i=0; i<veic.tanque.getCombustiveis().size(); i++)
+								System.out.println(i + " - " + veic.tanque.getCombustiveis().get(i));
+
+							String escolha = ler.nextLine();
+							int escol = Integer.parseInt(escolha);
+							Combustivel combust = (Combustivel)veic.tanque.getCombustiveis().get(escol);
+
+							veic.addRota(distdoub, combust);
+							System.out.println("Combustivel restante: " + veic.tanque.getQuantAtual());
 							veic.imprimeRotas();
+
+						//System.out.println("Escolha o combustível que será usado");
+						
+						// try {
+						// 	Veiculo veic = frota.localizaVeiculo(placa);
+						// 	//terceiro null eh de combustivel
+						// 	veic.addRota(1000, null, null);
+						// 	veic.imprimeRotas();
+
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
 						}
+
 						break;
 
 					case 5:
@@ -123,11 +147,14 @@ public class Aplicacao {
 							System.out.println("Digite a placa do veículo:");
 
 							placa = ler.nextLine();
-							Veiculo veic = frota.localizaVeiculo(placa);
+							veic = frota.localizaVeiculo(placa);
 							System.out.println("Placa: " + veic.getPlaca() + " - Valor IPVA: " + veic.valorIpva()
-									+ " - Valor Seguro:  "
-									+ veic.valorSeguro() + " - Outros Custos: " + veic.custoTotal());
+									+ " - Valor Seguro:  " + veic.valorSeguro() + " - Outros Custos: " /*+ veic.custoTotal()*/);
 
+							System.out.println("Rotas do veiculo: ");
+							veic.imprimeRotas();
+
+							
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());
 						}
@@ -151,8 +178,7 @@ public class Aplicacao {
 						
 						for (Combustivel c : Combustivel.values()) {
 						      System.out.println(c.getDescricao());
-						  }
-						
+						  }						
 //					Carro carro = new Carro("",0,0);
 //					carro.manutencaoNaoProgramada();
 						break;
@@ -169,7 +195,7 @@ public class Aplicacao {
 					Object jLabelDia;
 					switch (Integer.parseInt(entrada)) {
 						case 1:
-							
+						frota.mediaConsumoRotas();
 							break;
 
 						case 2:
@@ -181,20 +207,19 @@ public class Aplicacao {
 							break;
 
 						case 4:
-					 
-						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-						Veiculo veic = new Veiculo(null,null, null, null, null);
-						//veic.imprimeRotas();
-						System.out.println("Digite uma data para filtrar as rotas");
-						entrada = ler.nextLine();
+						
+						
+						//DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+						// Veiculo veic = new Veiculo(null,null, null, null, null);
+						// //veic.imprimeRotas();
+						// System.out.println("Digite uma data para filtrar as rotas");
+						// entrada = ler.nextLine();
 					    
-						LocalDate date = LocalDate.parse(entrada,formatter);
+						// LocalDate date = LocalDate.parse(entrada,formatter);
 						
-						 System.out.println(date);
+						//  System.out.println(date);
 						
-						veic.filtrarRotasPorData(date);
-						
-					   
+						// veic.filtrarRotasPorData(date);
 							
 							break;
 
@@ -206,6 +231,7 @@ public class Aplicacao {
 						break;
 					
 					default:
+
 						System.out.println("Comando inválido");
 						break;
 

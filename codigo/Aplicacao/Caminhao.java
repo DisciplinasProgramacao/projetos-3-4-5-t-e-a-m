@@ -4,7 +4,7 @@ public class Caminhao extends Veiculo {
 	private static final int PERCENTUAL_IPVA = 1;
 	private static final int PERCENTUAL_SEGURO = 2;
 	private static final double ACRESCIMO_SEGURO = 2000.0;
-	private static final double KM_POR_LITRO = 10;
+	//private static final double KM_POR_LITRO = 10;
 	private static final int KM_MANUTENCAO = 20000;
 	private static final double VALOR_POR_MANUTENCAO = 1000.0;
 	private static final int KM_VISTORIA = 30000;
