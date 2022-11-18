@@ -53,17 +53,49 @@ Van:
   - testOutrosCustos()
 
 Tanque:
-22. 
+22. Verificar a autonomia máxima
   - autonomiaMaxima(Combustivel combustivel)
-23. 
+23. Verificar a autonomia
   - autonomia(Combustivel combustivel)
-24. 
+24. Retornar a quantidade atual
   - getQuantAtual()
-15. 
+25. Retornar a capacidade
   - getCapacidade()
-26. 
+26. Retornar os combustíveis
   - getCombustiveis()
-27. 
+27. Abastecer o veículo
   - abastecer()
-28. 
+28. Consumir o combustivel de acordo com a distância
   - consumir(Combustivel combust, double distancia)
+
+Combustível:
+29. Retornar a descrição
+  - getDescricao()
+30. Retornar o consumo
+  - getConsumo()
+31. Retornar o preço
+  - getPreco()
+32. Retornar a capacidade
+  - getCapacidade()
+33. Verificar o valor abastecido de acordo com a distância
+  - valorAbastecimento(int distancia)
+
+Frota:
+34. Carregar o veículo
+  - carregarVeiculo(String nomeArquivo)
+35. Salvar o veículo no arquivo
+  - salvarVeiculo(String nomeArquivo)
+36. Adicionar o veículo
+  - addVeiculo(Veiculo veiculo)
+37. Localizar o veículo de acordo com a placa
+  - localizaVeiculo(String placaProcurar)
+38. Imprimir o relatório 
+  - imprimirRelatorio()
+39. Mostrar a média de consumo de combustível das rotas
+  - mediaConsumoRotas()
+40. Imprimir os trem maiores números de rotas de acordo com o veículo
+  - imprimeTresMaiores()
+41. Imprimir as rotas
+  - imprimirRotas()
+42. Filtrar a frota de acordo com a data
+  - filtrarFrotaPorData(LocalDate date)
