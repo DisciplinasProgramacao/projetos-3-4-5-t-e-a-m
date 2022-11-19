@@ -31,12 +31,12 @@ public abstract class Veiculo implements Serializable, Custo {
 	
 	
 	public double autonomiaMaxima(){
-		return (tanque.getcombustivel().getConsumo() * tanque.getCapacidade());
+		return (tanque.getCombustivel().getConsumo() * tanque.getCapacidade());
 	  }
 
 
 	  public double autonomiaAtual(){
-		return (tanque.getcombustivel().getConsumo() * tanque.getQuantAtual());
+		return (tanque.getCombustivel().getConsumo() * tanque.getQuantAtual());
 	  }
 
 	public abstract double valorIpva();
@@ -89,10 +89,10 @@ public abstract class Veiculo implements Serializable, Custo {
 			}
 		}
 	}
-
+*/
 	public void addCusto(double distanciaTotal) {
 		// NÃO CONSEGUI CRIAR A LISTA
-			Custo custo = new Custo(combustivel.valorAbastecimento());	
+		double custo = (combustivel.valorAbastecimento());	
 			custos.addLast(custo);
 
 			
