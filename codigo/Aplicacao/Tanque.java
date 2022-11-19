@@ -7,7 +7,6 @@ public class Tanque {
     private ArrayList<Combustivel> combustiveis;
 
 	public Tanque() {
-      //this.combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL};
       combustiveis = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
       capacidade = 1000;
       quantAtual = 1000;
@@ -16,22 +15,8 @@ public class Tanque {
     public Tanque(int capacidade, float quantAtual, Combustivel[] combs) {
       this.capacidade = capacidade;
       this.quantAtual = quantAtual;
-      //problema aqui
-      // for(int i=0; i<combs.length; i++){
-      //   System.out.println("teste");
-      //   combustiveis.add(combs[i]);
-      //   System.out.println("aaa");
-      // }
-      combustiveis = new ArrayList<>(Arrays.asList(combs));
-      //combustiveis = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
-
-      //combustiveis = Arrays.asList(combs);
-      //new ArrayList<List>(combs);
+      this.combustiveis = new ArrayList<>(Arrays.asList(combs));
     }
-
-  //   public double autonomiaMaxima() {
-	// 	return (kmPorLitro * capacidade);
-	// }
 
     public double autonomiaMaxima(Combustivel combustivel){
       return (combustivel.getConsumo() * capacidade);
@@ -48,10 +33,6 @@ public class Tanque {
     public int getCapacidade(){
     return this.capacidade;
   }
-
-	// public Combustivel getCombustivel(){
-  //     return this.combustivel;
-  //   }
 
     public ArrayList getCombustiveis() {
       return combustiveis;

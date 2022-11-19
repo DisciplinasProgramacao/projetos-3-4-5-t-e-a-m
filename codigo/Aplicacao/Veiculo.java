@@ -3,27 +3,31 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-public abstract class Veiculo implements Serializable { //implements Custo dps
+public abstract class Veiculo implements Serializable, Custo {
 
 
 	private LinkedList<Rota> rotas = new LinkedList<Rota>();
-	private LinkedList<Custo> custos = new LinkedList<Custo>();
 
 	private String placa;
 	private double valorVenda;
 	private int percentualIpva;
 	private int percentualSeguro;
 	private int kmAtual;
-	//private int quantCombustivelAtual;
+	public double custoCombustivel;
+	public double custoVariavel;
+
 	public Tanque tanque;
 	public LocalDate date = java.time.LocalDate.now();
 
-	public Veiculo(String placa, double valorVenda,	int percentualIpva, int percentualSeguro, int kmAtual, int capacidadeTanque, float quantCombustivelAtual, Combustivel[] combustiveis) {
+	public Veiculo(String placa, double valorVenda,	int percentualIpva, int percentualSeguro, int kmAtual, int capacidadeTanque, 
+	float quantCombustivelAtual, double custoCombustivel, double custoVariavel, Combustivel[] combustiveis) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
 		this.kmAtual = kmAtual;
+		this.custoCombustivel = custoCombustivel;
+		this.custoVariavel = custoVariavel;
 		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
 	}
 
@@ -31,43 +35,40 @@ public abstract class Veiculo implements Serializable { //implements Custo dps
 		return this.placa;
 	}
 	
+	@Override
+	public double custoTotal() {
+		return (custoCombustivel() + custoVariavel() + custoFixo());
+	}
 
+	@Override
+    public double custoCombustivel(){
+		return (custoCombustivel);
+	}
+
+	@Override
+    public double custoVariavel(){
+		return (custoVariavel);
+	}
 	
-	public double autonomiaMaxima(){
-		return (tanque.getCombustivel().getConsumo() * tanque.getCapacidade());
-	  }
-
-
-	  public double autonomiaAtual(){
-		return (tanque.getCombustivel().getConsumo() * tanque.getQuantAtual());
-	  }
-
+	@Override
+    public double custoFixo(){
+		return (valorIpva()+valorSeguro()+outrosCustos());
+	}
 
 	public abstract double valorIpva();
 
 	public abstract double valorSeguro();
 
-	// public double autonomia(){
+	public double autonomiaMaxima(){
+		return (tanque.getCombustivel().getConsumo() * tanque.getCapacidade());
+	  }
 
-	// 	return 0.00;
-	// }
+	  public double autonomiaAtual(){
+		return (tanque.getCombustivel().getConsumo() * tanque.getQuantAtual());
+	  }
 
 	public abstract double outrosCustos();
 
-	// public void addRota(double distanciaTotal, LocalDate data) {
-	// 	if(distanciaTotal < autonomia()){
-	// 		Rota rota = new Rota(distanciaTotal, data);
-	// 		//somar km no kmatual do veiculo
-	// 		rotas.addLast(rota);
-	// 		kmAtual+=distanciaTotal;
-	// 		if ((quantCombustivelAtual * kmPorLitro) < (distanciaTotal)){
-	// 			abastecer();
-	// 		}
-	// 	// somaDasDistancias+=distanciaTotal;
-	// 	// rotasPercorridas++;
-	// 	}
-	// }
-	
 	public void addRota(double distanciaTotal, Combustivel combustivel) {
 		if((distanciaTotal <= tanque.autonomiaMaxima(combustivel))){
 			Rota rota = new Rota(distanciaTotal, date, combustivel);
@@ -78,42 +79,25 @@ public abstract class Veiculo implements Serializable { //implements Custo dps
 				System.out.println("Tanque abastecido! Quantidade anterior insuficiente");
 				System.out.println("quantidade anterior: " + tanque.getQuantAtual() + " => quantidade atual: " + tanque.getCapacidade());
 				tanque.abastecer();
+				addCustoCombustivel();
+
 			}
 			System.out.println("Combustível consumido: " + tanque.consumir(combustivel, distanciaTotal));
 		} else {
 			System.out.println("Rota além da autonomia máxima do veículo");
 		}
 	}
-	
-	/*
-		public void addRota(double distanciaTotal, LocalDate data, Combustivel combustivel) {
-		if((distanciaTotal <= autonomiaMaxima())){
-			Rota rota = new Rota(distanciaTotal, data);
-			//somar km no kmatual do veiculo
-			rotas.addLast(rota);
-			kmAtual+=distanciaTotal;
-			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)){
-				tanque.abastecer();
-				addCusto(distanciaTotal);
-			}
-		}
-	}
-*/
-	public void addCusto(double distanciaTotal) {
-		// NÃO CONSEGUI CRIAR A LISTA
-		double custo = (combustivel.valorAbastecimento());	
-			custos.addLast(custo);
-
-			
-		}
-	}
-	*/
 
 	// public void abastecer(){
 	// 	quantCombustivelAtual += (capacidadeTanque-quantCombustivelAtual);
 	// 	//gastoCombustivel += (capacidadeTanque-quantCombustivelAtual)*valorCombustivel;
 
 	// }
+
+	private void addCustoCombustivel() {
+		double volumeAbastecido = (tanque.getCapacidade()-tanque.getQuantAtual());
+		custoCombustivel += (volumeAbastecido*custoCombustivel)
+	}
 
 	public double kmMediaDasRotas(){
 		int rotasPercorridas = rotas.size();

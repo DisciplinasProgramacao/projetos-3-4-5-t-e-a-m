@@ -57,9 +57,7 @@ public class Aplicacao {
 						System.out.println("Qual o valor de venda do veículo?: ");
 						entrada = ler.nextLine();
 						valorVenda = Double.parseDouble(entrada);
-						System.out.println("Qual a quilometragem do veículo?: ");
-						entrada = ler.nextLine();
-						kmAtual = Integer.parseInt(entrada);
+						kmAtual = 0                               ;
 
 						System.out.println("Qual tipo de veículo será incluído: ");
 						System.out.println("1. Carro");
