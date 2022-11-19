@@ -4,7 +4,6 @@ public class Caminhao extends Veiculo {
 	private static final int PERCENTUAL_IPVA = 1;
 	private static final int PERCENTUAL_SEGURO = 2;
 	private static final double ACRESCIMO_SEGURO = 2000.0;
-	private static final double KM_POR_LITRO = 10;
 	private static final int KM_MANUTENCAO = 20000;
 	private static final double VALOR_POR_MANUTENCAO = 1000.0;
 	private static final int KM_VISTORIA = 30000;
@@ -18,15 +17,17 @@ public class Caminhao extends Veiculo {
 	private int kmVistoria;
 	private double valorVistoria;
 	private static int capacidadeTanque = 15000;
-	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL};
+	private static Combustivel[] combustiveis = {Combustivel.DIESEL};
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
-		//super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, KM_POR_LITRO, kmAtual, quantCombustivelAtual);
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, capacidadeTanque, quantCombustivelAtual, combustiveis);
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, capacidadeTanque, quantCombustivelAtual,
+				combustivel);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorVistoria = VALOR_POR_VISTORIA;
+		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
+
 	}
 
 	@Override
@@ -38,11 +39,6 @@ public class Caminhao extends Veiculo {
 	public double valorSeguro() {
 		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
 	}
-
-	// @Override
-	// public double autonomia() {
-	// 	return (KM_POR_LITRO * CAPACIDADE_TANQUE);
-	// }
 
 	@Override
 	public double outrosCustos() {
@@ -60,4 +56,29 @@ public class Caminhao extends Veiculo {
 		}
 		return (valorManutencao + valorVistoria);
 	}
+
+	@Override
+	public double custoTotal() {
+		return (custoCombustivel() + custoVariavel() + custoFixo());
+	}
+
+	@Override
+	public double custoFixo() {
+		// TODO Auto-generated method stub
+		return 0;
+
+	}
+
+	@Override
+	public double custoCombustivel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double custoVariavel() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
