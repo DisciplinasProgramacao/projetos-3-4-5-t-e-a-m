@@ -31,15 +31,17 @@ public abstract class Veiculo implements Serializable { //implements Custo dps
 		return this.placa;
 	}
 	
-	//Estes métodos estção na clase Tanque
-	// public double autonomiaMaxima(){
-	// 	return (tanque.getcombustivel().getConsumo() * tanque.getCapacidade());
-	//   }
+
+	
+	public double autonomiaMaxima(){
+		return (tanque.getCombustivel().getConsumo() * tanque.getCapacidade());
+	  }
 
 
-	//   public double autonomiaAtual(){
-	// 	return (tanque.getcombustivel().getConsumo() * tanque.getQuantAtual());
-	//   }
+	  public double autonomiaAtual(){
+		return (tanque.getCombustivel().getConsumo() * tanque.getQuantAtual());
+	  }
+
 
 	public abstract double valorIpva();
 
@@ -96,10 +98,10 @@ public abstract class Veiculo implements Serializable { //implements Custo dps
 			}
 		}
 	}
-
+*/
 	public void addCusto(double distanciaTotal) {
 		// NÃO CONSEGUI CRIAR A LISTA
-			Custo custo = new Custo(combustivel.valorAbastecimento());	
+		double custo = (combustivel.valorAbastecimento());	
 			custos.addLast(custo);
 
 			
