@@ -13,8 +13,8 @@ public abstract class Veiculo implements Serializable, Custo {
 	private int percentualIpva;
 	private int percentualSeguro;
 	private int kmAtual;
-	public double custoCombustivel;
-	public double custoVariavel;
+	public static double custoCombustivel;
+	public static double custoVariavel;
 
 	public Tanque tanque;
 	public LocalDate date = java.time.LocalDate.now();
