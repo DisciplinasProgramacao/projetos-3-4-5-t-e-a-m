@@ -7,7 +7,7 @@ public class CarroTest {
 
     Carro c;
 
-    @BeforeEach
+    @BeforeEach 
     public void setUp() {
     c = new Carro("ABC123", 5000.0, 10000);
     }
