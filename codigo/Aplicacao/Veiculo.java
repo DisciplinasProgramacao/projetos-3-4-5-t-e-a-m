@@ -3,17 +3,20 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-public abstract class Veiculo implements Serializable, Custo {
+public abstract class Veiculo implements Serializable, Custeavel {
 
 
 	private LinkedList<Rota> rotas = new LinkedList<Rota>();
+	private LinkedList<Custo> custos = new LinkedList<Custo>();
 
 	private String placa;
 	private double valorVenda;
 	private int percentualIpva;
 	private int percentualSeguro;
 	private int kmAtual;
-	public static double custoCombustivel;
+	public static double custoCombustivel; //???
+	private int manutencoes;
+	public static double custoCombustivelConsumido;
 	public static double custoVariavel;
 
 	public Tanque tanque;
@@ -29,46 +32,64 @@ public abstract class Veiculo implements Serializable, Custo {
 		this.custoCombustivel = custoCombustivel;
 		this.custoVariavel = custoVariavel;
 		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
+		this.addCusto(valorIpva(), "IPVA");
+		this.addCusto(valorSeguro(), "Seguro");
 	}
 
 	public String getPlaca(){
 		return this.placa;
 	}
 	
+
+
+	public void listaCustosVeiculo(){
+		for(int i=0; i<custos.size(); i++){
+			System.out.println(custos.get(i).getDescricao() + " - " + custos.get(i).getValor());
+		}
+	}
+	
 	@Override
 	public double custoTotal() {
-		return (custoCombustivel() + custoVariavel() + custoFixo());
+		double somaCustos = 0;
+		for(int i=0; i<custos.size(); i++){
+			somaCustos += custos.get(i).getValor();
+		}
+		return somaCustos;
+		//return (custoCombustivel() + custoFixo() + somaCustosVariaveis);
 	}
 
 	@Override
-    public double custoCombustivel(){
+    public double custoCombustivel(){//add todos so custos de combustivel
 		return (custoCombustivel);
 	}
 
 	@Override
-    public double custoVariavel(){
-		return (custoVariavel);
+    public void custoVariavel(){ //manutenção alinhamento e vistoria (muda só pro caminhão)
+		    //o custo variável automaticamente adiciona os custos na lista
 	}
 	
 	@Override
-    public double custoFixo(){
-		return (valorIpva()+valorSeguro()+outrosCustos());
+    public double custoFixo(){ //add todos os custos fixos
+		return (valorIpva()+valorSeguro());
 	}
 
-	public abstract double valorIpva();
+	public void addCusto(double valor, String descricao) {
+		Custo custo = new Custo(valor, descricao);
+		custos.addLast(custo);
+	}
 
-	public abstract double valorSeguro();
+	//Custos fixos
 
-	public double autonomiaMaxima(){
-		return (tanque.getCombustivel().getConsumo() * tanque.getCapacidade());
-	  }
+	public double valorIpva() {
+		return (valorVenda * percentualIpva / 100);//overridado
+	}
 
-	  public double autonomiaAtual(){
-		return (tanque.getCombustivel().getConsumo() * tanque.getQuantAtual());
-	  }
+	public double valorSeguro() {
+		return (valorVenda * percentualSeguro / 100 + percentualSeguro);//overridado (formula td errada)
+	}
 
-	public abstract double outrosCustos();
 
+	
 	public void addRota(double distanciaTotal, Combustivel combustivel) {
 		if((distanciaTotal <= tanque.autonomiaMaxima(combustivel))){
 			Rota rota = new Rota(distanciaTotal, date, combustivel);
@@ -78,8 +99,10 @@ public abstract class Veiculo implements Serializable, Custo {
 			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)){
 				System.out.println("Tanque abastecido! Quantidade anterior insuficiente");
 				System.out.println("quantidade anterior: " + tanque.getQuantAtual() + " => quantidade atual: " + tanque.getCapacidade());
+				//addCustoCombustivel();
+				addCusto((tanque.getCapacidade() - tanque.getQuantAtual()) * combustivel.getPreco(), "Combustivel");
 				tanque.abastecer();
-				addCustoCombustivel();
+
 
 			}
 			System.out.println("Combustível consumido: " + tanque.consumir(combustivel, distanciaTotal));
@@ -94,10 +117,10 @@ public abstract class Veiculo implements Serializable, Custo {
 
 	// }
 
-	private void addCustoCombustivel() {
-		double volumeAbastecido = (tanque.getCapacidade()-tanque.getQuantAtual());
-		custoCombustivel += (volumeAbastecido*custoCombustivel)
-	}
+	// private void addCustoCombustivel() {
+	// 	double volumeAbastecido = (tanque.getCapacidade() - tanque.getQuantAtual());
+	// 	custoCombustivelConsumido += volumeAbastecido;
+	// }
 
 	public double kmMediaDasRotas(){
 		int rotasPercorridas = rotas.size();
