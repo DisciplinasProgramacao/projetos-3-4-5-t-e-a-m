@@ -14,9 +14,10 @@ public class Van extends Veiculo {
 	private static int quantCombustivelAtual;
 	private int kmAlinhamento;
 	private double valorAlinhamento;
+	private double kmAnterior;
 	private int kmVistoria;
 	private double valorVistoria;
-	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL};
+	private static Combustivel[] combustiveis = {Combustivel.DIESEL};
 
 	public Van(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, 
@@ -40,22 +41,21 @@ public class Van extends Veiculo {
 	// Alinhamento: R$120 a cada 10000km
 	// Vistoria: R$500 a cada 10000 km
 	@Override
-	public double outrosCustos() {
-		int kmAnterior = 0;
+	public void custoVariavel() {
 
-
-		if (((kmAtual - kmAnterior) % KM_ALINHAMENTO) == 0) {
+		if (((kmAtual - kmAnterior) / KM_ALINHAMENTO) >= 1) {
 			valorAlinhamento = (((kmAtual - kmAnterior) / KM_ALINHAMENTO) * VALOR_POR_ALINHAMENTO);
-
+			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+			kmAnterior += kmAtual;
+			this.addCusto(valorAlinhamento, "Alinhamento");
+			this.addCusto(valorVistoria, "Vistoria");
 		} else {
 			valorAlinhamento = 0.0;
-		}
-		if (((kmAtual - kmAnterior) % KM_VISTORIA) == 0) {
-			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
-		} else {
 			valorVistoria = 0.0;
 		}
-		return (valorAlinhamento + valorVistoria);
+
+		//add alinhamenot e vistoria lista custos
+		//return (valorAlinhamento + valorVistoria);
 	}
 
 }

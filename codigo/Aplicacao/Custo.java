@@ -1,11 +1,37 @@
-public interface Custo {
+public class Custo {
+    
+    private double valor;
+    private String descricao;
+    
+    public Custo(double valor, String descricao){
+        this.valor = valor;
+        this.descricao = descricao;
+    }
 
-    public abstract double custoTotal();
+    public String getDescricao() {
+        return descricao;
+    }
 
-    public abstract double custoCombustivel();
+    public double getValor() {
+        return valor;
+    }
+    // private double valorIpva;
+    // private double valorSeguro;
+    // private double valorCombustivel;
+    // private double valorManutencao;
+    // private double valorVistoria; //alguns tem alguns n tem
 
-    public abstract double custoVariavel();
 
-    public abstract double custoFixo();
+    // public double custoTotal();
+
+    // public double custoCombustivel(){
+
+    // }
+
+    // //custos variáveis
+    // public double custoVariavel();
+
+    // //custos fixos
+    // public double getIPVA();
 
 }

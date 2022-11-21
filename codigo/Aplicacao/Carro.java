@@ -13,6 +13,7 @@ public class Carro extends Veiculo {
 	private double valorVenda;
 	private static int kmAtual;
 	private static int quantCombustivelAtual;
+	private double kmAnterior;
 	private int kmAlinhamento;
 	private double valorAlinhamento;
 	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.ALCOOL };
@@ -26,23 +27,26 @@ public class Carro extends Veiculo {
 
 	@Override
 	public double valorIpva() {
-		return (valorVenda * PERCENTUAL_IPVA / 100);
+		return ((valorVenda * PERCENTUAL_IPVA) / 100);
 	}
 
 	@Override
 	public double valorSeguro() {
 		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
 	}
-
+	
 	@Override
-	public double outrosCustos() {
-		int kmAnterior = 0;
-
-		if ((kmAtual - kmAnterior) % KM_ALINHAMENTO == 0) {
-			return ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
+	public void custoVariavel() {
+		if ((kmAtual - kmAnterior) / KM_ALINHAMENTO >= 1) {
+			double res = ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
+			kmAnterior += kmAtual;
+			this.addCusto(res,"Alinhamento");
+			//return res;
 		} else {
-			return 0.00;
+			//return 0.00;
 		}
+
+		//add alinhamento lista de custos
 	}
 
 }

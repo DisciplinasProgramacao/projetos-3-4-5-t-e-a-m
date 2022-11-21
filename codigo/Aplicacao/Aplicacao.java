@@ -162,7 +162,7 @@ public class Aplicacao {
 				case 6:
 
 					try {
-						frota.imprimirRelatorio();
+						frota.imprimirRelatorioCompleto();				
 					} catch (Exception erro) {
 						System.out.println(erro.getMessage());
 					}
@@ -203,7 +203,7 @@ public class Aplicacao {
 						break;
 
 					case 3:
-
+						frota.listaDecrescenteCusto();
 						break;
 
 					case 4:
