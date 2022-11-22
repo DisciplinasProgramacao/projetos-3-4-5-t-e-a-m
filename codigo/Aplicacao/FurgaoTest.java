@@ -23,14 +23,14 @@ class FurgaoTest {
 		assertEquals(150.00, f.valorSeguro(), "valor Seguro ");
 	}
 
-	@Test
-	void testAutonomia() {
-		assertEquals(800, f.autonomia(), "autonomia do furgao ");
-	}
+	// @Test
+	// void testAutonomia() {
+	// 	assertEquals(800, f.autonomia(), "autonomia do furgao ");
+	// }
 
-	@Test
-	void testOutrosCustos() {
-		assertEquals(620, f.outrosCustos(), "outros custos: Alinhamento e Vistoria ");
-	}
+	// @Test
+	// void testOutrosCustos() {
+	// 	assertEquals(620, f.outrosCustos(), "outros custos: Alinhamento e Vistoria ");
+	// }
 
 }
