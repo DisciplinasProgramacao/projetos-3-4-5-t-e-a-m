@@ -38,14 +38,12 @@ public class Carro extends Veiculo {
 	@Override
 	public void custoVariavel() {
 		if ((kmAtual - kmAnterior) / KM_ALINHAMENTO >= 1) {
-			double res = ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
+			valorAlinhamento = ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
 			kmAnterior += kmAtual;
-			this.addCusto(res,"Alinhamento");
-			//return res;
+			this.addCusto(valorAlinhamento,"Alinhamento");
 		} else {
-			//return 0.00;
+			valorAlinhamento = 0.0;
 		}
-
 		//add alinhamento lista de custos
 	}
 

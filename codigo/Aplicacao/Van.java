@@ -38,8 +38,6 @@ public class Van extends Veiculo {
 		return (valorVenda * PERCENTUAL_SEGURO / 100);
 	}
 
-	// Alinhamento: R$120 a cada 10000km
-	// Vistoria: R$500 a cada 10000 km
 	@Override
 	public void custoVariavel() {
 
@@ -53,9 +51,7 @@ public class Van extends Veiculo {
 			valorAlinhamento = 0.0;
 			valorVistoria = 0.0;
 		}
-
 		//add alinhamenot e vistoria lista custos
-		//return (valorAlinhamento + valorVistoria);
 	}
 
 }
