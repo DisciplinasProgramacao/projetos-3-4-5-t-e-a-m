@@ -3,6 +3,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class Frota{
@@ -11,7 +12,7 @@ public class Frota{
 	public Frota(){
 		veiculos = new LinkedList<Veiculo>();
 	}
-
+	
 	public void carregarVeiculo(String nomeArquivo) {
 
 	ObjectInputStream ois = null;
@@ -69,8 +70,17 @@ public class Frota{
 	public void imprimirRelatorio() {
 		for(int i=0; i<veiculos.size(); i++){
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
-		+ veiculos.get(i).valorSeguro()+ " - Outros Custos: " + veiculos.get(i).outrosCustos() );
-		}
+			+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());	
+		 }
+	}
+
+	public void imprimirRelatorioCompleto() {
+		for(int i=0; i<veiculos.size(); i++){
+			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: " + veiculos.get(i).valorIpva()+ " - Valor Seguro:  " 
+			+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());
+			System.out.println("Todos os custos: ");
+			veiculos.get(i).listaCustosVeiculo();
+		 }
 	}
 
 	public void mediaConsumoRotas() {
@@ -119,7 +129,17 @@ public class Frota{
 		
 	}
 
-	
+	public void listaDecrescenteCusto(){
+		for(int i=0; i<veiculos.size(); i++){
+			for(int j=0; j<veiculos.size(); j++){
+				if(veiculos.get(i).custoTotal() > veiculos.get(j).custoTotal()){
+					Collections.swap(veiculos, i, j);
+				}
+				
+			}
+		}
+		imprimirRelatorio();
+	}
 	
 	
 	

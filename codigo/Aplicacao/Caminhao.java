@@ -13,11 +13,13 @@ public class Caminhao extends Veiculo {
 	private double valorVenda;
 	private int kmAtual;
 	private static int quantCombustivelAtual;
+	private double kmAnteriorManutencao;
+	private double kmAnteriorVistoria;
 	private int kmManutencao;
 	private double valorManutencao;
 	private int kmVistoria;
 	private double valorVistoria;
-	private static Combustivel[] combustiveis = {Combustivel.DIESEL};
+	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL};
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
@@ -41,19 +43,24 @@ public class Caminhao extends Veiculo {
 	}
 
 	@Override
-	public double outrosCustos() {
-		int kmAnterior = 0;
+	public void custoVariavel() {
 
-		if ((kmAtual - kmAnterior) % KM_MANUTENCAO == 0) {
-			valorManutencao = ((kmAtual - kmAnterior) / KM_MANUTENCAO) * VALOR_POR_MANUTENCAO;
+		if ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO >= 1) {
+			valorManutencao = ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO) * VALOR_POR_MANUTENCAO;
+			kmAnteriorManutencao += kmAtual;
+			this.addCusto(valorManutencao, "Manutenção");
 		} else {
 			valorManutencao = 0.0;
 		}
-		if (((kmAtual - kmAnterior) % kmVistoria) == 0) {
-			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+
+		if (((kmAtual - kmAnteriorVistoria) / kmVistoria) >= 1) {
+			valorVistoria = (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+			kmAnteriorVistoria += kmAtual;
+			this.addCusto(valorVistoria, "Vistoria");
 		} else {
 			valorVistoria = 0.0;
 		}
-		return (valorManutencao + valorVistoria);
+
+		//return (valorManutencao + valorVistoria);
 	}
 }
