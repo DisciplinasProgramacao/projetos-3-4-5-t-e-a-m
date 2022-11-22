@@ -15,22 +15,23 @@ public class Carro extends Veiculo {
 	private static int quantCombustivelAtual;
 	private double kmAnterior;
 	private int kmAlinhamento;
-	private double valorAlinhamento;
+	private double valorPorAlinhamento;
 	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.ALCOOL };
 
 	public Carro(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
-		quantCombustivelAtual, custoCombustivel, custoVariavel, combustiveis);
+		quantCombustivelAtual, combustiveis);
 		this.kmAlinhamento = KM_ALINHAMENTO;
-		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
+		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 	}
 
 	@Override
 	public void custoVariavel() {
+		double valorAlinhamento;
 		if ((kmAtual - kmAnterior) / kmAlinhamento >= 1) {
-			valorAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento * valorAlinhamento);
+			valorAlinhamento = (((kmAtual - kmAnterior) / kmAlinhamento) * valorPorAlinhamento);
 			kmAnterior += kmAtual;
-			this.addCusto(valorAlinhamento,"Alinhamento");
+			this.addCusto(valorPorAlinhamento,"Alinhamento");
 		} else {
 			valorAlinhamento = 0.0;
 		}

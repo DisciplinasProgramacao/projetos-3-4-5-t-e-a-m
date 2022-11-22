@@ -22,21 +22,11 @@ public class Van extends Veiculo {
 
 	public Van(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual, 
-		CAPACIDADE_TANQUE, quantCombustivelAtual, custoCombustivel, custoVariavel, combustiveis);
+		CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorVistoria = VALOR_POR_VISTORIA;
-	}
-
-	@Override
-	public double valorIpva() {
-		return (valorVenda * PERCENTUAL_IPVA / 100);
-	}
-
-	@Override
-	public double valorSeguro() {
-		return (valorVenda * PERCENTUAL_SEGURO / 100);
 	}
 
 	@Override

@@ -24,15 +24,13 @@ public abstract class Veiculo implements Serializable, Custeavel {
 
 	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, double acrescimoSeguro, int kmAtual,
 			int capacidadeTanque,
-			float quantCombustivelAtual, double custoCombustivel, double custoVariavel, Combustivel[] combustiveis) {
+			float quantCombustivelAtual, Combustivel[] combustiveis) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
 		this.acrescimoSeguro = acrescimoSeguro;
 		this.kmAtual = kmAtual;
-		this.custoCombustivel = custoCombustivel;
-		this.custoVariavel = custoVariavel;
 		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
 		this.addCusto(valorIpva(), "IPVA");
 		this.addCusto(valorSeguro(), "Seguro");
