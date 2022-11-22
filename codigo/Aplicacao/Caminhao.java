@@ -3,7 +3,7 @@ public class Caminhao extends Veiculo {
 	// ATRIBUTOS
 	private static final int PERCENTUAL_IPVA = 1;
 	private static final int PERCENTUAL_SEGURO = 2;
-	private static final double ACRESCIMO_SEGURO = 2000.0;
+	private static final double ACRESCIMO_SEGURO = 2000.00;
 	private static final int KM_MANUTENCAO = 20000;
 	private static final double VALOR_POR_MANUTENCAO = 1000.0;
 	private static final int KM_VISTORIA = 30000;
@@ -22,7 +22,7 @@ public class Caminhao extends Veiculo {
 	private static Combustivel[] combustiveis = {Combustivel.DIESEL};
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
-		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
+		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
 		quantCombustivelAtual, custoCombustivel, custoVariavel,	combustiveis);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorManutencao = VALOR_POR_MANUTENCAO;
@@ -33,28 +33,18 @@ public class Caminhao extends Veiculo {
 	}
 
 	@Override
-	public double valorIpva() {
-		return (valorVenda * PERCENTUAL_IPVA / 100);
-	}
-
-	@Override
-	public double valorSeguro() {
-		return (valorVenda * PERCENTUAL_SEGURO / 100 + ACRESCIMO_SEGURO);
-	}
-
-	@Override
 	public void custoVariavel() {
 
-		if ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO >= 1) {
-			valorManutencao = ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO * VALOR_POR_MANUTENCAO);
+		if ((kmAtual - kmAnteriorManutencao) / kmManutencao >= 1) {
+			valorManutencao = ((kmAtual - kmAnteriorManutencao) / kmManutencao * valorManutencao);
 			kmAnteriorManutencao += kmAtual;
 			this.addCusto(valorManutencao, "Manutenção");
 		} else {
 			valorManutencao = 0.0;
 		}
 
-		if (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) >= 1) {
-			valorVistoria = (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+		if (((kmAtual - kmAnteriorVistoria) / kmVistoria) >= 1) {
+			valorVistoria = (((kmAtual - kmAnteriorVistoria) / kmVistoria) * valorVistoria);
 			kmAnteriorVistoria += kmAtual;
 			this.addCusto(valorVistoria, "Vistoria");
 		} else {

@@ -5,22 +5,22 @@ import org.junit.jupiter.api.Test;
 
 class CaminhaoTest {
 
-	Caminhao c;
+	Veiculo c;
 
 	@BeforeEach
 	void setUp() {
-		c = new Caminhao("1234", 5000.0, 10000);
+		c = new Caminhao("ABC1234", 50000.00, 0);
 	}
 
 	@Test
 	void testValorIpva() {
-		assertEquals(50.0, c.valorIpva(), "valor IPVA ");
+		assertEquals(500.0, c.valorIpva(), "valor IPVA ");
 
 	}
 
 	@Test
 	void testValorSeguro() {
-		assertEquals(2100.00, c.valorSeguro(), "valor Seguro ");
+		assertEquals(3000.00, c.valorSeguro(), "valor Seguro ");
 	}
 
 	@Test
