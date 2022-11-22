@@ -32,7 +32,6 @@ public class Frota {
 			erro.printStackTrace();
 		} finally {
 			this.imprimirRelatorio();
-
 		}
 	}
 
@@ -49,7 +48,6 @@ public class Frota {
 			System.out.println(erro.getMessage());
 			erro.printStackTrace();
 		}
-
 	}
 
 	public boolean addVeiculo(Veiculo veiculo) {
@@ -58,7 +56,6 @@ public class Frota {
 	}
 
 	public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
-
 		for (Veiculo veiculo : veiculos) {
 			if (placaProcurar.equals(veiculo.getPlaca())) {
 				return veiculo;

@@ -14,9 +14,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	private int percentualSeguro;
 	private double acrescimoSeguro;
 	private int kmAtual;
-	public static double custoCombustivel; // ???
 	private int manutencoes;
-	//public static double custoCombustivelConsumido;
 	public static double custoVariavel;
 
 	public Tanque tanque;
@@ -48,8 +46,15 @@ public abstract class Veiculo implements Serializable, Custeavel {
 
 	@Override
 	public double custoCombustivel() {// add todos so custos de combustivel
+		double custoCombustivel=0.00;
+		for (int i = 0; i < custos.size(); i++) {
+			if(custos.get(i).getDescricao().equals("Combustivel")){
+				custoCombustivel += custos.get(i).getValor();
+			}
 		return (custoCombustivel);
 	}
+}
+
 
 	@Override
 	public double custoTotal() {
@@ -58,17 +63,9 @@ public abstract class Veiculo implements Serializable, Custeavel {
 			somaCustos += custos.get(i).getValor();
 		}
 		return somaCustos;
-		// return (custoCombustivel() + custoFixo() + somaCustosVariaveis);
 	}
 
-
-
-	//@Override
-	//public abstract void custoVariavel();  // manutenção alinhamento e vistoria (muda só pro caminhão)
-		// o custo variável automaticamente adiciona os custos na lista
-	
-
-	
+		
 	// Custos fixos
 
 	public double valorIpva() {
