@@ -22,13 +22,14 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public Tanque tanque;
 	public LocalDate date = java.time.LocalDate.now();
 
-	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, int kmAtual,
+	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, double acrescimoSeguro, int kmAtual,
 			int capacidadeTanque,
 			float quantCombustivelAtual, double custoCombustivel, double custoVariavel, Combustivel[] combustiveis) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
+		this.acrescimoSeguro = acrescimoSeguro;
 		this.kmAtual = kmAtual;
 		this.custoCombustivel = custoCombustivel;
 		this.custoVariavel = custoVariavel;
@@ -48,6 +49,11 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	}
 
 	@Override
+	public double custoCombustivel() {// add todos so custos de combustivel
+		return (custoCombustivel);
+	}
+
+	@Override
 	public double custoTotal() {
 		double somaCustos = 0;
 		for (int i = 0; i < custos.size(); i++) {
@@ -57,16 +63,25 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		// return (custoCombustivel() + custoFixo() + somaCustosVariaveis);
 	}
 
-	@Override
-	public double custoCombustivel() {// add todos so custos de combustivel
-		return (custoCombustivel);
-	}
+
 
 	//@Override
 	//public abstract void custoVariavel();  // manutenção alinhamento e vistoria (muda só pro caminhão)
 		// o custo variável automaticamente adiciona os custos na lista
 	
 
+	
+	// Custos fixos
+
+	public double valorIpva() {
+		return (valorVenda * percentualIpva / 100);// overridado
+	}
+
+	public double valorSeguro() {
+		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
+	}
+	
+	
 	@Override
 	public double custoFixo() { // add todos os custos fixos
 		return (valorIpva() + valorSeguro());
@@ -77,15 +92,6 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		custos.addLast(custo);
 	}
 
-	// Custos fixos
-
-	public double valorIpva() {
-		return (valorVenda * percentualIpva / 100);// overridado
-	}
-
-	public double valorSeguro() {
-		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
-	}
 
 	public void addRota(double distanciaTotal, Combustivel combustivel) {
 		if ((distanciaTotal <= tanque.autonomiaMaxima(combustivel))) {
