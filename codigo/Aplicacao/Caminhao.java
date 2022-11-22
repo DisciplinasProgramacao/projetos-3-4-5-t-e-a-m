@@ -23,7 +23,7 @@ public class Caminhao extends Veiculo {
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
-		quantCombustivelAtual, custoCombustivel, custoVariavel,	combustiveis);
+		quantCombustivelAtual, combustiveis);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;

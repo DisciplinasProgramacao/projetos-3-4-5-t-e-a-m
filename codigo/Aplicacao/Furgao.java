@@ -24,7 +24,7 @@ public class Furgao extends Veiculo {
 
 	public Furgao(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
-		quantCombustivelAtual, custoCombustivel, custoVariavel, combustiveis);
+		quantCombustivelAtual, combustiveis);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
@@ -32,27 +32,17 @@ public class Furgao extends Veiculo {
 	}
 
 	@Override
-	public double valorIpva() {
-		return (valorVenda * PERCENTUAL_IPVA / 100);
-	}
-
-	@Override
-	public double valorSeguro() {
-		return (valorVenda * PERCENTUAL_SEGURO / 100);
-	}
-
-	@Override
 	public void custoVariavel() {
-		if ((kmAtual - kmAnterior) / KM_ALINHAMENTO >= 1) {
-			valorAlinhamento = ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
+		if ((kmAtual - kmAnterior) / kmAlinhamento >= 1) {
+			valorAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento * valorAlinhamento);
 			kmAnterior += kmAtual;
 			this.addCusto(valorAlinhamento,"Alinhamento");
 		} else {
 			valorAlinhamento = 0.0;
 		}
 
-		if (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) >= 1) {
-			valorVistoria = (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+		if (((kmAtual - kmAnteriorVistoria) / kmVistoria) >= 1) {
+			valorVistoria = (((kmAtual - kmAnteriorVistoria) / kmVistoria) * valorVistoria);
 			kmAnteriorVistoria += kmAtual;
 			this.addCusto(valorVistoria, "Vistoria");
 		} else {
