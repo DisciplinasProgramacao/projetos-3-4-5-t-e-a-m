@@ -17,6 +17,7 @@ public class Furgao extends Veiculo {
 	private int kmAnterior;
 	private double valorAlinhamento;
 	private int kmVistoria;
+	private int kmAnteriorVistoria;
 	private double valorVistoria;
 	private static Combustivel[] combustiveis = {Combustivel.GASOLINA};
 
@@ -41,19 +42,21 @@ public class Furgao extends Veiculo {
 
 	@Override
 	public void custoVariavel() {
-
-		if (((kmAtual - kmAnterior) / KM_ALINHAMENTO) >= 1) {
-			valorAlinhamento = (((kmAtual - kmAnterior) / KM_ALINHAMENTO) * VALOR_POR_ALINHAMENTO);
-			valorVistoria = (((kmAtual - kmAnterior) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+		if ((kmAtual - kmAnterior) / KM_ALINHAMENTO >= 1) {
+			valorAlinhamento = ((kmAtual - kmAnterior) / KM_ALINHAMENTO * VALOR_POR_ALINHAMENTO);
 			kmAnterior += kmAtual;
-			this.addCusto(valorAlinhamento, "Alinhamento");
-			this.addCusto(valorVistoria, "Vistoria");
+			this.addCusto(valorAlinhamento,"Alinhamento");
 		} else {
 			valorAlinhamento = 0.0;
-			valorVistoria = 0.0;
 		}
 
+		if (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) >= 1) {
+			valorVistoria = (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) * VALOR_POR_VISTORIA);
+			kmAnteriorVistoria += kmAtual;
+			this.addCusto(valorVistoria, "Vistoria");
+		} else {
+			valorVistoria = 0.0;
+		}
 		//add alinhamento e vistoria custos
-		//return (valorAlinhamento + valorVistoria);
 	}
 }

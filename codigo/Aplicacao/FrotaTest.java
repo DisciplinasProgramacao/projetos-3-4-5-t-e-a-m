@@ -16,12 +16,10 @@ public class FrotaTest {
 
 	@Test
 	void carregarVeiculo(String nomeArquivo) {
-
 	}
 
 	@Test
 	void salvarVeiculo(String nomeArquivo) {
-
 	}
 
 	@Test
@@ -41,7 +39,6 @@ public class FrotaTest {
 
 	@Test
 	void imprimirRelatorio() {
-
 	}
 
 }

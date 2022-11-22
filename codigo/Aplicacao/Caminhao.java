@@ -19,7 +19,7 @@ public class Caminhao extends Veiculo {
 	private double valorManutencao;
 	private int kmVistoria;
 	private double valorVistoria;
-	private static Combustivel[] combustiveis = {Combustivel.GASOLINA, Combustivel.DIESEL};
+	private static Combustivel[] combustiveis = {Combustivel.DIESEL};
 
 	public Caminhao(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, kmAtual, CAPACIDADE_TANQUE, 
@@ -46,21 +46,19 @@ public class Caminhao extends Veiculo {
 	public void custoVariavel() {
 
 		if ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO >= 1) {
-			valorManutencao = ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO) * VALOR_POR_MANUTENCAO;
+			valorManutencao = ((kmAtual - kmAnteriorManutencao) / KM_MANUTENCAO * VALOR_POR_MANUTENCAO);
 			kmAnteriorManutencao += kmAtual;
 			this.addCusto(valorManutencao, "Manutenção");
 		} else {
 			valorManutencao = 0.0;
 		}
 
-		if (((kmAtual - kmAnteriorVistoria) / kmVistoria) >= 1) {
+		if (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) >= 1) {
 			valorVistoria = (((kmAtual - kmAnteriorVistoria) / KM_VISTORIA) * VALOR_POR_VISTORIA);
 			kmAnteriorVistoria += kmAtual;
 			this.addCusto(valorVistoria, "Vistoria");
 		} else {
 			valorVistoria = 0.0;
 		}
-
-		//return (valorManutencao + valorVistoria);
 	}
 }
