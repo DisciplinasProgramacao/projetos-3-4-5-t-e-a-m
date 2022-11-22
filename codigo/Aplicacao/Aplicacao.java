@@ -13,7 +13,7 @@ public class Aplicacao {
 		System.out.println("4. Incluir rotas para um veículo");
 		System.out.println("5. Localizar um veículo da frota");
 		System.out.println("6. imprimirRelatorio um relatório do veículo com seus gastos até o momento");
-		System.out.println("7. Finalizar a menu");
+		System.out.println("7. Acrescentar um custo eventual aos custos de um veículo");
 		System.out.println("8. Testar classe enumerada");
 		System.out.println("9. Respostas estratégicas");
 		System.out.println("10. Finalizar a menu");
@@ -130,9 +130,12 @@ public class Aplicacao {
 
 							placa = ler.nextLine();
 							veic = frota.localizaVeiculo(placa);
-							System.out.println("Placa: " + veic.getPlaca() + " - Valor IPVA: " + veic.valorIpva()
-									+ " - Valor Seguro:  " + veic.valorSeguro()
-									+ " - Outros Custos: " /* + veic.custoTotal() */);
+							// System.out.println("Placa: " + veic.getPlaca() + " - Valor IPVA: " + veic.valorIpva()
+							// 		+ " - Valor Seguro:  " + veic.valorSeguro() + " - Custo Eventual" veic.valorCustoEventual() +
+							// 		+ " - Outros Custos: " /* + veic.custoTotal() */);
+
+							frota.imprimirRelatorio();
+
 
 							System.out.println("Rotas do veiculo: ");
 							veic.imprimeRotas();
@@ -151,7 +154,23 @@ public class Aplicacao {
 						break;
 
 					case 7:
-						System.out.println("Acrescentar!");
+						System.out.println("Digite a placa do veículo: ");
+						frota.imprimirRelatorio();
+						placa = ler.nextLine();
+						try {
+							veic = frota.localizaVeiculo(placa);
+
+							System.out.println("Informe o valor do custo");
+							String valorCustoEventual = ler.nextLine();
+							Double distdoub = Double.parseDouble(valorCustoEventual);
+
+							veic.addCusto(distdoub, "custo eventual");
+							System.out.println("O custo eventual foi adicionado");
+							frota.imprimirRelatorioCompleto();
+
+						} catch (Exception erro) {
+							System.out.println(erro.getMessage());
+						}
 						break;
 
 					case 8:
