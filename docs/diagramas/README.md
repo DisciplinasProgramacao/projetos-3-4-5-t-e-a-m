@@ -1,7 +1,2 @@
 # Diagramas de classe
-
-1.0 - UML Projeto LPM.png
-
-2.0 - UML Projeto LPM.png
-
-3.0 - UML Projeto LPM.png
+Coloque aqui todas as versões do seu diagrama de classes. Cada versão deve começar com um número de dois dígitos, na ordem crescente.
