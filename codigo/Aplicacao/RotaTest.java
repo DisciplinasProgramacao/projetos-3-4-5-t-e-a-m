@@ -11,8 +11,8 @@ public class RotaTest {
     }
 
     @Test
-    void test(){
-        
+    void test() {
+
     }
 
 }

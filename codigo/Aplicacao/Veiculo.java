@@ -14,14 +14,11 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	private int percentualSeguro;
 	private double acrescimoSeguro;
 	private int kmAtual;
-	private int manutencoes;
-	public static double custoVariavel;
-
 	public Tanque tanque;
 	public LocalDate date = java.time.LocalDate.now();
 
-	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, double acrescimoSeguro, int kmAtual,
-			int capacidadeTanque,
+	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro,
+			double acrescimoSeguro, int kmAtual, int capacidadeTanque,
 			float quantCombustivelAtual, Combustivel[] combustiveis) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
@@ -38,23 +35,33 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		return this.placa;
 	}
 
-	public void listaCustosVeiculo() {
-		for (int i = 0; i < custos.size(); i++) {
-			System.out.println(custos.get(i).getDescricao() + " - " + custos.get(i).getValor());
-		}
+	// Custos fixos
+
+	public double valorIpva() {
+		return (valorVenda * percentualIpva / 100);// overridado
+	}
+
+	public double valorSeguro() {
+		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
 	}
 
 	@Override
-	public double custoCombustivel() {// add todos so custos de combustivel
-		double custoCombustivel=0.00;
+	public double custoFixo() { // add todos os custos fixos
+		return (valorIpva() + valorSeguro());
+	}
+
+	// Custo combustível
+
+	@Override
+	public double custoCombustivel() {
+		double custoCombustivel = 0.00;
 		for (int i = 0; i < custos.size(); i++) {
-			if(custos.get(i).getDescricao().equals("Combustivel")){
+			if (custos.get(i).getDescricao().equals("Combustivel")) {
 				custoCombustivel += custos.get(i).getValor();
 			}
-		return (custoCombustivel);
+			return (custoCombustivel);
+		}
 	}
-}
-
 
 	@Override
 	public double custoTotal() {
@@ -65,21 +72,10 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		return somaCustos;
 	}
 
-		
-	// Custos fixos
-
-	public double valorIpva() {
-		return (valorVenda * percentualIpva / 100);// overridado
-	}
-
-	public double valorSeguro() {
-		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
-	}
-	
-	
-	@Override
-	public double custoFixo() { // add todos os custos fixos
-		return (valorIpva() + valorSeguro());
+	public void listaCustosVeiculo() {
+		for (int i = 0; i < custos.size(); i++) {
+			System.out.println(custos.get(i).getDescricao() + " - " + custos.get(i).getValor());
+		}
 	}
 
 	public void addCusto(double valor, String descricao) {
@@ -87,11 +83,9 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		custos.addLast(custo);
 	}
 
-
 	public void addRota(double distanciaTotal, Combustivel combustivel) {
 		if ((distanciaTotal <= tanque.autonomiaMaxima(combustivel))) {
 			Rota rota = new Rota(distanciaTotal, date, combustivel);
-			// somar km no kmatual do veiculo
 			rotas.addLast(rota);
 			kmAtual += distanciaTotal;
 			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)) {

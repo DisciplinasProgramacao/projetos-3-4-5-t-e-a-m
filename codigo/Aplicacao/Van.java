@@ -11,13 +11,13 @@ public class Van extends Veiculo {
 	private static final int CAPACIDADE_TANQUE = 60;
 
 	private int kmAtual;
-	private static int quantCombustivelAtual;
+	private int kmAnterior;
 	private int kmAlinhamento;
 	private double valorPorAlinhamento;
-	private int kmAnterior;
 	private int kmVistoria;
 	private double valorPorVistoria;
-	private static Combustivel[] combustiveis = { Combustivel.DIESEL };
+	private static int quantCombustivelAtual;
+	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.DIESEL };
 
 	public Van(String placa, double valorVenda, int kmAtual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
@@ -26,6 +26,7 @@ public class Van extends Veiculo {
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorPorVistoria = VALOR_POR_VISTORIA;
+		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
 	}
 
 	@Override
@@ -34,7 +35,7 @@ public class Van extends Veiculo {
 		int numAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento);
 		if (numAlinhamento >= 1) {
 			valorAlinhamento = (numAlinhamento * valorPorAlinhamento);
-			this.addCusto(valorAlinhamento,"Alinhamento");
+			this.addCusto(valorAlinhamento, "Alinhamento");
 		} else {
 			valorAlinhamento = 0.0;
 		}
@@ -47,11 +48,10 @@ public class Van extends Veiculo {
 		} else {
 			valorVistoria = 0.0;
 
-			if((numAlinhamento>=1) || (numVistoria >= 1)){
-			kmAnterior += kmAtual;
+			if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
+				kmAnterior = kmAtual;
 			}
 		}
-		//add alinhamenot e vistoria lista custos
 	}
 
 }
