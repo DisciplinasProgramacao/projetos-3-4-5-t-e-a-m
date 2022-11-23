@@ -20,9 +20,8 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public Tanque tanque;
 	public LocalDate date = java.time.LocalDate.now();
 
-	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, double acrescimoSeguro, int kmAtual,
-			int capacidadeTanque,
-			float quantCombustivelAtual, Combustivel[] combustiveis) {
+	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro, double acrescimoSeguro,
+			int kmAtual, int capacidadeTanque, float quantCombustivelAtual, Combustivel[] combustiveis) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
@@ -46,15 +45,14 @@ public abstract class Veiculo implements Serializable, Custeavel {
 
 	@Override
 	public double custoCombustivel() {// add todos so custos de combustivel
-		double custoCombustivel=0.00;
+		double custoCombustivel = 0.00;
 		for (int i = 0; i < custos.size(); i++) {
-			if(custos.get(i).getDescricao().equals("Combustivel")){
+			if (custos.get(i).getDescricao().equals("Combustivel")) {
 				custoCombustivel += custos.get(i).getValor();
 			}
-		return (custoCombustivel);
+			return (custoCombustivel);
+		}
 	}
-}
-
 
 	@Override
 	public double custoTotal() {
@@ -65,7 +63,6 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		return somaCustos;
 	}
 
-		
 	// Custos fixos
 
 	public double valorIpva() {
@@ -75,8 +72,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public double valorSeguro() {
 		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
 	}
-	
-	
+
 	@Override
 	public double custoFixo() { // add todos os custos fixos
 		return (valorIpva() + valorSeguro());
@@ -86,7 +82,6 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		Custo custo = new Custo(valor, descricao);
 		custos.addLast(custo);
 	}
-
 
 	public void addRota(double distanciaTotal, Combustivel combustivel) {
 		if ((distanciaTotal <= tanque.autonomiaMaxima(combustivel))) {
