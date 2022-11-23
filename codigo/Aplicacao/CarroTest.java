@@ -13,12 +13,23 @@ public class CarroTest {
 	}
 
 	@Test
+	void testGetPlaca() {
+		assertEquals("ABC123", c.getPlaca(), "Placa");
+	}
+
+	@Test
 	void testValorIpva() {
-		assertEquals(2000.00, c.valorIpva(), "valor IPVA ");
+		assertEquals(2000.00, c.valorIpva(), "Valor IPVA");
 	}
 
 	@Test
 	void testValorSeguro() {
-		assertEquals(2800.00, c.valorSeguro(), "valor Seguro ");
+		assertEquals(2800.00, c.valorSeguro(), "Valor Seguro");
 	}
+
+	@Test
+	void custoFixo(){
+		assertEquals(4800.00, c.custoFixo(), "Valor do Custo Fixo");
+	}
+
 }

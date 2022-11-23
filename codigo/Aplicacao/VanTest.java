@@ -26,15 +26,15 @@ public class VanTest {
 
     // @Test
     // void testAutonomia() {
-    //     assertEquals(600, v.autonomia(), "autonomia da van ");
+    // assertEquals(600, v.autonomia(), "autonomia da van ");
 
     // }
 
     // @Test
     // void testOutrosCustos() {
-    //     assertEquals(620, v.outrosCustos(), "outros custos ");
-    //     v = new Van("1234", 5000.0, 20000);
-    //     assertEquals(1240, v.outrosCustos(), "outros custos ");
+    // assertEquals(620, v.outrosCustos(), "outros custos ");
+    // v = new Van("1234", 5000.0, 20000);
+    // assertEquals(1240, v.outrosCustos(), "outros custos ");
     // }
 
 }

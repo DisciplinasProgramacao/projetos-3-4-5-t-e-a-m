@@ -55,9 +55,9 @@ public class Frota {
 		return true;
 	}
 
-	public Veiculo localizaVeiculo(String placaProcurar) throws Exception {
+	public Veiculo localizaVeiculo(String placa) throws Exception {
 		for (Veiculo veiculo : veiculos) {
-			if (placaProcurar.equals(veiculo.getPlaca())) {
+			if (placa.equals(veiculo.getPlaca())) {
 				return veiculo;
 			}
 		}
