@@ -8,10 +8,11 @@
 | Elian, André  | Veículos de tipos diferentes só podem usar determinados tipos de combustível        |
 | Elian   | A quilometragem média de todas as rotas da empresa      |
 | Elian   | Menu        |
-| Elian   | Classe Caminhão        |
-| Tarcísio   | Classe Furgão         |
-| Matheus  | Classe Van         |
-| André   | Classe Carro         |
+| Elian   | Carregar um conjunto de veículos de um arquivo        |
+| Elian   | Salvar um conjunto de veículos de um arquivo         |
+| Matheus, Elian, Tarcísio, André  | Classe Frota        |
+| Matheus, Elian, Tarcísio, André    | Classe Rota        |
+| Matheus, Elian, Tarcísio, André    | Classe Veículo        |
 | Elian  | Lista de veículos ordenada decrescentemente por custos gerados        |
 | Como um XXXXXX, eu quero   | --requisito--         |
 
