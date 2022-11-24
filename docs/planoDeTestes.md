@@ -21,6 +21,7 @@ Veiculo:
   - testGetNumRotas()
 
 Carro:
+
 10. Retornar o valor do ipva
   - testValorIpva()
 11. Retornar o valor do seguro
@@ -29,6 +30,7 @@ Carro:
   - testOutrosCustos()
 
 Caminhao:
+
 13. Retornar o valor do ipva
   - testValorIpva()
 14. Retornar o valor do seguro
@@ -37,6 +39,7 @@ Caminhao:
   - testOutrosCustos()
 
 Furgao:
+
 16. Retornar o valor do ipva
   - testValorIpva()
 17. Retornar o valor do seguro
@@ -45,6 +48,7 @@ Furgao:
   - testOutrosCustos()
  
 Van:
+
 19. Retornar o valor do ipva
   - testValorIpva()
 20. Retornar o valor do seguro
@@ -53,6 +57,7 @@ Van:
   - testOutrosCustos()
 
 Tanque:
+
 22. Verificar a autonomia máxima
   - autonomiaMaxima(Combustivel combustivel)
 23. Verificar a autonomia
@@ -69,6 +74,7 @@ Tanque:
   - consumir(Combustivel combust, double distancia)
 
 Combustível:
+
 29. Retornar a descrição
   - getDescricao()
 30. Retornar o consumo
@@ -81,6 +87,7 @@ Combustível:
   - valorAbastecimento(int distancia)
 
 Frota:
+
 34. Carregar o veículo
   - carregarVeiculo(String nomeArquivo)
 35. Salvar o veículo no arquivo
