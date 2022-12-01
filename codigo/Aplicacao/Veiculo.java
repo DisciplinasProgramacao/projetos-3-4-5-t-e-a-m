@@ -59,8 +59,9 @@ public abstract class Veiculo implements Serializable, Custeavel {
 			if (custos.get(i).getDescricao().equals("Combustivel")) {
 				custoCombustivel += custos.get(i).getValor();
 			}
-			return (custoCombustivel);
+			//return (custoCombustivel);
 		}
+		return custoCombustivel;
 	}
 
 	@Override
@@ -83,21 +84,21 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		custos.addLast(custo);
 	}
 
-	public void addRota(double distanciaTotal, Combustivel combustivel) {
-		if ((distanciaTotal <= tanque.autonomiaMaxima(combustivel))) {
-			Rota rota = new Rota(distanciaTotal, date, combustivel);
-			rotas.addLast(rota);
-			kmAtual += distanciaTotal;
-			if ((tanque.getQuantAtual() * combustivel.getConsumo()) < (distanciaTotal)) {
-				System.out.println("Tanque abastecido! Quantidade anterior insuficiente");
-				System.out.println("quantidade anterior: " + tanque.getQuantAtual() + " => quantidade atual: "
-						+ tanque.getCapacidade());
+	public void addRota(Rota nova) {
+		if ((nova.getDistanciaTotal() <= tanque.autonomiaMaxima())) {
+			//Rota rota = new Rota(distanciaTotal, date, combustivel);
+			rotas.addLast(nova); //o que fazer
+			kmAtual += nova.getDistanciaTotal();// distanciaTotal;
+			if ((tanque.autonomiaMaxima()) < (nova.getDistanciaTotal())) {
+				//System.out.println("Tanque abastecido! Quantidade anterior insuficiente");
+				//System.out.println("quantidade anterior: " + tanque.getQuantAtual() + " => quantidade atual: "
+				//		+ tanque.getCapacidade());
 				addCusto((tanque.getCapacidade() - tanque.getQuantAtual()) * combustivel.getPreco(), "Combustivel");
-				tanque.abastecer();
+				addCusto(tanque.abastecer());
 			}
-			System.out.println("Combustível consumido: " + tanque.consumir(combustivel, distanciaTotal));
+			//System.out.println("Combustível consumido: " + tanque.consumir(combustivel, distanciaTotal));
 		} else {
-			System.out.println("Rota além da autonomia máxima do veículo");
+			//System.out.println("Rota além da autonomia máxima do veículo");
 		}
 	}
 

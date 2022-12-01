@@ -4,22 +4,22 @@ public class Tanque {
 
   private int capacidade;
   private float quantAtual;
-  private ArrayList<Combustivel> combustiveis;
+  private Combustivel combustivelAtual;
 
-  public Tanque() {
-    combustiveis = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
+  public Tanque(Combustivel qual) {
+    combustivelAtual = qual;// = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
     capacidade = 1000;
     quantAtual = 1000;
   }
 
-  public Tanque(int capacidade, float quantAtual, Combustivel[] combs) {
+  public Tanque(int capacidade, float quantAtual, Combustivel combs) {
     this.capacidade = capacidade;
     this.quantAtual = quantAtual;
-    this.combustiveis = new ArrayList<>(Arrays.asList(combs));
+    this.combustivelAtual = combs;
   }
 
-  public double autonomiaMaxima(Combustivel combustivel) {
-    return (combustivel.getConsumo() * capacidade);
+  public double autonomiaMaxima() {
+    return (this.combustivelAtual.getConsumo() * capacidade);
   }
 
   public double autonomia(Combustivel combustivel) {
@@ -34,12 +34,14 @@ public class Tanque {
     return this.capacidade;
   }
 
-  public ArrayList getCombustiveis() {
-    return combustiveis;
+  public Combustivel getCombustivel() {
+    return combustivelAtual;
   }
 
   public void abastecer() {
     quantAtual += (this.capacidade - this.quantAtual);
+    double custo = 0; //calc custo
+    //return custo;
   }
 
   public double consumir(Combustivel combust, double distancia) {
