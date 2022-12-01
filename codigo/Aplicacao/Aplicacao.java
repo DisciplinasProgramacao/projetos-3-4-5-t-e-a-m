@@ -187,7 +187,7 @@ public class Aplicacao {
 						System.out.println("4. Filtro para busca de rotas por data.");
 
 						entrada = ler.nextLine();
-
+							
 						Object jLabelDia;
 						switch (Integer.parseInt(entrada)) {
 							case 1:
