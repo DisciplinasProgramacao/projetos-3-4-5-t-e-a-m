@@ -109,7 +109,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 			kmAtual += nova.getDistanciaTotal();// distanciaTotal;
 			tanque.consumir(nova.getDistanciaTotal());
 			rotas.addLast(nova); //o que fazer
-
+			custoVariavel(); //mudar nome metodo
 			//notificar();
 			
 		} else {
