@@ -6,10 +6,11 @@ public class Tanque {
   private float quantAtual;
   private Combustivel combustivelAtual;
 
-  public Tanque(Combustivel qual) {
+  public Tanque(Combustivel qual, int capacidade) {
     combustivelAtual = qual;// = new ArrayList<>(Arrays.asList(Combustivel.GASOLINA, Combustivel.DIESEL, Combustivel.ALCOOL));
-    capacidade = 1000;
-    quantAtual = 1000;
+    this.capacidade = capacidade;
+    quantAtual = capacidade;
+    
   }
 
   public Tanque(int capacidade, float quantAtual, Combustivel combs) {
@@ -22,8 +23,8 @@ public class Tanque {
     return (this.combustivelAtual.getConsumo() * capacidade);
   }
 
-  public double autonomia(Combustivel combustivel) {
-    return (combustivel.getConsumo() * quantAtual);
+  public double autonomia() {
+    return (combustivelAtual.getConsumo() * quantAtual);
   }
 
   public float getQuantAtual() {
@@ -38,14 +39,15 @@ public class Tanque {
     return combustivelAtual;
   }
 
-  public void abastecer() {
-    quantAtual += (this.capacidade - this.quantAtual);
-    double custo = 0; //calc custo
-    //return custo;
-  }
+  public double abastecer() {
+      double litrosParaEncher = this.capacidade - this.quantAtual;
+      this.quantAtual = this.capacidade;
+      return combustivelAtual.getPreco()*litrosParaEncher;
 
-  public double consumir(Combustivel combust, double distancia) {
-    double consumo = distancia / combust.getConsumo();
+    }
+
+  public double consumir(double distancia) {
+    double consumo = distancia / combustivelAtual.getConsumo();
     quantAtual -= consumo;
     return consumo;
   }
