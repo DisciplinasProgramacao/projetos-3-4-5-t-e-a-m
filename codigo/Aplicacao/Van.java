@@ -19,25 +19,24 @@ public class Van extends Veiculo {
 	private static int quantCombustivelAtual;
 	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.DIESEL };
 
-	public Van(String placa, double valorVenda, int kmAtual) {
+	public Van(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
-				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
+				
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorPorVistoria = VALOR_POR_VISTORIA;
-		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+		this.tanque = new Tanque(atual, CAPACIDADE_TANQUE);
 	}
 
-	@Override
+	@Override //observer?, adicionar função no addRotas
 	public void custoVariavel() {
 		double valorAlinhamento;
 		int numAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento);
 		if (numAlinhamento >= 1) {
 			valorAlinhamento = (numAlinhamento * valorPorAlinhamento);
 			this.addCusto(valorAlinhamento, "Alinhamento");
-		} else {
-			valorAlinhamento = 0.0;
 		}
 
 		double valorVistoria;
@@ -45,13 +44,11 @@ public class Van extends Veiculo {
 		if (numVistoria >= 1) {
 			valorVistoria = (numVistoria * valorPorVistoria);
 			this.addCusto(valorVistoria, "Vistoria");
-		} else {
-			valorVistoria = 0.0;
-
-			if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
-				kmAnterior = kmAtual;
-			}
+		} 
+		if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
+			kmAnterior = kmAtual;
 		}
+		
 	}
 
 }
