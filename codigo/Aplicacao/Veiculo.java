@@ -19,15 +19,19 @@ public abstract class Veiculo implements Serializable, Custeavel {
 
 	public Veiculo(String placa, double valorVenda, int percentualIpva, int percentualSeguro,
 			double acrescimoSeguro, int kmAtual, int capacidadeTanque,
-			float quantCombustivelAtual, Combustivel[] combustiveis) {
+			float quantCombustivelAtual, Combustivel[] combustiveis, Combustivel atual) {
 		this.placa = placa;
 		this.valorVenda = valorVenda;
 		this.percentualIpva = percentualIpva;
 		this.percentualSeguro = percentualSeguro;
 		this.acrescimoSeguro = acrescimoSeguro;
 		this.kmAtual = kmAtual;
-		this.tanque = new Tanque(capacidadeTanque, quantCombustivelAtual, combustiveis);
-		this.addCusto(valorIpva(), "IPVA");
+		
+		//verificar o atual com os possíveis
+		this.tanque = new Tanque(atual, capacidadeTanque);  
+		
+	//	(capacidadeTanque, quantCombustivelAtual, combustiveis);
+		this.addCusto(valorIpva(), "IPVA 2022");
 		this.addCusto(valorSeguro(), "Seguro");
 	}
 
@@ -37,11 +41,11 @@ public abstract class Veiculo implements Serializable, Custeavel {
 
 	// Custos fixos
 
-	public double valorIpva() {
+	private double valorIpva() {
 		return (valorVenda * percentualIpva / 100);// overridado
 	}
 
-	public double valorSeguro() {
+	private double valorSeguro() {
 		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
 	}
 
@@ -79,6 +83,11 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		}
 	}
 
+	/**
+	 * 
+	 * @param valor
+	 * @param descricao
+	 */
 	public void addCusto(double valor, String descricao) {
 		Custo custo = new Custo(valor, descricao);
 		custos.addLast(custo);
@@ -87,18 +96,24 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public void addRota(Rota nova) {
 		if ((nova.getDistanciaTotal() <= tanque.autonomiaMaxima())) {
 			//Rota rota = new Rota(distanciaTotal, date, combustivel);
-			rotas.addLast(nova); //o que fazer
-			kmAtual += nova.getDistanciaTotal();// distanciaTotal;
-			if ((tanque.autonomiaMaxima()) < (nova.getDistanciaTotal())) {
+
+			// se autonomia atual >= rota, adicionar.
+
+						
+			if ((tanque.autonomia()) < (nova.getDistanciaTotal())) {
 				//System.out.println("Tanque abastecido! Quantidade anterior insuficiente");
 				//System.out.println("quantidade anterior: " + tanque.getQuantAtual() + " => quantidade atual: "
 				//		+ tanque.getCapacidade());
-				addCusto((tanque.getCapacidade() - tanque.getQuantAtual()) * combustivel.getPreco(), "Combustivel");
-				addCusto(tanque.abastecer());
+				addCusto(tanque.abastecer(), "abastecimento");
 			}
-			//System.out.println("Combustível consumido: " + tanque.consumir(combustivel, distanciaTotal));
+			kmAtual += nova.getDistanciaTotal();// distanciaTotal;
+			tanque.consumir(nova.getDistanciaTotal());
+			rotas.addLast(nova); //o que fazer
+
+			//notificar();
+			
 		} else {
-			//System.out.println("Rota além da autonomia máxima do veículo");
+			//lançar uma exceção ADEQUADA.
 		}
 	}
 

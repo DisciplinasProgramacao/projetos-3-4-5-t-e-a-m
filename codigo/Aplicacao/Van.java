@@ -29,7 +29,7 @@ public class Van extends Veiculo {
 		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
 	}
 
-	@Override
+	@Override //observer?, adicionar função no addRotas
 	public void custoVariavel() {
 		double valorAlinhamento;
 		int numAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento);

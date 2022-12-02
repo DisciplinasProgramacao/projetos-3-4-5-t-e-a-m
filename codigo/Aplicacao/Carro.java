@@ -24,7 +24,8 @@ public class Carro extends Veiculo {
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
 	}
-
+	
+	
 	@Override
 	public void custoVariavel() {
 		double valorAlinhamento;
