@@ -40,12 +40,13 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	}
 
 	// Custos fixos
+	//MUDAR CUSTOS PRA STREAM
 
-	private double valorIpva() {
+	public double valorIpva() {
 		return (valorVenda * percentualIpva / 100);// overridado
 	}
 
-	private double valorSeguro() {
+	public double valorSeguro() {
 		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
 	}
 
