@@ -5,18 +5,18 @@ public class Rota implements Serializable {
 
 	private double distanciaTotal;
 	private LocalDate date;
-	private Combustivel combustivel;
+	//private Combustivel combustivel;
 
-	public Rota(double distancia, LocalDate data) {
+	public Rota(double distancia) {
 		this.distanciaTotal = distancia;
-		this.date = data;
+		this.date = java.time.LocalDate.now();
 	}
 
-	public Rota(double distancia, LocalDate data, Combustivel combustivel) {
-		this.distanciaTotal = distancia;
-		this.date = data;
-		this.combustivel = combustivel;
-	}
+	// public Rota(double distancia, LocalDate data, Combustivel combustivel) {
+	// 	this.distanciaTotal = distancia;
+	// 	this.date = data;
+	// 	this.combustivel = combustivel;
+	// }
 
 	public LocalDate getDate() {
 		return date;

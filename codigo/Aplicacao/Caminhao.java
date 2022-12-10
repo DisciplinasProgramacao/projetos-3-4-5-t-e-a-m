@@ -17,16 +17,16 @@ public class Caminhao extends Veiculo {
 	private int kmVistoria;
 	private double valorPorVistoria;
 	private static int quantCombustivelAtual;
-	private static Combustivel[] combustiveis = { Combustivel.DIESEL };
+	public static Combustivel[] combustiveis = { Combustivel.DIESEL };
 
-	public Caminhao(String placa, double valorVenda, int kmAtual) {
+	public Caminhao(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
-				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
 		this.kmManutencao = KM_MANUTENCAO;
 		this.valorPorManutencao = VALOR_POR_MANUTENCAO;
 		this.kmVistoria = KM_VISTORIA;
 		this.valorPorVistoria = VALOR_POR_VISTORIA;
-		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+		this.tanque = new Tanque(atual, CAPACIDADE_TANQUE);
 	}
 
 	@Override
