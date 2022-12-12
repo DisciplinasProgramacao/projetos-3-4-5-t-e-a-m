@@ -8,6 +8,13 @@ public enum Combustivel {
 	private double consumo;
 	private double preco;
 
+	/**
+	 * Construtor do combustível
+	 * 
+	 * @param descricao Tipo de combustível
+	 * @param consumo
+	 * @param preco
+	 */
 	private Combustivel(String descricao, double consumo, double preco) {
 		this.descricao = descricao;
 		this.consumo = consumo;
