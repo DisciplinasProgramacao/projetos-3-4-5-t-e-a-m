@@ -1,4 +1,5 @@
 
+import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -188,12 +189,10 @@ public class Aplicacao {
 
 					case 7:
 
-						for (Combustivel c : Combustivel.values()) {
-							System.out.println(c.getDescricao());
-						}
-						// Carro carro = new Carro("",0,0);
-						// carro.manutencaoNaoProgramada();
-						break;
+					for (Combustivel c : Combustivel.values()) {
+						System.out.println(c.getDescricao());
+					}
+					break;
 
 					case 8:
 
@@ -215,21 +214,21 @@ public class Aplicacao {
 								frota.imprimeTresMaiores();
 								break;
 
-							case 3:
-								// FALTA ESTA RESPOSTA ESTRATÉGICA
-								break;
+					case 3:
+						frota.imprimeVeiculosOrdenadosPorCusto();
+						break;
 
-							case 4:
-
-								frota.imprimirRotas();
-
-								DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-								System.out.println("Digite uma data para filtrar as rotas - fomato aaaa-mm-dd: ");
-								entrada = ler.nextLine();
-								LocalDate date = LocalDate.parse(entrada, formatter);
-								System.out.println(date);
-
-								frota.filtrarFrotaPorData(date);
+					case 4:
+						
+						frota.imprimirRotas();
+						
+						DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+						System.out.println("Digite uma data para filtrar as rotas - fomato dd-mm-aaaa: ");
+						entrada = ler.nextLine();
+						LocalDate date = LocalDate.parse(entrada, formatter);
+						System.out.println(date);
+							
+						frota.filtrarFrotaPorData(date);
 
 								break;
 

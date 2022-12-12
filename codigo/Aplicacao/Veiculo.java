@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedList;
 
-public abstract class Veiculo implements Serializable, Custeavel {
+public abstract class Veiculo implements Serializable, Custeavel, Sujeito {
 
 	private LinkedList<Rota> rotas = new LinkedList<Rota>();
 	private LinkedList<Custo> custos = new LinkedList<Custo>();
@@ -43,13 +43,28 @@ public abstract class Veiculo implements Serializable, Custeavel {
 		this.percentualSeguro = percentualSeguro;
 		this.acrescimoSeguro = acrescimoSeguro;
 		this.kmAtual = kmAtual;
+		
+		//verificar o atual com os possíveis
+		this.tanque = new Tanque(atual, capacidadeTanque);  
 
-		// verificar o atual com os possíveis
-		this.tanque = new Tanque(atual, capacidadeTanque);
-
-		// (capacidadeTanque, quantCombustivelAtual, combustiveis);
+	//	(capacidadeTanque, quantCombustivelAtual, combustiveis);
 		this.addCusto(valorIpva(), "IPVA 2022");
 		this.addCusto(valorSeguro(), "Seguro");
+	}
+
+	@Override
+	public void assinar(Object obj){
+		observers.addLast(obj);
+	}
+
+	@Override
+	public void desistir(){
+
+	}
+
+	@Override
+	public void notificar(){
+		observers.forEach(observer -> ((Frota) observer).atualizar());
 	}
 
 	/**
@@ -66,7 +81,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	 * @return Valor do IPVA.
 	 */
 	public double valorIpva() {
-		return (valorVenda * percentualIpva / 100);// overridado
+		return (valorVenda * percentualIpva / 100);
 	}
 
 	/**
@@ -75,7 +90,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	 * @return Valor do Seguro.
 	 */
 	public double valorSeguro() {
-		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);// overridado
+		return (valorVenda * percentualSeguro / 100 + acrescimoSeguro);
 	}
 
 	
@@ -140,6 +155,7 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public void addCusto(double valor, String descricao) {
 		Custo custo = new Custo(valor, descricao);
 		custos.addLast(custo);
+		notificar();
 	}
 
 	/**
@@ -152,15 +168,18 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	 */
 	public void addRota(Rota nova) {
 		if ((nova.getDistanciaTotal() <= tanque.autonomiaMaxima())) {
+						
 			if ((tanque.autonomia()) < (nova.getDistanciaTotal())) {
 				addCusto(tanque.abastecer(), "abastecimento");
 			}
-			kmAtual += nova.getDistanciaTotal();// distanciaTotal;
+			kmAtual += nova.getDistanciaTotal();
 			tanque.consumir(nova.getDistanciaTotal());
-			rotas.addLast(nova); // o que fazer
-			custoVariavel(); // mudar nome metodo
-			// notificar();
-		} 
+			rotas.addLast(nova); 
+			custoVariavel(); 
+			
+		} else {
+			System.out.println("A distância excede a autonomia máxima do veículo");
+		}
 	}
 
 	/**
@@ -205,4 +224,6 @@ public abstract class Veiculo implements Serializable, Custeavel {
 	public LinkedList<Rota> getRotas() {
 		return rotas;
 	}
+
+
 }
