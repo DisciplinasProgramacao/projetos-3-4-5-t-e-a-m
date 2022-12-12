@@ -2,12 +2,13 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 
-public class Frota implements Observer{
+public class Frota implements Observer, Serializable{
 	LinkedList<Rota> rotas;
 	LinkedList<Veiculo> veiculos;
 

@@ -1,5 +1,3 @@
-
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
@@ -129,27 +127,10 @@ public class Aplicacao {
 							String distancia = ler.nextLine();
 							Double distdoub = Double.parseDouble(distancia);
 
-							// verificar se está dentro da autonomia(ou não, isso já é tratado em outro
-							// lugar)
-							// veic.addRota(1000, null);
-							// veic.imprimeRotas();
-
-							// String escolha = ler.nextLine();
-							// int escol = Integer.parseInt(escolha);
-							// Combustivel combust = (Combustivel) veic.tanque.getCombustivel();
-
 							Rota rota = new Rota(distdoub);
 							veic.addRota(rota);
 							System.out.println("Combustivel restante: " + veic.tanque.getQuantAtual());
 							veic.imprimeRotas();
-
-							// System.out.println("Escolha o combustível que será usado");
-
-							// try {
-							// Veiculo veic = frota.localizaVeiculo(placa);
-							// //terceiro null eh de combustivel
-							// veic.addRota(1000, null, null);
-							// veic.imprimeRotas();
 
 						} catch (Exception erro) {
 							System.out.println(erro.getMessage());

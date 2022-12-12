@@ -9,7 +9,7 @@ class FurgaoTest {
 
 	@BeforeEach
 	void setUp() {
-		f = new Furgao("1234", 5000.0, 10000);
+		f = new Furgao("1234", 5000.0, 1000, Furgao.combustiveis[0]);
 	}
 
 	@Test

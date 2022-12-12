@@ -59,7 +59,7 @@ public abstract class Veiculo implements Serializable, Custeavel, Sujeito {
 
 	@Override
 	public void desistir(){
-
+		
 	}
 
 	@Override

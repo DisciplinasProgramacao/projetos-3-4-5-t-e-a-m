@@ -10,7 +10,7 @@ public class VanTest {
 
     @BeforeEach
     void setUp() {
-        v = new Van("1234", 5000.0, 10000);
+        v = new Van("1234", 5000.0, 10000, Van.combustiveis[0]);
     }
 
     @Test
