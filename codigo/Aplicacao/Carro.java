@@ -16,6 +16,14 @@ public class Carro extends Veiculo {
 	private static int quantCombustivelAtual;
 	public static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.ALCOOL };
 
+	/**
+	 * Construtor do Carro
+	 * 
+	 * @param placa Praca do carro.
+	 * @param valorVenda Valor de venda do carro.
+	 * @param kmAtual Quilometragem atual do carro.
+	 * @param atual Tipo de combustível que está sendo utilizado no momento no carro.
+	 */
 	public Carro(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
 				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
@@ -25,6 +33,10 @@ public class Carro extends Veiculo {
 	}
 	
 	
+	/**
+	 * Calcula os gastos com o alinhamento do carro.
+	 * 
+	 */
 	@Override
 	public void custoVariavel() {
 		double valorAlinhamento;
@@ -33,9 +45,7 @@ public class Carro extends Veiculo {
 			valorAlinhamento = (numAlinhamento * valorPorAlinhamento);
 			kmAnterior = kmAtual;
 			this.addCusto(valorAlinhamento, "Alinhamento");
-		} else {
-			valorAlinhamento = 0.0;
-		}
+		} 
 	}
 
 }

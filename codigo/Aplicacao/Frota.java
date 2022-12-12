@@ -10,16 +10,23 @@ public class Frota {
 	LinkedList<Rota> rotas;
 	LinkedList<Veiculo> veiculos;
 
+	/**
+	 * Cria lista para inclusão dos veículos da frota
+	 */
 	public Frota() {
 		veiculos = new LinkedList<Veiculo>();
 	}
 
+	/**
+	 * Carrega veículos a partir de um arquivo.
+	 * 
+	 * @param nomeArquivo Nome do arquivo que será carregado.
+	 */
 	public void carregarVeiculo(String nomeArquivo) {
 
 		ObjectInputStream ois = null;
 		FileInputStream fis = null;
 		try {
-			// ArquivoTextoLeitura leitura = new ArquivoTextoLeitura(caminhoArquivo);
 			fis = new FileInputStream(nomeArquivo);
 			ois = new ObjectInputStream(fis);
 			Object obj = ois.readObject();
@@ -35,6 +42,11 @@ public class Frota {
 		}
 	}
 
+	/**
+	 * Salva veículos em um arquivo
+	 * 
+	 * @param nomeArquivo Nome do arquivo em que os veículos serão salvos
+	 */
 	public void salvarVeiculo(String nomeArquivo) {
 		FileOutputStream fout = null;
 		ObjectOutputStream oos = null;
@@ -50,11 +62,24 @@ public class Frota {
 		}
 	}
 
+	/**
+	 * Inclui veículo na frota (lista)
+	 * 
+	 * @param veiculo Veículo a ser incluído.
+	 * @return Verdadeiro caso o veículo seja incluído.
+	 */
 	public boolean addVeiculo(Veiculo veiculo) {
 		this.veiculos.addLast(veiculo);
 		return true;
 	}
 
+	/**
+	 * Localiza veículo incluído na frota (lista) a partir da indicação da placa do veículo procurado.
+	 * 
+	 * @param placa Do veículo a ser localizado.
+	 * @return Veículo (caso for encontrado)
+	 * @throws Exception Apresenta mensagem "Placa não encontrada" caso não seja localizado veículo na frota com a placa indicada.
+	 */
 	public Veiculo localizaVeiculo(String placa) throws Exception {
 		for (Veiculo veiculo : veiculos) {
 			if (placa.equals(veiculo.getPlaca())) {
@@ -64,6 +89,10 @@ public class Frota {
 		throw new Exception("Placa não encontrada");
 	}
 
+	/**
+	 * Imprime relatório com placa do veículo, valor do IPVA, valor do Seguro e soma dos custos.
+	 * 
+	 */
 	public void imprimirRelatorio() {
 		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
@@ -72,6 +101,10 @@ public class Frota {
 		}
 	}
 
+	/**
+	 * Imprime relatório com placa do veículo, valor do IPVA, valor do Seguro, soma dos custos e todos os custos.
+	 * 
+	 */
 	public void imprimirRelatorioCompleto() {
 		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
@@ -82,6 +115,9 @@ public class Frota {
 		}
 	}
 
+	/**
+	 * Calcula a média do consumo das rotas,
+	 */
 	public void mediaConsumoRotas() {
 		Veiculo aux;
 		double sum = 0;
@@ -96,6 +132,10 @@ public class Frota {
 		System.out.println("Media de todas as rotas: " + sum / auxsum);
 	}
 
+	/**
+	 * Informa os três vaeículos que fizeram mais rotas. 
+	 * 
+	 */
 	public void imprimeTresMaiores() {
 
 		LinkedList<Veiculo> tresMaiores;
@@ -127,6 +167,9 @@ public class Frota {
 
 	}
 
+	/**
+	 * Organiza lista de custos em ordem decrescente de custos.
+	 */
 	public void listaDecrescenteCusto() {
 		for (int i = 0; i < veiculos.size(); i++) {
 			for (int j = 0; j < veiculos.size(); j++) {
@@ -138,6 +181,9 @@ public class Frota {
 		imprimirRelatorio();
 	}
 
+	/**
+	 * Imprime as rotas cadastradas para um veículo (placa, data e distância).
+	 */
 	public void imprimirRotas() {
 		Veiculo aux;
 		for (int i = 0; i < veiculos.size(); i++) {
@@ -150,7 +196,12 @@ public class Frota {
 		}
 	}
 
-	public void filtrarFrotaPorData(LocalDate date) { // throws Exception
+	/**
+	 * Filtra as rotas cadastradas por data, considerando a data indicada, e imprime as filtradas
+	 * 
+	 * @param date 
+	 */
+	public void filtrarFrotaPorData(LocalDate date) {
 		Veiculo aux;
 		for (int i = 0; i < veiculos.size(); i++) {
 			aux = veiculos.get(i);

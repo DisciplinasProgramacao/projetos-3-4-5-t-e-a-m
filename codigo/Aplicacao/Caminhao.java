@@ -19,6 +19,14 @@ public class Caminhao extends Veiculo {
 	private static int quantCombustivelAtual;
 	public static Combustivel[] combustiveis = { Combustivel.DIESEL };
 
+	/**
+	 * Construtor do caminhão.
+	 * 
+	 * @param placa      Placa do caminhão.
+	 * @param valorVenda Valor de venda do caminhão.
+	 * @param kmAtual    Quilometragem atual do caminhão.
+	 * @param atual      Tipo de combustível utilizado no momento no caminhão.
+	 */
 	public Caminhao(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
 				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
@@ -29,15 +37,16 @@ public class Caminhao extends Veiculo {
 		this.tanque = new Tanque(atual, CAPACIDADE_TANQUE);
 	}
 
+	/**
+	 * Calcula o custo com manutencao e vistoria
+	 */
 	@Override
 	public void custoVariavel() {
-		double valorAlinhamento;
+		double valorManutencao;
 		int numManutencao = ((kmAtual - kmAnterior) / kmManutencao);
 		if (numManutencao >= 1) {
-			valorAlinhamento = (numManutencao * valorPorManutencao);
-			this.addCusto(valorAlinhamento, "Alinhamento");
-		} else {
-			valorAlinhamento = 0.0;
+			valorManutencao = (numManutencao * valorPorManutencao);
+			this.addCusto(valorManutencao, "Manutencao");
 		}
 
 		double valorVistoria;
@@ -45,12 +54,10 @@ public class Caminhao extends Veiculo {
 		if (numVistoria >= 1) {
 			valorVistoria = (numVistoria * valorPorVistoria);
 			this.addCusto(valorVistoria, "Vistoria");
-		} else {
-			valorVistoria = 0.0;
+		}
 
-			if ((numManutencao >= 1) || (numVistoria >= 1)) {
-				kmAnterior = kmAtual;
-			}
+		if ((numManutencao >= 1) || (numVistoria >= 1)) {
+			kmAnterior = kmAtual;
 		}
 	}
 }

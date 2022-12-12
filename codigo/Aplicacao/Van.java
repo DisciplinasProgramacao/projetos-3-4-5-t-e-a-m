@@ -25,7 +25,7 @@ public class Van extends Veiculo {
 	 * @param placa      Placa da Van.
 	 * @param valorVenda Valor de venda da Van. Base de cálculo do IPVA e Seguro.
 	 * @param kmAtual    Quilometragem percorrida pela Van
-	 * @param atual      Combustível atualmente utilizado no tanque.
+	 * @param atual      Tipo de vcombustível atualmente utilizado no tanque.
 	 */
 	public Van(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
