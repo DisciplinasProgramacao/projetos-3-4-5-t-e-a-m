@@ -12,8 +12,8 @@ public enum Combustivel {
 	 * Construtor do combustível
 	 * 
 	 * @param descricao Tipo de combustível
-	 * @param consumo
-	 * @param preco
+	 * @param consumo Consumo por Km
+	 * @param preco Preço por litro
 	 */
 	private Combustivel(String descricao, double consumo, double preco) {
 		this.descricao = descricao;
@@ -33,6 +33,12 @@ public enum Combustivel {
 		return preco;
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param distancia
+	 * @return Valor do combustível para a distância informada.
+	 */
 	public double valorAbastecimento(int distancia) {
 		return (getPreco() * distancia / getConsumo());
 
