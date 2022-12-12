@@ -1,5 +1,6 @@
+import java.io.Serializable;
 
-public class Tanque {
+public class Tanque implements Serializable{
 
   private int capacidade;
   private float quantAtual;

@@ -1,4 +1,6 @@
-public class Custo {
+import java.io.Serializable;
+
+public class Custo implements Serializable{
 
     private double valor;
     private String descricao;

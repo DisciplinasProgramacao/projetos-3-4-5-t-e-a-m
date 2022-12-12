@@ -9,7 +9,7 @@ public class CarroTest {
 
 	@BeforeEach
 	public void setUp() {
-		c = new Carro("ABC123", 50000.00, 0);
+		c = new Carro("ABC123", 5000.00, 0, Carro.combustiveis[0]);
 	}
 
 	@Test

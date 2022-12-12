@@ -9,7 +9,7 @@ class CaminhaoTest {
 
 	@BeforeEach
 	void setUp() {
-		c = new Caminhao("ABC1234", 50000.00, 0);
+		c = new Caminhao("ABC1234", 5000.00, 0, Caminhao.combustiveis[0]);
 	}
 
 	@Test
