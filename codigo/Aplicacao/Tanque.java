@@ -19,10 +19,10 @@ public class Tanque {
     
   }
 
-  public Tanque(int capacidade, float quantAtual, Combustivel combs) {
+  public Tanque(int capacidade, float quantAtual, Combustivel combustivelAtual) {
     this.capacidade = capacidade;
     this.quantAtual = quantAtual;
-    this.combustivelAtual = combs;
+    this.combustivelAtual = combustivelAtual;
   }
 
   /**
