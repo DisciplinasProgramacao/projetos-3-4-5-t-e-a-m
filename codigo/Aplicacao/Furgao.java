@@ -58,9 +58,9 @@ public class Furgao extends Veiculo {
 			valorVistoria = (numVistoria * valorPorVistoria);
 			this.addCusto(valorVistoria, "Vistoria");
 		}
-			if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
-				kmAnterior = kmAtual;
-			}
+		if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
+			kmAnterior = kmAtual;
 		}
 	}
+	
 }

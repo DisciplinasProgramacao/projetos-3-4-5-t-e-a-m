@@ -4,9 +4,10 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 
-public class Frota {
+public class Frota implements Observer{
 	LinkedList<Rota> rotas;
 	LinkedList<Veiculo> veiculos;
 
@@ -62,6 +63,11 @@ public class Frota {
 		}
 	}
 
+	@Override
+	public void atualizar(){
+		this.veiculos.sort(Comparator.comparing(x -> x.custoTotal()));
+	}
+
 	/**
 	 * Inclui veículo na frota (lista)
 	 * 
@@ -70,6 +76,7 @@ public class Frota {
 	 */
 	public boolean addVeiculo(Veiculo veiculo) {
 		this.veiculos.addLast(veiculo);
+		veiculo.assinar(this);
 		return true;
 	}
 
@@ -94,7 +101,7 @@ public class Frota {
 	 * 
 	 */
 	public void imprimirRelatorio() {
-		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
+		for (int i = 0; i < veiculos.size(); i++) { 
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
 					+ veiculos.get(i).valorIpva() + " - Valor Seguro:  "
 					+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());
@@ -106,7 +113,7 @@ public class Frota {
 	 * 
 	 */
 	public void imprimirRelatorioCompleto() {
-		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
+		for (int i = 0; i < veiculos.size(); i++) { 
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
 					+ veiculos.get(i).valorIpva() + " - Valor Seguro:  "
 					+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());
@@ -138,32 +145,13 @@ public class Frota {
 	 */
 	public void imprimeTresMaiores() {
 
-		LinkedList<Veiculo> tresMaiores;
-		Veiculo maior = veiculos.get(0);
-		Veiculo medio = veiculos.get(0);
-		Veiculo menor = veiculos.get(0);
+		LinkedList<Veiculo> tresMaiores = veiculos;
+		tresMaiores.sort(Comparator.comparing(x -> x.getNumRotas()));
+		Collections.reverse(tresMaiores);
 
-		for (Veiculo veiculo : veiculos) {
-			if (veiculo.getNumRotas() > maior.getNumRotas()) {
-
-				menor = medio;
-				medio = maior;
-				maior = veiculo;
-
-			} else if (veiculo.getNumRotas() > medio.getNumRotas()) {
-
-				menor = medio;
-				medio = veiculo;
-
-			} else if (veiculo.getNumRotas() > menor.getNumRotas()) {
-				menor = veiculo;
-
-			}
-		}
-
-		System.out.println(" 1: " + maior.getPlaca());
-		System.out.println(" 2: " + medio.getPlaca());
-		System.out.println(" 3: " + menor.getPlaca());
+		System.out.println(" 1: " + tresMaiores.get(0).getPlaca() + tresMaiores.get(0).getNumRotas());
+		System.out.println(" 2: " + tresMaiores.get(1).getPlaca() + tresMaiores.get(1).getNumRotas());
+		System.out.println(" 3: " + tresMaiores.get(2).getPlaca() + tresMaiores.get(2).getNumRotas());
 
 	}
 
@@ -214,5 +202,9 @@ public class Frota {
 			}
 		}
 
+	}
+
+	public void imprimeVeiculosOrdenadosPorCusto() {
+		this.veiculos.forEach(veiculo -> System.out.println("Placa: " + veiculo.getPlaca() + "    Custo total: " + veiculo.custoTotal()));
 	}
 }
