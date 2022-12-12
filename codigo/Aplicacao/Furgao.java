@@ -19,14 +19,13 @@ public class Furgao extends Veiculo {
 	private static int quantCombustivelAtual;
 	public static Combustivel[] combustiveis = { Combustivel.GASOLINA };
 
-	
 	/**
 	 * Construtor do Furgão
 	 * 
-	 * @param placa Placa do Furgão.
+	 * @param placa      Placa do Furgão.
 	 * @param valorVenda Valor de venda do Furgão.
-	 * @param kmAtual Quilometragem atual do Furgão.
-	 * @param atual Tipo de combustível que está no tanque do Furgão.
+	 * @param kmAtual    Quilometragem atual do Furgão.
+	 * @param atual      Tipo de combustível que está no tanque do Furgão.
 	 */
 	public Furgao(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
@@ -58,9 +57,8 @@ public class Furgao extends Veiculo {
 			valorVistoria = (numVistoria * valorPorVistoria);
 			this.addCusto(valorVistoria, "Vistoria");
 		}
-			if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
-				kmAnterior = kmAtual;
-			}
+		if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
+			kmAnterior = kmAtual;
 		}
 	}
 }
