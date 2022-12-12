@@ -1,4 +1,3 @@
-import java.util.Scanner;
 
 public class Carro extends Veiculo {
 
@@ -15,14 +14,14 @@ public class Carro extends Veiculo {
 	private int kmAlinhamento;
 	private double valorPorAlinhamento;
 	private static int quantCombustivelAtual;
-	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.ALCOOL };
+	public static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.ALCOOL };
 
-	public Carro(String placa, double valorVenda, int kmAtual) {
+	public Carro(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
-				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
-		this.tanque = new Tanque(CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis);
+		this.tanque = new Tanque(atual, CAPACIDADE_TANQUE);
 	}
 	
 	

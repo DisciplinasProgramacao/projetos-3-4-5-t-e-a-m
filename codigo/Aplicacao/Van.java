@@ -17,7 +17,7 @@ public class Van extends Veiculo {
 	private int kmVistoria;
 	private double valorPorVistoria;
 	private static int quantCombustivelAtual;
-	private static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.DIESEL };
+	public static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.DIESEL };
 
 	public Van(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,

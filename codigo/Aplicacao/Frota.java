@@ -65,7 +65,7 @@ public class Frota {
 	}
 
 	public void imprimirRelatorio() {
-		for (int i = 0; i < veiculos.size(); i++) {
+		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
 					+ veiculos.get(i).valorIpva() + " - Valor Seguro:  "
 					+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());
@@ -73,7 +73,7 @@ public class Frota {
 	}
 
 	public void imprimirRelatorioCompleto() {
-		for (int i = 0; i < veiculos.size(); i++) {
+		for (int i = 0; i < veiculos.size(); i++) { //stream filtro pra pegar valores
 			System.out.println(i + " - Placa: " + veiculos.get(i).getPlaca() + " - Valor IPVA: "
 					+ veiculos.get(i).valorIpva() + " - Valor Seguro:  "
 					+ veiculos.get(i).valorSeguro() + " - Soma dos Custos: " + veiculos.get(i).custoTotal());
