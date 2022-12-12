@@ -19,10 +19,18 @@ public class Van extends Veiculo {
 	private static int quantCombustivelAtual;
 	public static Combustivel[] combustiveis = { Combustivel.GASOLINA, Combustivel.DIESEL };
 
+	/**
+	 * Construtor da Van.
+	 * 
+	 * @param placa      Placa da Van.
+	 * @param valorVenda Valor de venda da Van. Base de cálculo do IPVA e Seguro.
+	 * @param kmAtual    Quilometragem percorrida pela Van
+	 * @param atual      Combustível atualmente utilizado no tanque.
+	 */
 	public Van(String placa, double valorVenda, int kmAtual, Combustivel atual) {
 		super(placa, valorVenda, PERCENTUAL_IPVA, PERCENTUAL_SEGURO, ACRESCIMO_SEGURO, kmAtual,
 				CAPACIDADE_TANQUE, quantCombustivelAtual, combustiveis, atual);
-				
+
 		this.kmAlinhamento = KM_ALINHAMENTO;
 		this.valorPorAlinhamento = VALOR_POR_ALINHAMENTO;
 		this.kmVistoria = KM_VISTORIA;
@@ -30,7 +38,12 @@ public class Van extends Veiculo {
 		this.tanque = new Tanque(atual, CAPACIDADE_TANQUE);
 	}
 
-	@Override //observer?, adicionar função no addRotas
+	/**
+	 * 
+	 * Adiciona na lista os custos com alinhamento e vistoria
+	 * 
+	 */
+	@Override
 	public void custoVariavel() {
 		double valorAlinhamento;
 		int numAlinhamento = ((kmAtual - kmAnterior) / kmAlinhamento);
@@ -44,11 +57,11 @@ public class Van extends Veiculo {
 		if (numVistoria >= 1) {
 			valorVistoria = (numVistoria * valorPorVistoria);
 			this.addCusto(valorVistoria, "Vistoria");
-		} 
+		}
 		if ((numAlinhamento >= 1) || (numVistoria >= 1)) {
 			kmAnterior = kmAtual;
 		}
-		
+
 	}
 
 }
